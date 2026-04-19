@@ -80,3 +80,84 @@ model Media {
   alt         String?
   uploadedAt  DateTime @default(now())
 }
+
+model ResumeDocument {
+  id            String    @id @default("default")
+  title         String    @default("Resume")
+  subtitle      String?
+  summary       String?
+  pdfUrl        String?
+  pdfFilename   String?
+  pdfUploadedAt DateTime?
+  location      String?
+  email         String?
+  phone         String?
+  updatedAt     DateTime  @updatedAt
+}
+
+model ResumeExperience {
+  id         String   @id @default(cuid())
+  role       String
+  company    String
+  companyUrl String?
+  location   String?
+  startDate  String
+  endDate    String?
+  current    Boolean  @default(false)
+  bullets    String[] @default([])
+  tech       String[] @default([])
+  order      Int      @default(0)
+  visible    Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([visible, order])
+}
+
+model ResumeEducation {
+  id        String   @id @default(cuid())
+  degree    String
+  school    String
+  location  String?
+  startDate String
+  endDate   String?
+  details   String?
+  order     Int      @default(0)
+  visible   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([visible, order])
+}
+
+model ResumeSkill {
+  id        String   @id @default(cuid())
+  category  String
+  name      String
+  order     Int      @default(0)
+  visible   Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([visible, category, order])
+}
+
+model ResumeCertification {
+  id            String   @id @default(cuid())
+  name          String
+  issuer        String
+  issuedAt      String?
+  credentialUrl String?
+  order         Int      @default(0)
+  visible       Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([visible, order])
+}
+
+model SiteSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
