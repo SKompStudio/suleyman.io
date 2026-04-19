@@ -52,6 +52,11 @@ export function ResumeView({ doc, experiences, educations, skills, certification
     )
   }
 
+  // PDF uploaded but no structured content yet → render an embedded PDF view.
+  if (hasPdf && !hasAnyContent) {
+    return <PdfOnlyView doc={doc!} />
+  }
+
   const skillGroups = groupSkills(skills)
   const updatedAt = doc?.updatedAt ? new Date(doc.updatedAt) : null
 
@@ -293,5 +298,71 @@ function SectionHeading({ children }: { children: React.ReactNode }) {
     <h2 className="mb-5 font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-zinc-500 dark:text-zinc-400 print:mb-2">
       {children}
     </h2>
+  )
+}
+
+function PdfOnlyView({ doc }: { doc: ResumeDocument }) {
+  const updatedAt = doc.pdfUploadedAt ? new Date(doc.pdfUploadedAt) : doc.updatedAt ? new Date(doc.updatedAt) : null
+
+  return (
+    <div className="mx-auto my-12 max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3 border-b border-zinc-200 pb-4 dark:border-zinc-800">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+            {doc.title || 'Resume'}
+          </h1>
+          {doc.subtitle && (
+            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{doc.subtitle}</p>
+          )}
+          {updatedAt && (
+            <p className="mt-1 font-mono text-[11px] uppercase tracking-wider text-zinc-400">
+              Updated {updatedAt.toLocaleDateString('en', { month: 'short', day: 'numeric', year: 'numeric' })}
+            </p>
+          )}
+        </div>
+        <div className="flex items-center gap-2">
+          <a
+            href={doc.pdfUrl!}
+            download
+            className="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-3.5 py-1.5 text-sm font-medium text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white"
+          >
+            <FiDownload className="h-4 w-4" />
+            Download PDF
+          </a>
+          <a
+            href={doc.pdfUrl!}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-md border border-zinc-300 bg-white px-3.5 py-1.5 text-sm font-medium text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-800"
+          >
+            <FiArrowUpRight className="h-4 w-4" />
+            Open in new tab
+          </a>
+        </div>
+      </div>
+
+      <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
+        <object
+          data={`${doc.pdfUrl}#view=FitH`}
+          type="application/pdf"
+          className="block h-[85vh] w-full"
+          aria-label={doc.pdfFilename || 'Resume PDF'}
+        >
+          <div className="flex h-[60vh] flex-col items-center justify-center gap-3 p-8 text-center">
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">
+              Your browser can&apos;t render the PDF inline — download it to view.
+            </p>
+            <a
+              href={doc.pdfUrl!}
+              download
+              className="inline-flex items-center gap-1.5 rounded-md bg-teal-600 px-4 py-2 text-sm font-medium text-white hover:bg-teal-700"
+            >
+              <FiDownload className="h-4 w-4" />
+              Download {doc.pdfFilename || 'resume.pdf'}
+            </a>
+          </div>
+        </object>
+      </div>
+    </div>
   )
 }
