@@ -27,14 +27,26 @@ export const projectOverrides: Record<string, ProjectOverride> = {
   'kianis4/applify-ai': {
     name: 'Applify AI',
     description:
-      'AI-powered resume tailoring platform with secure auth, intelligent content generation, and subscription-based premium workflows.',
+      'Production SaaS for AI-powered resume tailoring. Event-driven background jobs (Inngest) run multi-minute LLM pipelines with step-level checkpointing; OpenAI Responses API with Zod-validated structured outputs; ~90% inference cost reduction via prompt-cache-optimized prefixes; middleware-enforced JWT auth for premium gating; 5-job CI pipeline with Dependabot and Sentry observability.',
     link: { href: 'https://applify-ai.com/', label: 'applify-ai.com' },
     logo: { type: 'image', src: '/ApplifyLogo.svg' },
     timeframe: 'Feb 2025 - Present',
-    tech: ['TypeScript', 'Next.js', 'MongoDB', 'OpenAI', 'Stripe'],
+    tech: [
+      'TypeScript',
+      'Next.js 15',
+      'React 19',
+      'PostgreSQL',
+      'Prisma 7',
+      'Inngest',
+      'OpenAI GPT-5.1',
+      'Stripe',
+      'Upstash Redis',
+      'Vercel Blob',
+      'Sentry',
+    ],
     featured: true,
     priority: 1,
-    badges: ['AI', 'SaaS'],
+    badges: ['Production SaaS', 'AI'],
   },
   'kianis4/recipeshack': {
     name: 'Full Stack Recipe Management',
@@ -182,6 +194,33 @@ export interface CustomProject {
 
 export const customProjects: CustomProject[] = [
   {
+    slug: 'skomp-studio',
+    name: 'Skomp Studio',
+    description:
+      'Production multi-tenant SaaS platform for fitness studio management. 99K+ lines of TypeScript, 500+ users, $20K+ CAD processed. Row-level tenant isolation via a scopedPrisma client; Square SDK with idempotent payments and per-studio credentials; AWS SES/SNS/AppSync for email, SMS and real-time messaging; 411 Vitest unit tests and Playwright E2E against every Vercel preview; branch-protected CI with shadow-DB migration checks and Gitleaks secret scanning.',
+    link: { href: 'https://skomp.studio/', label: 'skomp.studio' },
+    logo: { type: 'image', src: '/SKomp.svg' },
+    timeframe: 'Jul 2025 - Present',
+    tech: [
+      'TypeScript',
+      'Next.js 15',
+      'React 19',
+      'PostgreSQL',
+      'Prisma 7',
+      'Square',
+      'AWS SES/SNS',
+      'AWS AppSync',
+      'NextAuth.js',
+      'Sentry',
+    ],
+    featured: true,
+    priority: 2,
+    badges: ['Production SaaS', 'Multi-tenant'],
+    source: 'custom',
+    visibility: 'private',
+    github: 'https://github.com/kianis4/skomp-studio',
+  },
+  {
     slug: 'skompxcel',
     name: 'SKompXcel',
     description:
@@ -190,9 +229,9 @@ export const customProjects: CustomProject[] = [
     logo: { type: 'image', src: '/SKomp.svg' },
     timeframe: 'Jan 2024 - Present',
     tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Google Cloud'],
-    featured: true,
-    priority: 2,
-    badges: ['Mentorship', 'Startup'],
+    featured: false,
+    priority: 10,
+    badges: ['Mentorship'],
     source: 'custom',
   },
   {
