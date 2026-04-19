@@ -14,11 +14,16 @@ export const metadata = {
 export default async function AdminDashboard() {
   const session = await getServerSession(authOptions)
 
-  const [postCount, projectCount, mediaCount] = await Promise.all([
+  const [postCount, projectCount, mediaCount, experienceCount, educationCount, skillCount, certCount] = await Promise.all([
     prisma.post.count(),
     prisma.projectEntry.count(),
     prisma.media.count(),
+    prisma.resumeExperience.count(),
+    prisma.resumeEducation.count(),
+    prisma.resumeSkill.count(),
+    prisma.resumeCertification.count(),
   ])
+  const resumeItemCount = experienceCount + educationCount + skillCount + certCount
 
   return (
     <div className="min-h-screen bg-zinc-50 px-6 py-12 dark:bg-zinc-950">
@@ -35,7 +40,7 @@ export default async function AdminDashboard() {
           <SignOutButton />
         </header>
 
-        <section className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           <Link
             href="/admin/posts"
             className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-teal-400 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-teal-600"
@@ -61,6 +66,24 @@ export default async function AdminDashboard() {
             <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Media</h2>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{mediaCount} files</p>
             <p className="mt-3 text-sm text-teal-600 dark:text-teal-400">Browse uploads →</p>
+          </Link>
+
+          <Link
+            href="/admin/resume"
+            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-teal-400 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-teal-600"
+          >
+            <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Resume</h2>
+            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{resumeItemCount} items across sections</p>
+            <p className="mt-3 text-sm text-teal-600 dark:text-teal-400">Edit resume →</p>
+          </Link>
+
+          <Link
+            href="/admin/settings"
+            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-teal-400 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-teal-600"
+          >
+            <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Settings</h2>
+            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Hero + social links</p>
+            <p className="mt-3 text-sm text-teal-600 dark:text-teal-400">Configure site →</p>
           </Link>
         </section>
       </div>
