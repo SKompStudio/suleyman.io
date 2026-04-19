@@ -39,7 +39,7 @@ export interface MergedProject {
   description: string
   link: { href: string; label: string }
   github: string | null
-  logo: { type: string; src?: string; name?: string; className?: string } | null
+  logo: { type: 'image' | 'icon'; src?: string; name?: string; className?: string } | null
   timeframe: string
   tech: string[]
   featured: boolean
@@ -67,7 +67,7 @@ function applyOverride(repo: GithubRepo, override: ProjectEntryRow): MergedProje
     github: override.githubUrl ?? repo.github,
     logo: override.logoSrc || override.logoIconName
       ? {
-          type: override.logoType ?? (override.logoSrc ? 'image' : 'icon'),
+          type: ((override.logoType as 'image' | 'icon' | null) ?? (override.logoSrc ? 'image' : 'icon')) as 'image' | 'icon',
           src: override.logoSrc ?? undefined,
           name: override.logoIconName ?? undefined,
           className: override.logoClassName ?? undefined,
@@ -102,7 +102,7 @@ function customToMerged(entry: ProjectEntryRow): MergedProject {
     github: entry.githubUrl,
     logo: entry.logoSrc || entry.logoIconName
       ? {
-          type: entry.logoType ?? (entry.logoSrc ? 'image' : 'icon'),
+          type: ((entry.logoType as 'image' | 'icon' | null) ?? (entry.logoSrc ? 'image' : 'icon')) as 'image' | 'icon',
           src: entry.logoSrc ?? undefined,
           name: entry.logoIconName ?? undefined,
           className: entry.logoClassName ?? undefined,

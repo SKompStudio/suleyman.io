@@ -1,13 +1,10 @@
 import { notFound } from 'next/navigation'
 import { Container } from '@/components/Container'
 import { formatDate } from '@/lib/formatDate'
-import { getArticle, getAllArticles } from '@/lib/getAllArticles'
+import { getArticle } from '@/lib/getAllArticles'
 import { MarkdownArticle } from '@/components/MarkdownArticle'
 
-export async function generateStaticParams() {
-  const articles = await getAllArticles()
-  return articles.map((article) => ({ slug: article.slug }))
-}
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
