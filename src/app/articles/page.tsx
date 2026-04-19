@@ -3,6 +3,8 @@ import { SimpleLayout } from '@/components/SimpleLayout'
 import { getAllArticles, ArticleMeta } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
 
+export const dynamic = 'force-dynamic'
+
 function Article({ article }: { article: ArticleMeta }) {
   return (
     <article className="md:grid md:grid-cols-4 md:items-baseline">

@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Type check + tests + build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          # Skip `prisma generate` postinstall; we run it explicitly below
+          PRISMA_SKIP_POSTINSTALL_GENERATE: '1'
+
+      - name: Generate Prisma client
+        run: npx prisma generate
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Unit tests
+        run: npm test
+
+      # Build with dummy env so Next.js can compile without Neon/NextAuth secrets.
+      # The build step validates the full type graph end-to-end — same path Vercel runs.
+      - name: Next.js build
+        run: npm run build
+        env:
+          DATABASE_URL: postgres://user:pass@localhost:5432/dummy
+          DATABASE_URL_UNPOOLED: postgres://user:pass@localhost:5432/dummy
+          NEXTAUTH_SECRET: ci-dummy-secret-do-not-use-in-production
+          NEXTAUTH_URL: http://localhost:3000
+          BLOB_READ_WRITE_TOKEN: vercel_blob_rw_dummy_ci_token
+          WS_NO_BUFFER_UTIL: '1'
+          NEXT_TELEMETRY_DISABLED: '1'

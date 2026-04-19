@@ -1,6 +1,9 @@
 import Image, { ImageProps } from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
+
+export const dynamic = 'force-dynamic'
+
 import {
   ArrowRight,
   Zap,

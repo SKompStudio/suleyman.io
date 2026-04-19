@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/adminGuard'
 import { projectEntrySchema, toggleFieldSchema, setPrioritySchema } from '@/lib/projectSchemas'
@@ -10,7 +10,7 @@ export type ActionResult<T = unknown> =
   | { ok: false; error: string }
 
 function invalidateProjects() {
-  revalidateTag('projects')
+  updateTag('projects')
   revalidatePath('/projects')
   revalidatePath('/admin/projects')
 }

@@ -283,7 +283,7 @@ function formatMonthYear(dateString: string) {
 function matchesFilter(project: Project, filter: string): boolean {
   if (filter === 'all') return true
   const href = project.link?.href?.toLowerCase() || ''
-  const isLive = href && !href.includes('github.com')
+  const isLive = Boolean(href) && !href.includes('github.com')
   if (filter === 'production') return isLive
   if (filter === 'open-source') return project.source === 'github' && project.visibility === 'public'
   if (filter === 'experiments') {

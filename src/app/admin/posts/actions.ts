@@ -1,6 +1,6 @@
 'use server'
 
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { prisma } from '@/lib/prisma'
 import { requireAdmin } from '@/lib/adminGuard'
 import { postInputSchema, setStatusSchema, slugify } from '@/lib/postSchemas'
@@ -10,7 +10,7 @@ export type ActionResult<T = unknown> =
   | { ok: false; error: string }
 
 function invalidate(slug?: string) {
-  revalidateTag('posts')
+  updateTag('posts')
   revalidatePath('/articles')
   revalidatePath('/admin/posts')
   if (slug) revalidatePath(`/articles/${slug}`)
