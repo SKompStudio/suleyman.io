@@ -1,38 +1,54 @@
-import glob from 'fast-glob'
-import * as path from 'path'
+import { prisma } from '@/lib/prisma'
 
 export interface ArticleMeta {
   title: string
   description: string
   date: string
   slug: string
-  component: any // The MDX component
+  author: string
+  coverImage: string | null
+  tags: string[]
+  body?: string
   isRssFeed?: boolean
 }
 
-async function importArticle(articleFilename: string): Promise<ArticleMeta> {
-  // Relative to src/lib
-  let { meta, default: component } = await import(
-    `../content/articles/${articleFilename}`
-  )
-  return {
-    slug: articleFilename.replace(/(\/index)?\.mdx$/, ''),
-    ...meta,
-    component,
-  }
+function toIsoDate(value: Date | string | null): string {
+  if (!value) return new Date().toISOString().slice(0, 10)
+  if (typeof value === 'string') return value.slice(0, 10)
+  return value.toISOString().slice(0, 10)
 }
 
 export async function getAllArticles(): Promise<ArticleMeta[]> {
-  let articleFilenames = await glob(['*.mdx', '*/index.mdx'], {
-    cwd: path.join(process.cwd(), 'src/content/articles'),
+  const posts = await prisma.post.findMany({
+    where: { status: 'PUBLISHED' },
+    orderBy: [{ publishedAt: 'desc' }, { updatedAt: 'desc' }],
   })
 
-  let articles = await Promise.all(articleFilenames.map(importArticle))
-
-  return articles.sort((a, z) => new Date(z.date).getTime() - new Date(a.date).getTime())
+  return posts.map((p) => ({
+    slug: p.slug,
+    title: p.title,
+    description: p.description,
+    date: toIsoDate(p.publishedAt),
+    author: p.author,
+    coverImage: p.coverImage,
+    tags: p.tags,
+    body: p.body,
+  }))
 }
 
 export async function getArticle(slug: string): Promise<ArticleMeta | null> {
-    const allArticles = await getAllArticles()
-    return allArticles.find((article) => article.slug === slug) || null
+  const p = await prisma.post.findFirst({
+    where: { slug, status: 'PUBLISHED' },
+  })
+  if (!p) return null
+  return {
+    slug: p.slug,
+    title: p.title,
+    description: p.description,
+    date: toIsoDate(p.publishedAt),
+    author: p.author,
+    coverImage: p.coverImage,
+    tags: p.tags,
+    body: p.body,
+  }
 }
