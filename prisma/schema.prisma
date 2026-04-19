@@ -1,0 +1,82 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum PostStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+model Post {
+  id          String     @id @default(cuid())
+  slug        String     @unique
+  title       String
+  description String
+  body        String
+  coverImage  String?
+  author      String     @default("Suleyman Kiani")
+  tags        String[]   @default([])
+  status      PostStatus @default(DRAFT)
+  publishedAt DateTime?
+  scheduledAt DateTime?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@index([status, publishedAt])
+}
+
+enum ProjectSource {
+  GITHUB
+  CUSTOM
+}
+
+model ProjectEntry {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  source        ProjectSource
+  githubSlug    String?       @unique
+  name          String?
+  description   String?
+  linkHref      String?
+  linkLabel     String?
+  logoType      String?
+  logoSrc       String?
+  logoIconName  String?
+  logoClassName String?
+  timeframe     String?
+  tech          String[]      @default([])
+  badges        String[]      @default([])
+  featured      Boolean       @default(false)
+  priority      Int           @default(99)
+  visibility    String        @default("public")
+  visible       Boolean       @default(true)
+  githubUrl     String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([visible, featured, priority])
+}
+
+model Media {
+  id          String   @id @default(cuid())
+  url         String   @unique
+  pathname    String
+  contentType String
+  size        Int
+  alt         String?
+  uploadedAt  DateTime @default(now())
+}
