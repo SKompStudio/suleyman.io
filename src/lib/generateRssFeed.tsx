@@ -1,20 +1,22 @@
-import React from 'react'
-
 import { Feed } from 'feed'
-import { mkdir, writeFile } from 'fs/promises'
 
 import { getAllArticles } from './getAllArticles'
 
-export async function generateRssFeed() {
-  let articles = await getAllArticles()
-  let siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://suleyman.io'
-  let author = {
+export interface BuiltFeed {
+  xml: string
+  json: string
+}
+
+export async function buildRssFeed(): Promise<BuiltFeed> {
+  const articles = await getAllArticles()
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://suleyman.io'
+  const author = {
     name: 'Suleyman Kiani',
     email: 'suley.kiani@outlook.com',
     link: siteUrl,
   }
 
-  let feed = new Feed({
+  const feed = new Feed({
     title: author.name,
     description: 'Suleyman Kiani - Software Engineer & Finance',
     author,
@@ -29,12 +31,9 @@ export async function generateRssFeed() {
     },
   })
 
-  // We use the article description for the RSS feed content to avoid
-  // issues with rendering Server Components to strings.
-  for (let article of articles) {
-    let url = `${siteUrl}/articles/${article.slug}`
-    let html = article.description || ''
-
+  for (const article of articles) {
+    const url = `${siteUrl}/articles/${article.slug}`
+    const html = article.description || ''
 
     feed.addItem({
       title: article.title,
@@ -48,9 +47,5 @@ export async function generateRssFeed() {
     })
   }
 
-  await mkdir('./public/rss', { recursive: true })
-  await Promise.all([
-    writeFile('./public/rss/feed.xml', feed.rss2(), 'utf8'),
-    writeFile('./public/rss/feed.json', feed.json1(), 'utf8'),
-  ])
+  return { xml: feed.rss2(), json: feed.json1() }
 }

@@ -44,7 +44,6 @@ import logoDevProtocol from '@/images/logos/devprotocol.png'
 
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
-import { generateRssFeed } from '@/lib/generateRssFeed'
 
 // Re-declaring imports as they were in the original file
 const image1String = '/SKomp.svg'
@@ -331,10 +330,6 @@ export const metadata = {
 }
 
 export default async function Home() {
-  if (process.env.NODE_ENV === 'production') {
-    await generateRssFeed()
-  }
-
   const articles = (await getAllArticles())
     .slice(0, 4)
     .map(({ component, ...meta }: any) => meta)
