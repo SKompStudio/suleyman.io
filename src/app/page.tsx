@@ -4,15 +4,7 @@ import clsx from 'clsx'
 
 export const dynamic = 'force-dynamic'
 
-import {
-  ArrowRight,
-  Zap,
-  CheckCircle,
-  Star,
-  ArrowUpRight,
-  Sparkles,
-  Mail
-} from 'lucide-react'
+import { Mail } from 'lucide-react'
 
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
@@ -284,8 +276,8 @@ function Photos() {
                   autoPlay
                   loop
                   muted
-                  playsInline 
-                  controls 
+                  playsInline
+                  preload="none"
                   className="absolute inset-0 h-full w-full object-cover"
                 >
                   <source src={src} type="video/mp4" />
@@ -519,110 +511,6 @@ export default async function Home() {
           </div>
         </div>
       </Container>
-      <div className="mt-16">
-        <section className="py-10 md:py-16 bg-gradient-to-br from-blue-600 to-blue-800 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white blur-3xl"></div>
-            <div className="absolute bottom-10 -left-20 w-60 h-60 rounded-full bg-white blur-3xl"></div>
-          </div>
-          
-          <div className="container mx-auto px-4 md:px-6 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <div className="text-white space-y-6 order-2 lg:order-1">
-                <div className="flex items-center mb-2">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/20 text-white text-sm font-medium">
-                    <Sparkles className="h-4 w-4 mr-2 text-yellow-300" />
-                    New from SKompXcel
-                  </span>
-                </div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                  Applify AI — Your Personal <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-300 to-yellow-100">Résumé-Tailoring</span> Engine
-                </h2>
-                <p className="text-lg md:text-xl text-white/90 leading-relaxed max-w-xl">
-                  Paste any job description, get an ATS-optimized résumé tailored to your achievements. 
-                  Download a perfect one-page PDF in minutes. <strong>150+ paying users</strong> and counting.
-                </p>
-                
-                <div className="flex flex-wrap gap-5 pt-4">
-                  <a 
-                    href="https://www.applify-ai.com/" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white hover:bg-gray-100 text-blue-700 font-medium transition-colors shadow-lg"
-                  >
-                    Experience Applify AI
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </a>
-                  <Link 
-                    href="/projects"
-                    className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-medium transition-colors border border-white/20"
-                  >
-                    Learn More
-                  </Link>
-                </div>
-                
-                <div className="flex flex-wrap gap-6 mt-8 pt-6 border-t border-white/20">
-                  <div className="flex items-center">
-                    <Zap className="h-5 w-5 mr-2 text-yellow-300" />
-                    <span>5-minute setup</span>
-                  </div>
-                  <div className="flex items-center">
-                    <CheckCircle className="h-5 w-5 mr-2 text-yellow-300" />
-                    <span>ATS-optimized</span>
-                  </div>
-                  <div className="flex items-center">
-                    <Star className="h-5 w-5 mr-2 text-yellow-300" />
-                    <span>One-page PDF export</span>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="order-1 lg:order-2 relative">
-                <div className="absolute inset-0 bg-gradient-to-tr from-blue-400/20 to-purple-500/20 rounded-3xl blur-3xl"></div>
-                <div className="relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm p-4 md:p-6 rounded-2xl border border-white/20 shadow-2xl transform hover:-rotate-1 transition-transform duration-500">
-                  <div className="relative rounded-xl overflow-hidden">
-                    <Image
-                      src="/images/applify.png"
-                      alt="Applify AI"
-                      width={600}
-                      height={400}
-                      className="w-full h-auto object-cover rounded-xl"
-                    />
-                    
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    
-                    <div className="absolute top-4 right-4 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-lg rounded-full p-2 animate-float">
-                      <div className="flex items-center">
-                        <Star className="h-4 w-4 text-yellow-400" fill="#FBBF24" />
-                        <Star className="h-4 w-4 text-yellow-400" fill="#FBBF24" />
-                        <Star className="h-4 w-4 text-yellow-400" fill="#FBBF24" />
-                        <Star className="h-4 w-4 text-yellow-400" fill="#FBBF24" />
-                        <Star className="h-4 w-4 text-yellow-400" fill="#FBBF24" />
-                      </div>
-                    </div>
-
-                    <div className="absolute bottom-4 left-4 text-white">
-                      <h3 className="font-bold">Resume Tailoring Made Simple</h3>
-                      <p className="text-sm">Powered by SKompXcel AI</p>
-                    </div>
-                    
-                    <div className="absolute -bottom-5 right-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full p-1 shadow-lg transform rotate-6 animate-pulse">
-                      <a 
-                        href="https://www.applify-ai.com/" 
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="bg-white dark:bg-gray-800 rounded-full p-1.5 block"
-                      >
-                        <ArrowUpRight className="h-5 w-5 text-blue-600" />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
 
       <Photos />
       <Container className="mt-24 md:mt-28">

@@ -2,3 +2,24 @@
 @import 'tailwindcss/components';
 @import './prism.css';
 @import 'tailwindcss/utilities';
+
+/* P0: kill the iOS scroll judder/stick. No element may push a horizontal
+   scroll axis, and the page must not rubber-band into a vertical overscroll
+   feedback loop. `clip` (not `hidden`) is used so position: sticky survives. */
+html,
+body {
+  overflow-x: clip;
+  overscroll-behavior-y: none;
+}
+
+/* Reduced-motion floor: a non-negotiable global kill-switch, independent of
+   any per-component guard. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
