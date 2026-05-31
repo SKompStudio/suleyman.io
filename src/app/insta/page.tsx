@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function Insta() {
   return (
-    <div className="relative h-screen">
+    <div className="relative min-h-[100dvh]">
       <Carousel />
     </div>
   );

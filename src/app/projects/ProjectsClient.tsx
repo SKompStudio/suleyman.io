@@ -87,7 +87,7 @@ function getFallbackInitials(name = '') {
 
 function StatusDot({ status }: { status: 'live' | 'private' | 'source' | 'archive' }) {
   const map: Record<typeof status, { color: string; label: string }> = {
-    live: { color: 'bg-teal-500 shadow-[0_0_0_3px_rgb(20_184_166/0.15)]', label: 'Live' },
+    live: { color: 'bg-signal shadow-[0_0_0_3px_rgb(63_182_139/0.15)]', label: 'Live' },
     private: { color: 'bg-amber-500 shadow-[0_0_0_3px_rgb(245_158_11/0.15)]', label: 'Private' },
     source: { color: 'bg-zinc-400 shadow-[0_0_0_3px_rgb(161_161_170/0.15)]', label: 'Source' },
     archive: { color: 'bg-zinc-300 shadow-[0_0_0_3px_rgb(212_212_216/0.15)]', label: 'Archive' },
@@ -182,7 +182,7 @@ function HeroCard({ project }: { project: Project }) {
             href={primaryHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 transition group-hover:text-teal-600 dark:text-zinc-100 dark:group-hover:text-teal-400"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 transition group-hover:text-accent dark:text-zinc-100 dark:group-hover:text-accent"
           >
             <span>{project.link.label}</span>
             <FiArrowUpRight className="h-4 w-4" />
@@ -232,7 +232,7 @@ function CompactCard({ project }: { project: Project }) {
             href={primaryHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition group-hover:text-teal-600 dark:group-hover:text-teal-400"
+            className="transition group-hover:text-accent dark:group-hover:text-accent"
           >
             {project.name}
           </a>
@@ -260,7 +260,7 @@ function CompactCard({ project }: { project: Project }) {
         <div className="flex items-center gap-2.5">
           {status === 'private' && <FaLock className="h-3 w-3" title="Private repo" />}
           {!isGithubLink && primaryHref && (
-            <FiArrowUpRight className="h-3.5 w-3.5 transition group-hover:text-teal-600 dark:group-hover:text-teal-400" />
+            <FiArrowUpRight className="h-3.5 w-3.5 transition group-hover:text-accent dark:group-hover:text-accent" />
           )}
           {isGithubLink && <GitHubIcon className="h-3.5 w-3.5" />}
         </div>
@@ -351,7 +351,7 @@ export function ProjectsClient({ projects = [] }: { projects: Project[] }) {
           placeholder="Search by name, tech, keyword…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="w-full rounded-full border border-zinc-200 bg-white px-4 py-1.5 text-sm text-zinc-900 placeholder-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-1 focus:ring-teal-500 sm:w-72 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
+          className="w-full rounded-full border border-zinc-200 bg-white px-4 py-1.5 text-sm text-zinc-900 placeholder-zinc-400 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent sm:w-72 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
         />
       </div>
 
@@ -399,7 +399,7 @@ export function ProjectsClient({ projects = [] }: { projects: Project[] }) {
               setFilter('all')
               setQuery('')
             }}
-            className="mt-3 text-sm font-medium text-teal-600 hover:underline dark:text-teal-400"
+            className="mt-3 text-sm font-medium text-accent hover:underline dark:text-accent"
           >
             Reset
           </button>

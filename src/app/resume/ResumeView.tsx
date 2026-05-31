@@ -20,8 +20,8 @@ type Props = {
 }
 
 function formatDateRange(start: string, end: string | null, current: boolean) {
-  if (current) return `${start} — Present`
-  if (end) return `${start} — ${end}`
+  if (current) return `${start} – Present`
+  if (end) return `${start} – ${end}`
   return start
 }
 
@@ -109,7 +109,7 @@ export function ResumeView({ doc, experiences, educations, skills, certification
           <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
             {doc.location && <span>{doc.location}</span>}
             {doc.email && (
-              <a href={`mailto:${doc.email}`} className="hover:text-teal-600 dark:hover:text-teal-400">
+              <a href={`mailto:${doc.email}`} className="hover:text-accent dark:hover:text-accent">
                 {doc.email}
               </a>
             )}
@@ -134,7 +134,7 @@ export function ResumeView({ doc, experiences, educations, skills, certification
                 {experiences.map((exp) => (
                   <article
                     key={exp.id}
-                    className="border-l-2 border-teal-500 pl-5 print:pl-3"
+                    className="border-l-2 border-accent pl-5 print:pl-3"
                   >
                     <div className="flex flex-wrap items-baseline justify-between gap-x-3">
                       <h3 className="text-[17px] font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 print:text-[15px]">
@@ -150,7 +150,7 @@ export function ResumeView({ doc, experiences, educations, skills, certification
                           href={exp.companyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 font-medium text-zinc-700 hover:text-teal-600 dark:text-zinc-300 dark:hover:text-teal-400"
+                          className="inline-flex items-center gap-1 font-medium text-zinc-700 hover:text-accent dark:text-zinc-300 dark:hover:text-accent"
                         >
                           {exp.company}
                           <FiArrowUpRight className="h-3 w-3" />
@@ -168,7 +168,7 @@ export function ResumeView({ doc, experiences, educations, skills, certification
                     {exp.bullets.length > 0 && (
                       <ul className="mt-3 space-y-1.5 text-[14.5px] leading-relaxed text-zinc-700 dark:text-zinc-300 print:text-[12.5px]">
                         {exp.bullets.map((b, i) => (
-                          <li key={i} className="relative pl-4 before:absolute before:left-0 before:top-[0.55em] before:h-1 before:w-1 before:rounded-full before:bg-teal-500">
+                          <li key={i} className="relative pl-4 before:absolute before:left-0 before:top-[0.55em] before:h-1 before:w-1 before:rounded-full before:bg-accent">
                             {b}
                           </li>
                         ))}
@@ -253,7 +253,7 @@ export function ResumeView({ doc, experiences, educations, skills, certification
                               href={c.credentialUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1 hover:text-teal-600 dark:hover:text-teal-400"
+                              className="inline-flex items-center gap-1 hover:text-accent dark:hover:text-accent"
                             >
                               {c.name}
                               <FiArrowUpRight className="h-3 w-3" />
@@ -286,7 +286,7 @@ export function ResumeView({ doc, experiences, educations, skills, certification
           body { background: white !important; color: black !important; }
           .print-root { margin: 0 !important; padding: 0.4in !important; }
           a { color: inherit !important; text-decoration: none !important; }
-          .border-teal-500 { border-color: #0f766e !important; }
+          .border-accent { border-color: #6E8BD0 !important; }
         }
       `}</style>
     </div>
@@ -355,7 +355,7 @@ function PdfOnlyView({ doc }: { doc: ResumeDocument }) {
             <a
               href={doc.pdfUrl!}
               download
-              className="inline-flex items-center gap-1.5 rounded-md bg-teal-600 px-4 py-2 text-sm font-medium text-white hover:bg-teal-700"
+              className="inline-flex items-center gap-1.5 rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent/90"
             >
               <FiDownload className="h-4 w-4" />
               Download {doc.pdfFilename || 'resume.pdf'}

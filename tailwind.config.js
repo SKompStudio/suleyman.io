@@ -4,6 +4,52 @@ module.exports = {
   darkMode: 'class',
   plugins: [require('@tailwindcss/typography')],
   theme: {
+    extend: {
+      fontFamily: {
+        sans: ['var(--font-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+      },
+      colors: {
+        ink: {
+          bg: '#0B0C0E',
+          surface: '#131519',
+          border: '#272A30',
+          text: '#E8E9EC',
+          muted: '#8B8F98',
+        },
+        // Primary accent: desaturated slate-blue (not the cliche green).
+        accent: {
+          DEFAULT: '#6E8BD0',
+          dim: '#23304D',
+        },
+        // Functional secondary: desaturated terminal-green, status/live only.
+        signal: {
+          DEFAULT: '#3FB68B',
+          dim: '#16312A',
+        },
+        finance: '#6E8BD0',
+        engineering: '#C8CCD4',
+      },
+      keyframes: {
+        'reveal-up': {
+          '0%': { opacity: '0', transform: 'translateY(16px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'hairline-sweep': {
+          '0%': { backgroundPosition: '0% 50%' },
+          '100%': { backgroundPosition: '100% 50%' },
+        },
+        'boot-in': {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+      },
+      animation: {
+        'reveal-up': 'reveal-up 0.5s cubic-bezier(0.16,1,0.3,1) both',
+        'hairline-sweep': 'hairline-sweep 6s ease-in-out infinite alternate',
+        'boot-in': 'boot-in 0.6s ease-out both',
+      },
+    },
     fontSize: {
       xs: ['0.8125rem', { lineHeight: '1.5rem' }],
       sm: ['0.875rem', { lineHeight: '1.5rem' }],
