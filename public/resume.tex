@@ -20,7 +20,6 @@
 \usepackage{tabularx}
 \input{glyphtounicode}
 
-
 %----------FONT OPTIONS----------
 % sans-serif
 % \usepackage[sfdefault]{FiraSans}
@@ -31,7 +30,6 @@
 % serif
 % \usepackage{CormorantGaramond}
 % \usepackage{charter}
-
 
 \pagestyle{fancy}
 \fancyhf{} % clear all header and footer fields
@@ -44,7 +42,7 @@
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
 \addtolength{\topmargin}{-.5in}
-\addtolength{\textheight}{1.0in}
+\addtolength{\textheight}{1.5in}
 
 \urlstyle{same}
 
@@ -100,49 +98,62 @@
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 %-------------------------------------------
-%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \begin{document}
 
-%-----------Header-----------
+%----------HEADING----------
 \begin{center}
     \textbf{\Huge \scshape Suleyman Kiani} \\ \vspace{1pt}
-    \small +1 (289) 788-8260 $|$ \href{mailto:kianis4@mcmaster.ca}{\underline{kianis4@mcmaster.ca}} $|$ \href{https://www.linkedin.com/in/suleyman-kiani}{\underline{linkedin.com/in/suleyman-kiani}} $|$ \href{https://github.com/kianis4}{\underline{github.com/kianis4}} $|$ \href{https://suleyman.io}{\underline{suleyman.io}}
+    \small +1 (289) 788-8260 $|$ \href{mailto:kianis4@mcmaster.ca}{\underline{kianis4@mcmaster.ca}} $|$
+    \href{https://linkedin.com/in/suleyman-kiani}{\underline{linkedin.com/in/suleyman-kiani}} $|$
+    \href{https://github.com/kianis4}{\underline{github.com/kianis4}} $|$
+    \href{https://suleyman.io}{\underline{suleyman.io}}
 \end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+  \small{Equipment-finance professional and full-stack/ML engineer who structures multi-million-dollar deals by day and ships production SaaS by night. Pursuing an MEng in Computing \& Software at McMaster. Bridges financial decision-making with intelligent systems.}
+\vspace{-4pt}
 
 %-----------EDUCATION-----------
 \section{Education}
   \resumeSubHeadingListStart
     \resumeSubheading
       {McMaster University}{Hamilton, ON}
-      {Bachelor of Applied Science (BASc) in Computer Science}{Sept. 2018 - Nov. 2024}
+      {Master of Engineering (MEng), Computing and Software}{Sept 2025 -- Dec 2026 (Expected)}
+      \resumeItemListStart
+        \resumeItem{Completed Year 1 with A+ grades in Simple Type Theory and Microservices-Oriented Architectures.}
+      \resumeItemListEnd
     \resumeSubheading
       {McMaster University}{Hamilton, ON}
-      {Master of Engineering (MEng) in Computing and Software}{Sept. 2025 - Present}
+      {Bachelor of Applied Science (BASc), Computer Science}{Sept 2018 -- Nov 2024}
   \resumeSubHeadingListEnd
 
 %-----------EXPERIENCE-----------
 \section{Experience}
   \resumeSubHeadingListStart
+
     \resumeSubheading
-      {Associate Account Manager of Equipment Finance}{Sept. 2025 - Present}
+      {Associate Account Manager, Equipment Finance}{Sept 2025 -- Present}
       {Mitsubishi HC Capital Canada}{Burlington, ON}
       \resumeItemListStart
-        \resumeItem{Structured and funded equipment deals valued at \textbf{\$500K–\$3M+} using in-depth credit analysis and financial modeling, achieving a \textbf{95\% approval rate} across construction and transportation sectors.}
-        \resumeItem{Developed and optimized financial models and amortization schedules with \textbf{TValue}, \textbf{Excel}, and \textbf{Power BI}, enhancing pricing precision by \textbf{15\%} and improving deal profitability visibility.}
-        \resumeItem{Streamlined interdepartmental processes by implementing \textbf{Salesforce Lightning} automations, reducing deal turnaround times by \textbf{30\%} and ensuring seamless execution from origination to funding.}
-        \resumeItem{Delivered data-driven insights via \textbf{Power BI}, conducting variance analysis that improved portfolio tracking accuracy by \textbf{20\%} and supported strategic growth in multi-million-dollar asset classes.}
+        \resumeItem{Exceeded monthly funding quota every month of the current fiscal year, funding \$4M against a \$2M target (200\% of quota) in both April and May 2026.}
+        \resumeItem{Structured and funded equipment deals valued at \$500K--\$3M+ using in-depth credit analysis and financial modeling, achieving a 95\% approval rate across construction and transportation sectors.}
+        \resumeItem{Built financial spreads and amortization schedules in TValue, Excel, and Power BI; ran EBITDA and 4-blocker credit evaluations, improving pricing precision by 15\%.}
+        \resumeItem{Streamlined origination-to-funding workflows with Salesforce Lightning automations, cutting deal turnaround by 30\%; delivered Power BI variance analysis that improved portfolio tracking accuracy by 20\%.}
       \resumeItemListEnd
+
     \resumeSubheading
-      {Junior Web Developer}{May 2021 - Jun. 2022}
-      {Giftcash Inc.}{Remote}
+      {Junior Web Developer}{May 2021 -- Aug 2022}
+      {GiftCash Inc.}{Remote}
       \resumeItemListStart
-        \resumeItem{Migrated a legacy \textbf{Python}/\textbf{Django} monolith to a \textbf{Node.js} \textbf{AWS Lambda} serverless architecture, boosting scalability by \textbf{15\%} and reducing infrastructure costs by \textbf{20\%} through efficient resource allocation.}
-        \resumeItem{Optimized \textbf{PostgreSQL} database performance using indexing, caching, and query optimization, cutting response times by \textbf{20\%} and enhancing user experience across web applications.}
-        \resumeItem{Automated data extraction workflows with \textbf{Puppeteer} and \textbf{Axios}, streamlining gift card balance verifications and increasing operational efficiency by \textbf{25\%} through reduced manual intervention.}
-        \resumeItem{Established \textbf{Jenkins} and \textbf{GitHub Actions} CI/CD pipelines, enabling rapid development cycles and reducing deployment times by \textbf{30\%}, fostering a more agile and responsive development environment.}
+        \resumeItem{Migrated a legacy Python/Django monolith to a Node.js AWS Lambda serverless architecture, boosting scalability by 15\% and cutting infrastructure costs by 20\%.}
+        \resumeItem{Optimized PostgreSQL performance via indexing, caching, and query tuning, cutting response times by 20\%; automated balance-verification workflows with Puppeteer and Axios (+25\% efficiency).}
+        \resumeItem{Established Jenkins and GitHub Actions CI/CD pipelines, reducing deployment times by 30\%.}
       \resumeItemListEnd
+
   \resumeSubHeadingListEnd
 
 %-----------PROJECTS-----------
@@ -150,87 +161,43 @@
     \resumeSubHeadingListStart
 
       \resumeProjectHeading
-          {\href{https://www.solsticepilates.ca/}{\textbf{SKompXcel StudioOS — Solstice Edition}} $|$ \emph{TypeScript, Next.js, AWS}}{Jul. 2025 - Present}
+          {\textbf{Applify AI} $|$ \emph{TypeScript, Next.js 15, OpenAI, Inngest, Stripe}}{Feb 2025 -- Present}
           \resumeItemListStart
-            \resumeItem{Engineered a serverless cloud infrastructure on \textbf{AWS}, utilizing \textbf{SES} for email, \textbf{CloudWatch} for monitoring, ensuring \textbf{99.9\% uptime} and seamless scalability for Pilates studio management.}
-            \resumeItem{Integrated \textbf{Square API} for payment processing, automating billing and financial reporting, achieving a \textbf{30\% reduction in manual errors} and ensuring PCI compliance.}
-            \resumeItem{Developed a responsive frontend with \textbf{React} and \textbf{Tailwind CSS}, leveraging modular components and optimized state management to enhance user experience by \textbf{40\% across all devices}.}
+            \resumeItem{Production SaaS for AI resume tailoring serving 150+ paying users; event-driven background jobs (Inngest) run multi-minute LLM pipelines with step-level checkpointing.}
+            \resumeItem{Integrated the OpenAI Responses API with Zod-validated structured outputs and achieved ~90\% inference cost reduction via prompt-cache-optimized prefixes; Stripe subscriptions and Sentry observability.}
           \resumeItemListEnd
 
       \resumeProjectHeading
-          {\href{https://www.applify-ai.com/}{\textbf{Applify AI - AI-Powered Resume Optimization SAAS}} $|$ \emph{TypeScript, Next.js, OpenAI GPT-4o}}{Feb. 2025 - Present}
+          {\textbf{Skomp Studio} $|$ \emph{TypeScript, Next.js 15, Square, AWS, Prisma}}{Jul 2025 -- Present}
           \resumeItemListStart
-            \resumeItem{Developed AI-driven resume enhancement using \textbf{OpenAI GPT-4o}, \textbf{boosting relevance by 30\%} through real-time keyword analysis and skill categorization, tailored for ATS and recruiters.}
-            \resumeItem{Engineered secure authentication with \textbf{NextAuth.js}, leveraging \textbf{JWT} and \textbf{MongoDB} to ensure robust user data integrity, supporting \textbf{80 paying users within 2 months} of platform launch.}
-            \resumeItem{Integrated \textbf{Stripe} for subscription management, enabling premium feature access, \textbf{increasing user engagement by 40\%} and establishing a sustainable monetization strategy.}
+            \resumeItem{Production multi-tenant SaaS for fitness-studio management (99K+ lines of TypeScript, 500+ users, \$20K+ CAD processed) with row-level tenant isolation via a scoped Prisma client.}
+            \resumeItem{Integrated Square SDK with idempotent payments and AWS SES/SNS/AppSync for email, SMS, and real-time messaging; 411 Vitest tests plus Playwright E2E on every preview.}
           \resumeItemListEnd
 
       \resumeProjectHeading
-          {\href{https://www.skompxcel.com/}{\textbf{SKompXcel Academic Solutions}} $|$ \emph{Next.js, Python, C++}}{Jan. 2024 - Present}
+          {\textbf{SKompXcel Academic Solutions} $|$ \emph{Next.js, Python, GCP}}{Jan 2024 -- Present}
           \resumeItemListStart
-            \resumeItem{Engineered a full-stack platform with \textbf{Next.js} and \textbf{Python}, scaling to support 80+ students, achieving \textbf{95\% grade improvement} post four sessions, enhancing personalized tutoring.}
-            \resumeItem{Deployed a cloud mentorship system on \textbf{GCP}, optimizing resource allocation, \textbf{reducing server costs by 30\%}, and maintaining 100\% uptime for 1,200+ tutoring hours globally.}
-            \resumeItem{Developed a scalable web app using \textbf{Next.js}, enhancing user experience through a streamlined onboarding process, significantly improving user engagement and retention rates.}
+            \resumeItem{Full-stack mentorship platform supporting 80+ CS students on a serverless GCP stack; 95\% grade improvement after four sessions across 1,200+ tutoring hours.}
           \resumeItemListEnd
 
       \resumeProjectHeading
-          {\href{https://github.com/kianis4/IOS-Workout-Tracker}{\textbf{OverloadPT: Intelligent Fitness Tracking Platform}} $|$ \emph{Swift, SwiftUI, Combine}}{Jul. 2025}
+          {\textbf{Micrograd Neural Network Framework} $|$ \emph{Python, PyTorch, Jupyter}}{Jan 2025}
           \resumeItemListStart
-            \resumeItem{Developed OverloadPT, an advanced iOS fitness tracking platform using \textbf{Swift} and \textbf{SwiftUI}, integrating \textbf{MVVM} architecture and \textbf{Coordinator pattern} for improved code maintainability and scalability.}
-            \resumeItem{Engineered a Progressive Overload Engine with AI-driven machine learning to recommend weight progressions and detect plateaus, significantly optimizing user strength gains.}
-            \resumeItem{Optimized app performance using \textbf{SwiftData} and \textbf{Combine}, achieving O(log n) in date filtering algorithms and enhancing responsiveness; also designed a sophisticated workout logging system for precision tracking and real-time performance visualization, increasing user engagement.}
+            \resumeItem{Built Value/Neuron/Layer/MLP components implementing automatic differentiation and backpropagation from scratch, with interactive notebooks visualizing computational graphs and gradient descent.}
           \resumeItemListEnd
 
-      \resumeProjectHeading
-          {\href{https://github.com/kianis4/Mini-Unix-Shell}{\textbf{Custom Unix Shell System}} $|$ \emph{C, GNU Readline, POSIX}}{May 2025}
-          \resumeItemListStart
-            \resumeItem{Developed a Unix-like shell in \textbf{C} to enhance command-line interface capabilities, supporting interactive command execution with built-in functions.}
-            \resumeItem{Implemented core shell functionalities including command parsing, background execution, and I/O redirection, leveraging \textbf{POSIX} system calls for process management.}
-            \resumeItem{Designed and integrated a piping mechanism to facilitate inter-process communication, allowing users to connect the output of one command directly to the input of another.}
-            \resumeItem{Enhanced user experience by incorporating the \textbf{GNU Readline} library for history navigation and command line editing features.}
-            \resumeItem{Engineered custom utilities like 'mystat' using the 'stat()' system call to provide detailed file metadata, improving file management capabilities.}
-          \resumeItemListEnd
-
-      \resumeProjectHeading
-          {\href{https://suleyman.io/}{\textbf{Personal Full-Stack Portfolio Platform}} $|$ \emph{Next.js, React, Tailwind CSS}}{Oct. 2024 - May 2025}
-          \resumeItemListStart
-            \resumeItem{Developed a full-stack portfolio platform with \textbf{Next.js} and \textbf{React}, integrating APIs like \textbf{Spotify} and \textbf{Instagram} to enhance user engagement with real-time updates and interactive elements.}
-            \resumeItem{Achieved cross-device compatibility and high usability with a mobile-first design utilizing \textbf{Tailwind CSS}, leading to a \textbf{Lighthouse score above 90}.}
-            \resumeItem{Implemented a Markdown-based CMS using \textbf{MDX} to optimize article integration and handling, and enhanced site performance with code splitting, lazy loading, and caching techniques for improved load times.}
-          \resumeItemListEnd
-
-      \resumeProjectHeading
-          {\href{https://github.com/kianis4/Saftey-Net}{\textbf{NYC Crime Analysis System}} $|$ \emph{Java SE 10, OpenCSV, Google Gson}}{Mar. 2023 - Apr. 2025}
-          \resumeItemListStart
-            \resumeItem{Developed a desktop application to analyze and visualize NYC crime data, featuring a data processing pipeline using \textbf{OpenCSV} to manage four million NYPD records and binary search algorithms to enhance data retrieval.}
-            \resumeItem{Enhanced application functionality with geo-specific crime lookup via \textbf{LocationIQ API} and a safest path navigation system employing \textbf{Dijkstra's algorithm} with crime-weighted edges, increasing location-based query accuracy and providing optimal, safe routes.}
-            \resumeItem{Ensured software reliability and maintainability through comprehensive unit testing with \textbf{JUnit 4}, achieving high code quality.}
-          \resumeItemListEnd
-
-      \resumeProjectHeading
-          {\href{https://github.com/kianis4/load-balancer}{\textbf{Scalable Load Balancer System}} $|$ \emph{Python, TCP/IP Sockets, Multi-threading}}{Feb. 2025}
-          \resumeItemListStart
-            \resumeItem{Developed and implemented a \textbf{Python}-based Load Balancer System with advanced algorithms like Round-Robin and Least Connections, enhancing high availability, fault tolerance, and server utilization through a multi-threaded architecture.}
-            \resumeItem{Integrated health monitoring and fault tolerance features to manage server failures dynamically, coupled with the \textbf{\textbf{Python} Logging Module} for meticulous tracking of request flows, server status, and response times, bolstering system throughput and continuous service.}
-          \resumeItemListEnd
-
-      \resumeProjectHeading
-          {\href{https://github.com/kianis4/-neural-networks-zero-to-hero.}{\textbf{Micrograd Neural Network Framework}} $|$ \emph{Python, Jupyter Notebook, Micrograd}}{Jan. 2025}
-          \resumeItemListStart
-            \resumeItem{Developed and optimized the Micrograd Neural Network Framework by implementing `Value`, `Neuron`, `Layer`, and `MLP` components, facilitating automatic differentiation and backpropagation, and enhancing user comprehension of machine learning fundamentals.}
-            \resumeItem{Utilized \textbf{Jupyter Notebooks} for interactive demonstrations, enabling users to visualize computational graphs and experiment with concepts such as forward pass and gradient descent, thus simplifying complex topics like gradient evaluation and parameter optimization.}
-          \resumeItemListEnd
     \resumeSubHeadingListEnd
 
+%-----------TECHNICAL SKILLS-----------
 \section{Technical Skills}
-\begin{itemize}[leftmargin=0.15in, label={}]
+ \begin{itemize}[leftmargin=0.15in, label={}]
     \small{\item{
-     \textbf{Programming languages}{: TypeScript, Swift, C, JavaScript, Java, Python, PHP} \\
-     \textbf{Frameworks}{: Next.js, React, Tailwind CSS, SwiftUI, Combine, Prisma, PyTorch, Django, Express} \\
-     \textbf{Databases}{: PostgreSQL, MongoDB, SwiftData, S3, DynamoDB} \\
-     \textbf{Cloud services \& Tools}{: AWS, Vercel, GCP, Docker, GitHub Actions, Jenkins}
+     \textbf{Programming}{: TypeScript, JavaScript, Python, Swift, C, Java, SQL, PHP} \\
+     \textbf{Frameworks \& Libraries}{: Next.js, React, Node.js, Tailwind CSS, Prisma, Inngest, SwiftUI, Combine, PyTorch, Django, Express} \\
+     \textbf{Data \& Cloud}{: PostgreSQL, MongoDB, Redis, DynamoDB, S3; AWS (Lambda, SES, SNS, AppSync), GCP, Vercel, Docker, GitHub Actions, Jenkins, Terraform} \\
+     \textbf{Finance \& Analytics}{: Credit analysis, financial modeling, EBITDA/spreads, TValue, Excel, Power BI, Salesforce}
     }}
-\end{itemize}
+ \end{itemize}
 
-
+%-------------------------------------------
 \end{document}
