@@ -1,0 +1,210 @@
+%-------------------------
+% Resume in Latex
+% Author : Suleyman Kiani
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%-----------Header-----------
+\begin{center}
+    \textbf{\Huge \scshape Suleyman Kiani} \\ \vspace{2pt}
+    \small \scshape Software Engineer $\cdot$ Equipment Finance $\cdot$ Fintech / Finance Platforms \\ \vspace{2pt}
+    \small +1 (289) 788-8260 $|$ \href{mailto:kianis4@mcmaster.ca}{\underline{kianis4@mcmaster.ca}} $|$ \href{https://www.linkedin.com/in/suleyman-kiani}{\underline{linkedin.com/in/suleyman-kiani}} $|$ \href{https://github.com/kianis4}{\underline{github.com/kianis4}} $|$ \href{https://suleyman.io}{\underline{suleyman.io}}
+\end{center}
+
+%-----------SUMMARY-----------
+\section{Summary}
+\vspace{2pt}
+\small{Software engineer who ships production systems end to end: a multi-tenant SaaS billing live customers on \textbf{Square}, an event-driven \textbf{.NET} microservices pipeline, and an ML autodiff engine built from scratch. I bring an underwriter's instinct for correctness from the equipment-finance desk, where I currently fund \textbf{200\% of monthly quota} at Mitsubishi HC Capital while spreading financials, structuring leases, and modeling credit risk. Completing an MEng in Computing \& Software (A+ in type theory and microservices). Targeting fintech and finance-platform engineering.}
+\vspace{-4pt}
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {McMaster University}{Hamilton, ON}
+      {Master of Engineering (MEng), Computing and Software}{Sept. 2025 - Dec. 2026 (expected)}
+      \resumeItemListStart
+        \resumeItem{Year 1 complete with \textbf{A+} in Simple Type Theory and Microservices-Oriented Architectures; coursework in distributed architecture and group theory for optimization and machine learning.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {McMaster University}{Hamilton, ON}
+      {Bachelor of Applied Science (BASc), Computer Science}{Sept. 2018 - Nov. 2024}
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Associate Account Manager, Equipment Finance}{Sept. 2025 - Present}
+      {Mitsubishi HC Capital Canada}{Burlington, ON}
+      \resumeItemListStart
+        \resumeItem{Designed and shipped internal automation replacing fragile manual Excel and credit workflows, including a \textbf{TypeScript} web quoting application that consolidated \textbf{13 manufacturer-specific pricing models} into one validated tool used on live deals, eliminating a class of manual rate-calculation errors.}
+        \resumeItem{Built document-validation automation for funding packages that checks completeness and flags exceptions before submission, removing a manual review step from the deal flow.}
+        \resumeItem{Contributed \textbf{Python} modeling to a cross-functional predictive default-risk model and built \textbf{Power BI} portfolio and variance analyses supporting credit and collections decisions.}
+        \resumeItem{Underwrite and structure equipment leases and loans (FMV, capital, and vendor-finance structures) across construction, transportation, and material-handling; spread customer financial statements and compute coverage, net-investment, and residual metrics for credit decisions.}
+        \resumeItem{Own the end-to-end lease-transfer desk and funded \textbf{\$4M against a \$2M monthly target (200\% of quota)} in April and May 2026, exceeding funding quota every month since my second month in the role.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Junior Web Developer}{May 2021 - Aug. 2022}
+      {Giftcash Inc.}{Remote}
+      \resumeItemListStart
+        \resumeItem{Migrated a legacy \textbf{Python}/\textbf{Django} monolith to a \textbf{Node.js} \textbf{AWS Lambda} serverless architecture, improving scalability under bursty load.}
+        \resumeItem{Tuned \textbf{PostgreSQL} through indexing, caching, and query rewrites; p95 on the balance-verification endpoint dropped from $\sim$340ms to $\sim$210ms.}
+        \resumeItem{Automated balance-verification workflows with \textbf{Puppeteer} and \textbf{Axios}, replacing a recurring multi-hour manual reconciliation with an unattended job finishing in under 15 minutes.}
+        \resumeItem{Established \textbf{Jenkins} and \textbf{GitHub Actions} CI/CD pipelines, replacing a manual multi-step release with a one-click deploy.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\href{https://www.solsticepilates.ca/}{\textbf{Skomp Studio}} -- multi-tenant studio SaaS $|$ \emph{Next.js, React, Prisma/Neon, Square, AWS}}{2025 - Present}
+          \resumeItemListStart
+            \resumeItem{Architected and shipped a multi-tenant TypeScript platform on a hexagonal ports/adapters design with row-level tenant isolation, serving a live paying studio.}
+            \resumeItem{Processed live \textbf{Square} payments and billing with idempotent handling and reconciliation against studio records; a \textbf{5{,}000+ test} Vitest suite, 70 Playwright e2e specs, and \textbf{Sentry} observability gate releases, with zero cross-tenant leaks or billing incidents since launch.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\href{https://github.com/kianis4/Deal-Flow-Sandbox}{\textbf{DealFlow Sandbox}} -- event-driven microservices $|$ \emph{.NET, RabbitMQ, PostgreSQL, Docker}}{2025}
+          \resumeItemListStart
+            \resumeItem{Modeled an equipment-finance pipeline as decoupled \textbf{.NET} microservices communicating over \textbf{RabbitMQ}/MassTransit, with \textbf{Entity Framework Core} and \textbf{Docker} Compose.}
+            \resumeItem{Replaced a 15--20 minute manual party-exposure lookup with a sub-second API returning total exposure, delinquency, and document requirements in one call.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\href{https://www.applify-ai.com/}{\textbf{Applify AI}} -- AI r\'esum\'e-tailoring SaaS $|$ \emph{Next.js, PostgreSQL, Stripe, LLM APIs}}{2025 - Present}
+          \resumeItemListStart
+            \resumeItem{Built and grew an AI r\'esum\'e-tailoring product to \textbf{$\sim$150 paying users}, generating ATS-optimized, job-targeted r\'esum\'es from any job description.}
+            \resumeItem{Relaunched on a clean-architecture \textbf{PostgreSQL} backend with \textbf{Stripe} subscriptions and authenticated, per-user data isolation.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\href{https://github.com/kianis4}{\textbf{Micrograd Engine}} -- from-scratch autodiff $|$ \emph{Python, Jupyter}}{2025}
+          \resumeItemListStart
+            \resumeItem{Implemented a from-scratch automatic-differentiation engine (\texttt{Value}, \texttt{Neuron}, \texttt{Layer}, \texttt{MLP}) with backpropagation to ground ML fundamentals.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Personal Agentic OS} -- multi-agent automation $|$ \emph{Claude API, Python, FastAPI, RAG}}{2026}
+          \resumeItemListStart
+            \resumeItem{Self-hosted multi-agent ops system that auto-validates emailed funding-document packages and replies on-thread in $\sim$4 minutes, with an orchestrator/worker model and deterministic, fail-closed publish gates.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\href{https://www.skompxcel.com/}{\textbf{SKompXcel}} -- mentorship platform (founded) $|$ \emph{Next.js, Python, GCP}}{2024 - Present}
+          \resumeItemListStart
+            \resumeItem{Founded and built a mentorship platform where \textbf{100+ learners} drill algorithms, system design, and mock interviews, deployed on a serverless \textbf{GCP} stack.}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+%-----------TECHNICAL SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: TypeScript, Python, SQL, C/C++, Java, Swift, JavaScript, Bash} \\
+     \textbf{Frameworks \& Runtimes}{: Next.js, React, Node.js, FastAPI, Express, .NET / ASP.NET Core, Prisma, React Native / Expo, PyTorch} \\
+     \textbf{Data \& Infrastructure}{: PostgreSQL (Neon), MongoDB, DynamoDB, AWS (Lambda, SES/SNS, S3), GCP, Vercel, Docker, RabbitMQ} \\
+     \textbf{AI \& Tooling}{: Claude API / Claude Code, agentic orchestration, RAG \& vector search, MCP, Git, GitHub Actions, Vitest, Playwright} \\
+     \textbf{Finance}{: Credit analysis, financial-statement spreading, DSCR \& net-investment, lease/loan structuring (FMV, capital, vendor finance), amortization modeling, Power BI}
+    }}
+\end{itemize}
+
+
+\end{document}

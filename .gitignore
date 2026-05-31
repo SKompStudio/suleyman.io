@@ -36,3 +36,14 @@ yarn-error.log*
 
 # generated files
 /public/rss/
+
+# typescript incremental build info
+tsconfig.tsbuildinfo
+
+# latex build artifacts (keep .tex + .pdf, ignore intermediates)
+public/*.aux
+public/*.log
+public/*.out
+public/*.fls
+public/*.fdb_latexmk
+public/*.synctex.gz

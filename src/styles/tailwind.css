@@ -2,3 +2,48 @@
 @import 'tailwindcss/components';
 @import './prism.css';
 @import 'tailwindcss/utilities';
+
+/* P0: kill the iOS scroll judder/stick. No element may push a horizontal
+   scroll axis, and the page must not rubber-band into a vertical overscroll
+   feedback loop. `clip` (not `hidden`) is used so position: sticky survives. */
+html,
+body {
+  overflow-x: clip;
+  overscroll-behavior-y: none;
+}
+
+/* Reduced-motion floor: a non-negotiable global kill-switch, independent of
+   any per-component guard. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Lens re-rank — named-group View Transitions. The reordering elements carry
+   their own view-transition-name (set inline), so they FLIP/slide to new
+   positions instead of the whole viewport dissolving. Suppress the stock root
+   cross-fade so the default full-page dissolve never fires. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-group(*) {
+  animation-duration: 360ms;
+  animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* iOS 16/17 / unsupported-Safari fallback: a real CSS cross-fade, not a hard
+   cut. While the root carries `.lens-shifting`, every reorderable element
+   transitions opacity as it moves via `order`. Transform/opacity only. */
+.lens-shifting [style*='view-transition-name'] {
+  transition: opacity 360ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+.lens-shifting [style*='order'] {
+  transition: opacity 360ms cubic-bezier(0.65, 0, 0.35, 1);
+}

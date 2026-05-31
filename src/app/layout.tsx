@@ -1,7 +1,5 @@
 import { Analytics } from '@vercel/analytics/react'
-import Image from 'next/image'
-import Link from 'next/link'
-import clsx from 'clsx'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import React from 'react'
 
 import { Footer } from '@/components/Footer'
@@ -10,18 +8,30 @@ import { Header } from '@/components/Header'
 import '@/styles/tailwind.css'
 import 'focus-visible'
 
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-sans',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
+})
+
 export const metadata = {
   title: {
     template: '%s - Suleyman Kiani',
-    default: 'Suleyman Kiani - Software Engineer & Founder',
+    default: 'Suleyman Kiani - Software Engineer & Equipment Finance',
   },
   description:
-    'Suleyman Kiani\'s personal portfolio showcasing technology, problem-solving, and fitness expertise.',
-  keywords: ['Suleyman Kiani', 'full-stack developer', 'cloud solutions', 'fitness', 'personal trainer'],
+    'Equipment finance professional and software engineer. Production SaaS, ML, and event-driven systems.',
+  keywords: ['Suleyman Kiani', 'equipment finance', 'full-stack engineer', 'ML engineer', 'SaaS', 'microservices'],
   metadataBase: new URL('https://suleyman.io'),
   openGraph: {
-    title: 'Suleyman\'s Personal CV',
-    description: "More than a portfolio; it's a place where technology, problem-solving, and fitness collide.",
+    title: 'Suleyman Kiani - Software Engineer & Equipment Finance',
+    description: 'Equipment finance professional and software engineer. Production SaaS, ML, and event-driven systems.',
     url: 'https://suleyman.io',
     siteName: 'Suleyman Kiani',
     images: [
@@ -85,7 +95,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html className="h-full antialiased" lang="en" suppressHydrationWarning>
+    <html
+      className={`h-full antialiased ${inter.variable} ${jetbrainsMono.variable}`}
+      lang="en"
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: modeScript }} />
         <link
@@ -107,18 +121,18 @@ export default function RootLayout({
               "name": "Suleyman Kiani",
               "url": "https://suleyman.io",
               "image": "https://suleyman.io/profile-image.jpg",
-              "jobTitle": "Full-Stack Developer & Personal Trainer",
+              "jobTitle": "Equipment Finance Professional & Software Engineer",
               "sameAs": [
                 "https://linkedin.com/in/suleyman-kiani",
                 "https://github.com/kianis4",
                 "https://twitter.com/svley"
               ],
-              "description": "Cloud solutions enthusiast, problem solver, full-stack developer, and personal trainer."
+              "description": "Equipment finance professional and software engineer. Production SaaS, ML, and event-driven systems."
             })
           }}
         />
       </head>
-      <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
+      <body className="flex h-full flex-col bg-zinc-50 font-sans dark:bg-black">
         <div className="fixed inset-0 flex justify-center sm:px-8">
           <div className="flex w-full max-w-7xl lg:px-8">
             <div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />

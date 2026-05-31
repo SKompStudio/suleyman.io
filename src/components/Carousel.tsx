@@ -1,7 +1,6 @@
 "use client";
 import { Header } from "@/components/Header";
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { gsap } from "gsap";
 import Image from "next/image";
 import { useSwipeable } from "react-swipeable";
 
@@ -122,44 +121,33 @@ const Carousel = () => {
         return;
       }
 
-      // Create a timeline for synchronized animations
-      const tl = gsap.timeline({
-        onComplete: () => {
-          setCurrentCard(nextCard);
-          setIsTransitioning(false);
-        },
-      });
+      // Synchronized transform/opacity transition via the Web Animations API.
+      const ease = "cubic-bezier(0.65, 0, 0.35, 1)";
+      const outX = direction === "next" ? -250 : 250;
+      const inX = direction === "next" ? 250 : -250;
 
-      // Add the animations to the timeline
-      tl.to(
-        currentElement,
-        {
-          scale: 0.9,
-          x: direction === "next" ? -250 : 250,
-          opacity: 0.7,
-          duration: 0.6,
-          ease: "power3.inOut",
-        },
-        0 // Start at 0 seconds
+      nextElement.style.visibility = "visible";
+
+      currentElement.animate(
+        [
+          { transform: "translateX(0px) scale(1)", opacity: 1 },
+          { transform: `translateX(${outX}px) scale(0.9)`, opacity: 0.7 },
+        ],
+        { duration: 600, easing: ease, fill: "forwards" }
       );
 
-      tl.fromTo(
-        nextElement,
-        {
-          scale: 0.9,
-          x: direction === "next" ? 250 : -250,
-          opacity: 0.7,
-          visibility: "visible",
-        },
-        {
-          scale: 1.1,
-          x: 0,
-          opacity: 1,
-          duration: 0.6,
-          ease: "power3.inOut",
-        },
-        0 // Also start at 0 seconds (run in parallel)
+      const inAnim = nextElement.animate(
+        [
+          { transform: `translateX(${inX}px) scale(0.9)`, opacity: 0.7 },
+          { transform: "translateX(0px) scale(1.1)", opacity: 1 },
+        ],
+        { duration: 600, easing: ease, fill: "forwards" }
       );
+
+      inAnim.onfinish = () => {
+        setCurrentCard(nextCard);
+        setIsTransitioning(false);
+      };
     },
     [currentCard, nextIndex, prevIndex, isTransitioning, cardRefs, media.length]
   );
@@ -192,21 +180,14 @@ const Carousel = () => {
     };
     const angleX = (e.pageX - centerPosition.x) / 10;
     const angleY = (e.pageY - centerPosition.y) / 10;
-    gsap.to(card, {
-      rotateY: angleX,
-      rotateX: -angleY,
-      duration: 0.1,
-      ease: "power2.out",
-    });
+    card.style.transition = "transform 0.1s ease-out";
+    card.style.transform = `perspective(1000px) rotateY(${angleX}deg) rotateX(${-angleY}deg)`;
   };
 
   const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    gsap.to(e.currentTarget, {
-      rotateY: 0,
-      rotateX: 0,
-      duration: 0.5,
-      ease: "power3.out",
-    });
+    const card = e.currentTarget;
+    card.style.transition = "transform 0.5s ease-out";
+    card.style.transform = "perspective(1000px) rotateY(0deg) rotateX(0deg)";
   };
 
   const dismissBanner = () => {
@@ -241,7 +222,7 @@ const Carousel = () => {
   // Loading skeleton
   if (loading || loadingImages) {
     return (
-      <div className="relative h-screen w-full bg-gradient-to-b from-zinc-900 to-zinc-800 flex flex-col items-center justify-center">
+      <div className="relative min-h-[100dvh] w-full bg-gradient-to-b from-zinc-900 to-zinc-800 flex flex-col items-center justify-center">
         <Header />
         <div className="flex flex-col items-center justify-center space-y-8 mt-16">
           <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
@@ -262,7 +243,7 @@ const Carousel = () => {
   // Error state
   if (error) {
     return (
-      <div className="relative h-screen w-full bg-gradient-to-b from-zinc-900 to-zinc-800 flex flex-col items-center justify-center">
+      <div className="relative min-h-[100dvh] w-full bg-gradient-to-b from-zinc-900 to-zinc-800 flex flex-col items-center justify-center">
         <Header />
         <div className="bg-red-900/20 border border-red-500/30 p-6 rounded-lg max-w-md mx-auto mt-16 text-center">
           <svg
@@ -294,7 +275,7 @@ const Carousel = () => {
   // No media found
   if (media.length === 0) {
     return (
-      <div className="relative h-screen w-full bg-gradient-to-b from-zinc-900 to-zinc-800 flex flex-col items-center justify-center">
+      <div className="relative min-h-[100dvh] w-full bg-gradient-to-b from-zinc-900 to-zinc-800 flex flex-col items-center justify-center">
         <Header />
         <div className="bg-zinc-800/50 p-6 rounded-lg max-w-md mx-auto mt-16 text-center border border-zinc-700">
           <svg
@@ -317,7 +298,7 @@ const Carousel = () => {
   }
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-black" {...swipeHandlers}>
+    <div className="relative min-h-[100dvh] w-full overflow-hidden bg-black" {...swipeHandlers}>
       <Header />
 
       {/* Browser Compatibility Banner */}
