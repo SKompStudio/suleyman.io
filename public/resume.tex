@@ -107,15 +107,16 @@
 
 %-----------Header-----------
 \begin{center}
-    \textbf{\Huge \scshape Suleyman Kiani} \\ \vspace{1pt}
+    \textbf{\Huge \scshape Suleyman Kiani} \\ \vspace{2pt}
+    \small \scshape Software Engineer $\cdot$ Equipment Finance $\cdot$ Fintech / Finance Platforms \\ \vspace{2pt}
     \small +1 (289) 788-8260 $|$ \href{mailto:kianis4@mcmaster.ca}{\underline{kianis4@mcmaster.ca}} $|$ \href{https://www.linkedin.com/in/suleyman-kiani}{\underline{linkedin.com/in/suleyman-kiani}} $|$ \href{https://github.com/kianis4}{\underline{github.com/kianis4}} $|$ \href{https://suleyman.io}{\underline{suleyman.io}}
 \end{center}
 
 %-----------SUMMARY-----------
 \section{Summary}
 \vspace{2pt}
-\small{Equipment-finance professional and full-stack/ML engineer. I underwrite and structure multi-million-dollar equipment leases while shipping production software — multi-tenant SaaS, AI products, and internal finance automation. Currently funding \textbf{200\% of monthly quota} at Mitsubishi HC Capital and completing an MEng in Computing \& Software. Targeting roles at the intersection of finance and engineering (fintech, quant-dev, finance platforms).}
-\vspace{-4pt}
+\small{Software engineer who ships production systems: a multi-tenant SaaS billing live customers on \textbf{Square}, an event-driven \textbf{.NET} microservices pipeline, and an ML autodiff engine built from scratch. I bring an underwriter's instinct for correctness from the equipment-finance desk, where I fund \textbf{200\% of monthly quota} at Mitsubishi HC Capital while completing an MEng in Computing \& Software. Targeting fintech and finance-platform engineering.}
+\vspace{-6pt}
 
 %-----------EDUCATION-----------
 \section{Education}
@@ -138,16 +139,17 @@
       {Associate Account Manager, Equipment Finance}{Sept. 2025 - Present}
       {Mitsubishi HC Capital Canada}{Burlington, ON}
       \resumeItemListStart
-        \resumeItem{Funded \textbf{\$4M against a \$2M monthly target (200\% of quota)} across April and May FY26, and have exceeded funding quota every month since my second month in the role.}
-        \resumeItem{Underwrite and structure equipment leases and loans (FMV, capital, vendor-finance) across construction, transportation, and material-handling; spread customer financial statements and compute coverage and net-investment metrics for credit decisions.}
-        \resumeItem{Built internal automation tools that replaced manual Excel and credit workflows — including a web quoting app that consolidated 13 manufacturer-specific calculators into one validated tool — cutting per-deal turnaround from minutes to seconds.}
+        \resumeItem{Built a \textbf{TypeScript} web quoting app consolidating \textbf{13 manufacturer-specific pricing models} into one validated tool used on live deals, eliminating a class of manual rate-calculation errors.}
+        \resumeItem{Contributed \textbf{Python} modeling to a cross-functional predictive default-risk model and built \textbf{Power BI} portfolio and variance analyses supporting credit decisions.}
+        \resumeItem{Underwrite and structure equipment leases and loans (FMV, capital, vendor-finance) across construction, transportation, and material-handling; spread financial statements and compute coverage and net-investment metrics.}
+        \resumeItem{Funded \textbf{\$4M against a \$2M monthly target (200\% of quota)} in April and May 2026, exceeding funding quota every month since my second month in the role.}
       \resumeItemListEnd
     \resumeSubheading
       {Junior Web Developer}{May 2021 - Aug. 2022}
       {Giftcash Inc.}{Remote}
       \resumeItemListStart
-        \resumeItem{Migrated a legacy \textbf{Python}/\textbf{Django} monolith to a \textbf{Node.js} \textbf{AWS Lambda} serverless architecture and optimized \textbf{PostgreSQL} indexing and caching, reducing response times by \textbf{20\%}.}
-        \resumeItem{Automated balance-verification workflows with \textbf{Puppeteer} and built \textbf{GitHub Actions} CI/CD pipelines, cutting deployment times by \textbf{30\%}.}
+        \resumeItem{Migrated a legacy \textbf{Python}/\textbf{Django} monolith to a \textbf{Node.js} \textbf{AWS Lambda} serverless architecture and tuned \textbf{PostgreSQL} indexing and caching; p95 on the balance-verification endpoint dropped from $\sim$340ms to $\sim$210ms.}
+        \resumeItem{Automated balance-verification workflows with \textbf{Puppeteer} and built \textbf{GitHub Actions} CI/CD pipelines, replacing a manual multi-step release with a one-click deploy.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
@@ -155,24 +157,24 @@
 \section{Projects}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\href{https://www.solsticepilates.ca/}{\textbf{Skomp Studio}} (multi-tenant fitness-studio SaaS) $|$ \emph{Next.js, React, Prisma/Neon, Square, AWS}}{2025 - Present}
+          {\href{https://www.solsticepilates.ca/}{\textbf{Skomp Studio}} (multi-tenant studio SaaS) $|$ \emph{Next.js, React, Prisma/Neon, Square, AWS}}{2025 - Present}
           \resumeItemListStart
-            \resumeItem{Built a \textbf{$\sim$100K-line} multi-tenant TypeScript SaaS (122 API routes, hexagonal architecture, row-level tenant isolation, $\sim$800 unit tests) running a live paying studio on \textbf{Square} payments and \textbf{AWS} SES/SNS.}
-          \resumeItemListEnd
-      \resumeProjectHeading
-          {\href{https://www.applify-ai.com/}{\textbf{Applify AI}} (AI r\'esum\'e-tailoring SaaS) $|$ \emph{Next.js, PostgreSQL, Stripe, LLM APIs}}{2025 - Present}
-          \resumeItemListStart
-            \resumeItem{Shipped an AI r\'esum\'e-tailoring product to \textbf{$\sim$150 paying users}, generating ATS-optimized, job-targeted r\'esum\'es with subscription billing and authenticated user data.}
-          \resumeItemListEnd
-      \resumeProjectHeading
-          {\textbf{Personal Agentic OS} (multi-agent automation) $|$ \emph{Claude API, Python, RAG, FastAPI}}{2026}
-          \resumeItemListStart
-            \resumeItem{Engineered a multi-agent automation system across 4 machines — retrieval-augmented knowledge vaults, email-triggered document workflows, scheduled briefings, and deterministic publish gates — to compound research and ops work.}
+            \resumeItem{Built a multi-tenant TypeScript SaaS processing live \textbf{Square} payments for a paying studio; row-level tenant isolation and $\sim$800 tests gate every release, with zero cross-tenant leaks or billing incidents since launch.}
           \resumeItemListEnd
       \resumeProjectHeading
           {\href{https://github.com/kianis4/Deal-Flow-Sandbox}{\textbf{DealFlow Sandbox}} (event-driven microservices) $|$ \emph{.NET, RabbitMQ, PostgreSQL, Docker}}{2025}
           \resumeItemListStart
-            \resumeItem{Modeled an equipment-finance pipeline as decoupled \textbf{.NET} microservices over \textbf{RabbitMQ}/MassTransit, replacing a 15--20 minute manual exposure-lookup with a sub-second API call.}
+            \resumeItem{Modeled an equipment-finance pipeline as decoupled \textbf{.NET} microservices over \textbf{RabbitMQ}/MassTransit, replacing a 15--20 minute manual party-exposure lookup with a sub-second API call.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\href{https://www.applify-ai.com/}{\textbf{Applify AI}} (AI r\'esum\'e-tailoring SaaS) $|$ \emph{Next.js, PostgreSQL, Stripe, LLM APIs}}{2025 - Present}
+          \resumeItemListStart
+            \resumeItem{Shipped an AI r\'esum\'e-tailoring product to \textbf{$\sim$150 paying users} with \textbf{Stripe} subscriptions and authenticated, per-user data isolation.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\href{https://github.com/kianis4}{\textbf{Micrograd Engine}} (from-scratch autodiff) $|$ \emph{Python, Jupyter}}{2025}
+          \resumeItemListStart
+            \resumeItem{Implemented a from-scratch automatic-differentiation engine (\texttt{Value}, \texttt{Neuron}, \texttt{Layer}, \texttt{MLP}) with backpropagation to ground ML fundamentals.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
