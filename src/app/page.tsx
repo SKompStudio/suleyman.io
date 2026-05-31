@@ -23,19 +23,10 @@ import {
   LinkedInIcon,
 } from '@/components/SocialIcons'
 
-import image1 from '@/images/logos/SKompXcel.png' // Was defined as path string but used in Photos map. Correcting imports.
 import image2 from '@/images/photos/image-3.jpg'
 import image3 from '@/images/photos/image-5.png'
-import video from '@/images/photos/progress.mp4' // This needs declaration if .mp4 not handled by TS
-import image5 from '@/images/logos/SKompXcel.png' // Wait, index.jsx had image5 as /ApplifyLogo.svg string?
+import video from '@/images/photos/progress.mp4'
 
-// Checking original file imports to match:
-// const image1 = '/SKomp.svg'
-// const image5 = '/ApplifyLogo.svg'
-// import image2 ...
-// import video ...
-
-// TypeScript requires handling static headers differently
 import logoSKompXcel from '@/images/logos/SKompXcel.png'
 import logoMHCC from '@/images/logos/mitsubishi.svg'
 import logoGiftCash from '@/images/logos/giftcash.jpeg'
@@ -45,7 +36,7 @@ import logoDevProtocol from '@/images/logos/devprotocol.png'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { formatDate } from '@/lib/formatDate'
 
-// Re-declaring imports as they were in the original file
+// Photos strip mixes public-path assets (SVG/MP4) with bundled images
 const image1String = '/SKomp.svg'
 const image5String = '/ApplifyLogo.svg'
 
@@ -254,10 +245,16 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button href="./Suleyman_Kiani_RESUME_2025.pdf" variant="secondary" className="group mt-6 w-full">
-        Download Resume
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      <div className="mt-6 flex gap-3">
+        <Button href="/resume-1page.pdf" variant="secondary" className="group flex-1">
+          Resume (1-page)
+          <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        </Button>
+        <Button href="/resume-2page.pdf" variant="secondary" className="group flex-1">
+          Resume (2-page)
+          <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        </Button>
+      </div>
     </div>
   )
 }
@@ -326,7 +323,7 @@ function Photos() {
 
 export const metadata = {
   title: 'Suleyman Kiani | Home',
-  description: 'Suleyman Kiani - Associate Account Manager in equipment finance, MEng student in Computing and Software, and builder of tools like Applify AI and SKompXcel. Exploring the intersection of finance, ML, and cloud architecture.',
+  description: 'Suleyman Kiani - equipment-finance professional and full-stack/ML engineer. Funding 200% of quota at Mitsubishi HC Capital, completing an MEng in Computing and Software, and shipping production software like Skomp Studio and Applify AI. Working at the intersection of finance and engineering.',
 }
 
 export default async function Home() {
@@ -341,18 +338,19 @@ export default async function Home() {
         <div className="max-w-2xl">
           <div className="space-y-2 mb-6">
             <div className="inline-block rounded-full bg-zinc-100 px-3 py-1 text-sm text-zinc-800 dark:bg-zinc-800 dark:text-zinc-200">
-              Finance • Code • Learning
+              Finance • Engineering • AI
             </div>
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              Progress rewards curiosity and deliberate practice.
+              Equipment finance by day, shipping software by night.
             </h1>
           </div>
-          
+
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I&apos;m <strong>Suleyman Kiani</strong>—building systems that turn ideas into reality. 
-            Currently balancing equipment finance at <strong>Mitsubishi HC Capital Canada</strong> with an 
-            <strong> MEng in Computing and Software</strong> (Dec 2026), while exploring the intersection 
-            of financial markets and machine learning.
+            I&apos;m <strong>Suleyman Kiani</strong>—an equipment-finance professional and full-stack/ML
+            engineer who works in both worlds at once. I structure and fund multi-million-dollar deals at
+            <strong> Mitsubishi HC Capital Canada</strong> (currently funding <strong>200% of quota</strong>),
+            while completing an <strong>MEng in Computing &amp; Software</strong> (Dec 2026) and shipping
+            production software—multi-tenant SaaS, AI products, and finance automation.
           </p>
 
           {/* Key Metrics */}
@@ -362,8 +360,8 @@ export default async function Home() {
               <div className="text-xs text-teal-600 dark:text-teal-500 mt-1">Applify AI Users</div>
             </div>
             <div className="p-4 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border border-blue-200 dark:border-blue-700/50">
-              <div className="text-2xl font-bold text-blue-700 dark:text-blue-400">$15M+</div>
-              <div className="text-xs text-blue-600 dark:text-blue-500 mt-1">Deals Financed</div>
+              <div className="text-2xl font-bold text-blue-700 dark:text-blue-400">200%</div>
+              <div className="text-xs text-blue-600 dark:text-blue-500 mt-1">of Funding Quota</div>
             </div>
             <div className="p-4 rounded-lg bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border border-purple-200 dark:border-purple-700/50">
               <div className="text-2xl font-bold text-purple-700 dark:text-purple-400">100+</div>
@@ -386,9 +384,9 @@ export default async function Home() {
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Equipment Finance</h3>
                   <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
-                    Structure multi-million dollar construction & transportation deals. Build financial spreads, 
-                    calculate EBITDA from statements, conduct 4-blocker credit evaluations, and model amortization 
-                    schedules in Excel & Power BI.
+                    Underwrite and structure multi-million-dollar equipment leases and loans across construction,
+                    transportation, and material-handling. Spread customer financials, run credit analysis, and model
+                    deals—currently funding 200% of monthly quota.
                   </p>
                 </div>
               </div>
@@ -400,9 +398,9 @@ export default async function Home() {
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Software Engineering</h3>
                   <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
-                    Built <strong>Applify AI</strong> (150+ paying users)—an ATS-optimized résumé platform. Founded 
-                    <strong> SKompXcel</strong>, mentoring 80+ students through algorithms, system design, and mock interviews. 
-                    TypeScript, Next.js, Python, AWS, GCP.
+                    Shipped <strong>Skomp Studio</strong>, a ~100K-line multi-tenant SaaS running a live studio on Square
+                    and AWS, and <strong>Applify AI</strong> (~150 paying users), an AI résumé-tailoring product. Founded
+                    <strong> SKompXcel</strong>, mentoring 100+ students. TypeScript, Next.js, React, Python, AWS.
                   </p>
                 </div>
               </div>
@@ -414,8 +412,22 @@ export default async function Home() {
                 <div className="flex-1 min-w-0">
                   <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Research & Learning</h3>
                   <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
-                    Pursuing MEng in Computing & Software while diving into ML and financial markets—building 
-                    systems that bridge data and decision-making.
+                    MEng in Computing & Software at McMaster (Year 1 complete, A+ in type theory and microservices),
+                    with a research focus on agentic systems and retrieval—bridging data and decision-making.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3 p-4 rounded-lg bg-zinc-50 dark:bg-zinc-800/50 border border-zinc-200 dark:border-zinc-700/50">
+                <div className="flex-shrink-0 mt-0.5">
+                  <div className="h-2 w-2 rounded-full bg-amber-500"></div>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">AI Systems & Automation</h3>
+                  <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">
+                    Run a personal multi-agent automation system across my machines—retrieval-augmented knowledge
+                    bases, document workflows, and scheduled agents with fail-closed gates—that compounds how fast I
+                    research, build, and ship.
                   </p>
                 </div>
               </div>
@@ -426,7 +438,7 @@ export default async function Home() {
           <div className="mt-8">
             <h2 className="text-lg font-semibold text-zinc-800 dark:text-zinc-100 mb-4">Tech Stack</h2>
             <div className="flex flex-wrap gap-2">
-              {['TypeScript', 'Next.js', 'Python', 'Node.js', 'PostgreSQL', 'AWS', 'GCP', 'Terraform', 'Excel', 'Power BI'].map((tech) => (
+              {['TypeScript', 'Python', 'Next.js', 'React', 'Node.js', 'PostgreSQL', 'Prisma', 'AWS', 'Vercel', 'Docker', 'Claude API', 'Power BI'].map((tech) => (
                 <span key={tech} className="px-3 py-1.5 text-xs font-medium rounded-full bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700">
                   {tech}
                 </span>
@@ -560,7 +572,7 @@ export default async function Home() {
                   </div>
                   <div className="flex items-center">
                     <Star className="h-5 w-5 mr-2 text-yellow-300" />
-                    <span>87% success rate</span>
+                    <span>One-page PDF export</span>
                   </div>
                 </div>
               </div>

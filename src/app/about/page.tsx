@@ -109,34 +109,40 @@ export default function About() {
             <section>
               <SectionHeading icon={GraduationCap}>Current Journey</SectionHeading>
               <p className="text-zinc-600 dark:text-zinc-400">
-                Since September 2025, I&apos;ve been balancing two parallel tracks: working full time as an <strong>Associate Account Manager in equipment finance</strong> at Mitsubishi HC Capital Canada, and pursuing an <strong>MEng in Computing and Software</strong> (expected Dec 2026). By day I structure multi‑million‑dollar deals, run credit analysis, and build amortization models in Excel and Power BI. By night I&apos;m diving into machine learning, sharpening my understanding of financial markets, and threading together what I learn in both worlds. My goal is to gain experience in financial markets while deepening my technical foundation—so I can build intelligent systems that bridge the gap between data and decision‑making.
+                Since September 2025, I&apos;ve run two parallel tracks. By day I&apos;m an <strong>Associate Account Manager in equipment finance</strong> at Mitsubishi HC Capital Canada—underwriting and structuring multi‑million‑dollar leases, spreading financials, and running credit analysis. I&apos;ve exceeded my funding quota every month since my second month, and funded <strong>200% of target</strong> through the spring. By night I&apos;m completing an <strong>MEng in Computing and Software</strong> (expected Dec 2026; Year 1 done with A+ grades in type theory and microservices) and shipping production software. The throughline is the same: build intelligent systems that close the gap between data and decision‑making, with one foot firmly in finance and one in engineering.
               </p>
             </section>
             
             <section>
               <SectionHeading icon={Code}>Building Useful Things</SectionHeading>
               <p className="text-zinc-600 dark:text-zinc-400 mb-4">
-                At McMaster University I was essentially the unofficial &ldquo;CS ambassador,&rdquo; guiding visitors through labs, pair‑debugging first‑years on segmentation faults, and learning as much from their fresh questions as they did from my answers. That give‑and‑take grew into SKompXcel, the mentorship platform where more than 80 learners have drilled algorithms, systems design, mock interviews, and résumé reviews.
+                At McMaster University I was essentially the unofficial &ldquo;CS ambassador,&rdquo; guiding visitors through labs, pair‑debugging first‑years on segmentation faults, and learning as much from their fresh questions as they did from my answers. That give‑and‑take grew into SKompXcel, the mentorship platform where 100+ learners have drilled algorithms, systems design, mock interviews, and résumé reviews. These days I ship production software the same way I learn—end to end.
               </p>
               <div className="mt-4 space-y-1">
                 <ProjectCard
+                  title="Skomp Studio"
+                  description="A multi‑tenant fitness‑studio SaaS (~100K lines of TypeScript) running a live paying studio on Next.js, Prisma/Neon, Square payments, and AWS—hexagonal architecture with row‑level tenant isolation."
+                  link="https://www.solsticepilates.ca/"
+                  linkLabel="See it live"
+                />
+
+                <ProjectCard
                   title="Applify AI"
-                  description="An AI‑powered resume‑tailoring platform (Next.js 15 + OpenAI) that helps job‑seekers cut through ATS filters."
+                  description="An AI‑powered résumé‑tailoring platform (Next.js + LLMs) with ~150 paying users, generating ATS‑optimized, job‑targeted résumés in minutes."
                   link="https://www.applify-ai.com/"
                   linkLabel="Visit Applify AI"
                 />
-                
+
                 <ProjectCard
                   title="SKompXcel"
-                  description="A mentorship hub where computer‑science students practice algorithms, mock interviews, and good study habits on a serverless Google Cloud stack."
+                  description="A mentorship hub where 100+ computer‑science students practice algorithms, mock interviews, and good study habits on a serverless Google Cloud stack."
                   link="/projects/skompxcel"
                   linkLabel="Learn more about SKompXcel"
                 />
-      
-                
+
                 <ProjectCard
-                  title="Open-Source Collection" 
-                  description="A growing collection of open‑source side projects—from LeetCode stat scrapers to rule‑based chatbots—shared so others can build on them."
+                  title="Open-Source Collection"
+                  description="A growing collection of open‑source side projects—from a from‑scratch micrograd neural‑net engine to a .NET event‑driven deal‑flow sandbox—shared so others can build on them."
                   link="https://github.com/kianis4"
                   linkLabel="Browse GitHub repos"
                 />
@@ -161,7 +167,7 @@ export default function About() {
             <section>
               <SectionHeading icon={Terminal}>Tech Snapshot</SectionHeading>
               <div className="flex flex-wrap gap-2 mt-3">
-                {['TypeScript', 'Next.js', 'Node', 'AWS', 'GCP', 'PostgreSQL', 'Python', 'Terraform', 'Excel', 'Power BI'].map((tech) => (
+                {['TypeScript', 'Python', 'Next.js', 'React', 'Node', 'PostgreSQL', 'Prisma', 'AWS', 'GCP', 'Docker', '.NET', 'Claude API', 'Power BI'].map((tech) => (
                   <span 
                     key={tech} 
                     className="px-3 py-1 text-xs bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300 rounded-full"
