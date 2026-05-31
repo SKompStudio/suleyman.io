@@ -130,7 +130,7 @@ export default function About() {
               <div className="mt-4 space-y-1">
                 <ProjectCard
                   title="skomp-studio"
-                  description="Multi-tenant SaaS running a pilates studio. Class booking, waitlists, Square payments for a studio that ran on paper. Row-level tenant isolation, a test suite gates every release."
+                  description="Multi-tenant SaaS running a pilates studio. Class booking, waitlists, Square payments for a studio that ran on paper. Row-level tenant isolation, a 5,000+ test Vitest suite and Playwright e2e gate every release."
                   link="https://skomp.studio/"
                   linkLabel="skomp.studio"
                 />

@@ -197,7 +197,7 @@ export const customProjects: CustomProject[] = [
     slug: 'skomp-studio',
     name: 'Skomp Studio',
     description:
-      'Production multi-tenant SaaS platform for fitness studio management. 99K+ lines of TypeScript, 500+ users, $20K+ CAD processed. Row-level tenant isolation via a scopedPrisma client; Square SDK with idempotent payments and per-studio credentials; AWS SES/SNS/AppSync for email, SMS and real-time messaging; 411 Vitest unit tests and Playwright E2E against every Vercel preview; branch-protected CI with shadow-DB migration checks and Gitleaks secret scanning.',
+      'Production multi-tenant SaaS platform for fitness studio management. 99K+ lines of TypeScript, 500+ users, $20K+ CAD processed. Row-level tenant isolation via a scopedPrisma client; Square SDK with idempotent payments and per-studio credentials; AWS SES/SNS/AppSync for email, SMS and real-time messaging; a 5,000+ test Vitest suite and 70 Playwright e2e specs against every Vercel preview; branch-protected CI with shadow-DB migration checks and Gitleaks secret scanning.',
     link: { href: 'https://skomp.studio/', label: 'skomp.studio' },
     logo: { type: 'image', src: '/SKomp.svg' },
     timeframe: 'Jul 2025 - Present',

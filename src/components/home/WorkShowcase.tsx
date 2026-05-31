@@ -13,7 +13,7 @@ const PROJECTS: ProjectRecordData[] = [
     detail:
       'Class booking, waitlists, Square payments for a studio that ran on paper. Paying members, in production.',
     tech: ['ts', 'next', 'prisma', 'neon'],
-    hover: 'tests gate every release',
+    hover: '5,000+ tests gate every release',
   },
   {
     key: 'applify-ai',
