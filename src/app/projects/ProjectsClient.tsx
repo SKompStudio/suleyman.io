@@ -1,7 +1,7 @@
 'use client'
 
-import { useMemo, useState } from 'react'
-import Image from 'next/image'
+import { useMemo, useRef, useState } from 'react'
+import Image, { type StaticImageData } from 'next/image'
 import clsx from 'clsx'
 import {
   SiDjango,
@@ -20,10 +20,12 @@ import { FiServer, FiArrowUpRight } from 'react-icons/fi'
 import { LuBot, LuCalendarDays } from 'react-icons/lu'
 import { MdPhoneIphone } from 'react-icons/md'
 
-import { SimpleLayout } from '@/components/SimpleLayout'
+import { Container } from '@/components/Container'
 import { GitHubIcon } from '@/components/SocialIcons'
 import type { Project } from '@/lib/projects'
 import type { ProjectLogo as ProjectLogoType } from '@/data/projects'
+import { TechConstellation } from './TechConstellation'
+import { screenshotFor } from './showcase'
 
 const PROJECT_ICONS: Record<string, any> = {
   ai: LuBot,
@@ -50,31 +52,68 @@ const FILTERS: { label: string; value: string; description: string }[] = [
   { label: 'Experiments', value: 'experiments', description: 'Smaller research builds' },
 ]
 
-function ProjectLogo({ logo, name, size = 36 }: { logo: ProjectLogoType | null; name: string; size?: number }) {
-  if (logo?.type === 'image' && logo.src) {
-    return (
-      <Image
-        src={logo.src}
-        alt={name}
-        width={size}
-        height={size}
-        className="object-contain"
-        unoptimized
-      />
-    )
+type Status = 'live' | 'private' | 'source'
+
+function deriveStatus(p: Project): Status {
+  if (p.visibility === 'private') return 'private'
+  const host = p.link?.href?.toLowerCase() || ''
+  if (host && !host.includes('github.com')) return 'live'
+  return 'source'
+}
+
+// Mono path label — the registry "address" of the project, JARVIS style.
+function pathLabel(p: Project): string {
+  const host = p.link?.href?.toLowerCase() || ''
+  if (host && !host.includes('github.com')) {
+    try {
+      return `~/${new URL(p.link.href).hostname.replace(/^www\./, '')}`
+    } catch {
+      /* fall through */
+    }
   }
-  if (logo?.type === 'icon' && logo.name) {
-    const Icon = PROJECT_ICONS[logo.name.toLowerCase()]
-    if (Icon) return <Icon className={clsx('h-6 w-6', logo.className)} />
+  if (p.githubSlug) return `~/${p.githubSlug}`
+  return `~/${p.slug}`
+}
+
+function StatusPill({ status }: { status: Status }) {
+  const map: Record<Status, { cls: string; dot: string; label: string }> = {
+    live: { cls: 'text-accent border-accent/30 bg-accent/5', dot: 'bg-accent', label: 'live' },
+    private: { cls: 'text-gold border-gold/30 bg-gold/5', dot: 'bg-gold', label: 'private' },
+    source: { cls: 'text-ink-muted border-white/10 bg-white/5', dot: 'bg-ink-muted', label: 'source' },
   }
+  const cfg = map[status]
   return (
-    <span className="font-mono text-sm font-semibold text-zinc-500 dark:text-zinc-400">
-      {getFallbackInitials(name)}
+    <span
+      className={clsx(
+        'inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider',
+        cfg.cls
+      )}
+    >
+      <span
+        className={clsx(
+          'h-1.5 w-1.5 rounded-full',
+          cfg.dot,
+          status === 'live' && 'hud-pulse animate-online-pulse'
+        )}
+      />
+      {cfg.label}
     </span>
   )
 }
 
-function getFallbackInitials(name = '') {
+function ProjectGlyph({ logo, name }: { logo: ProjectLogoType | null; name: string }) {
+  if (logo?.type === 'icon' && logo.name) {
+    const Icon = PROJECT_ICONS[logo.name.toLowerCase()]
+    if (Icon) return <Icon className="h-5 w-5 text-ink-muted" />
+  }
+  return (
+    <span className="font-mono text-sm font-semibold text-ink-muted">
+      {initials(name)}
+    </span>
+  )
+}
+
+function initials(name = '') {
   return (
     name
       .split(/\s|-/)
@@ -85,122 +124,158 @@ function getFallbackInitials(name = '') {
   )
 }
 
-function StatusDot({ status }: { status: 'live' | 'private' | 'source' | 'archive' }) {
-  const map: Record<typeof status, { color: string; label: string }> = {
-    live: { color: 'bg-signal shadow-[0_0_0_3px_rgb(63_182_139/0.15)]', label: 'Live' },
-    private: { color: 'bg-amber-500 shadow-[0_0_0_3px_rgb(245_158_11/0.15)]', label: 'Private' },
-    source: { color: 'bg-zinc-400 shadow-[0_0_0_3px_rgb(161_161_170/0.15)]', label: 'Source' },
-    archive: { color: 'bg-zinc-300 shadow-[0_0_0_3px_rgb(212_212_216/0.15)]', label: 'Archive' },
-  }
-  const cfg = map[status]
-  return (
-    <span className="inline-flex items-center gap-1.5 text-[10px] font-medium uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-      <span className={clsx('h-1.5 w-1.5 rounded-full', cfg.color)} />
-      {cfg.label}
-    </span>
-  )
-}
-
-function deriveStatus(p: Project): 'live' | 'private' | 'source' | 'archive' {
-  if (p.visibility === 'private') return 'private'
-  const host = p.link?.href?.toLowerCase() || ''
-  if (host && !host.includes('github.com')) return 'live'
-  return 'source'
-}
-
-function TechChips({ tech, limit }: { tech: string[]; limit?: number }) {
+function TechTags({ tech, limit }: { tech: string[]; limit?: number }) {
   const shown = limit ? tech.slice(0, limit) : tech
   const rest = limit ? tech.length - limit : 0
   return (
-    <div className="flex flex-wrap gap-1">
+    <div className="flex flex-wrap gap-x-2 gap-y-1 font-mono text-[10.5px] text-ink-muted">
       {shown.map((t) => (
-        <span
-          key={t}
-          className="font-mono text-[10.5px] text-zinc-600 dark:text-zinc-400 after:mx-1 after:text-zinc-300 after:content-['·'] last:after:hidden dark:after:text-zinc-700"
-        >
+        <span key={t} className="after:ml-2 after:text-white/10 after:content-['·'] last:after:hidden">
           {t}
         </span>
       ))}
-      {rest > 0 && (
-        <span className="font-mono text-[10.5px] text-zinc-400 dark:text-zinc-500">+{rest}</span>
-      )}
+      {rest > 0 && <span className="text-accent/60">+{rest}</span>}
     </div>
   )
 }
 
-function HeroCard({ project }: { project: Project }) {
+// Minimal browser frame + real screenshot, or a HUD scan-grid placeholder.
+function FramedVisual({
+  image,
+  url,
+  name,
+  tilt,
+}: {
+  image: StaticImageData | null
+  url: string
+  name: string
+  tilt: { active: boolean }
+}) {
+  return (
+    <div className="overflow-hidden rounded-lg border border-white/10 bg-black/40">
+      <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-1.5">
+        <span className="h-2 w-2 rounded-full bg-white/15" />
+        <span className="h-2 w-2 rounded-full bg-white/15" />
+        <span className="h-2 w-2 rounded-full bg-white/15" />
+        <span className="ml-2 truncate font-mono text-[10.5px] text-ink-muted">{url}</span>
+      </div>
+      <div className="relative aspect-[16/10] w-full bg-black/30">
+        {image ? (
+          <Image
+            src={image}
+            alt={`${name} screenshot`}
+            fill
+            sizes="(min-width: 1024px) 560px, 100vw"
+            className="object-cover object-top"
+            placeholder="blur"
+          />
+        ) : (
+          <div
+            className="flex h-full w-full items-center justify-center"
+            style={{
+              backgroundImage:
+                'linear-gradient(rgba(91,200,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(91,200,255,0.07) 1px, transparent 1px)',
+              backgroundSize: '22px 22px',
+            }}
+          >
+            <span className="font-mono text-xs tracking-wider text-accent/50">{`</> ${name}`}</span>
+          </div>
+        )}
+        {tilt.active && (
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-transparent via-transparent to-accent/10" />
+        )}
+      </div>
+    </div>
+  )
+}
+
+function useTilt() {
+  const ref = useRef<HTMLDivElement | null>(null)
+  const [tilt, setTilt] = useState({ rx: 0, ry: 0, active: false })
+
+  const onMove = (e: React.PointerEvent) => {
+    if (e.pointerType !== 'mouse') return
+    const el = ref.current
+    if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const rect = el.getBoundingClientRect()
+    const px = (e.clientX - rect.left) / rect.width - 0.5
+    const py = (e.clientY - rect.top) / rect.height - 0.5
+    setTilt({ rx: py * -3, ry: px * 3, active: true })
+  }
+  const onLeave = () => setTilt({ rx: 0, ry: 0, active: false })
+  return { ref, tilt, onMove, onLeave }
+}
+
+function FeaturedRecord({ project }: { project: Project }) {
   const status = deriveStatus(project)
-  const primaryHref = project.link?.href
+  const image = screenshotFor(project.slug, project.name)
+  const { ref, tilt, onMove, onLeave } = useTilt()
+  const href = project.link?.href
   const showGithub = project.github && project.github.includes('github.com')
 
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white p-7 transition hover:border-zinc-300 hover:shadow-[0_1px_0_0_rgb(0_0_0/0.02),0_14px_40px_-12px_rgb(0_0_0/0.12)] dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700 dark:hover:shadow-[0_1px_0_0_rgb(255_255_255/0.03),0_14px_40px_-12px_rgb(0_0_0/0.5)]">
-      <div className="flex items-start justify-between">
-        <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-          <ProjectLogo logo={project.logo} name={project.name} size={28} />
-        </div>
-        <div className="flex flex-col items-end gap-2">
-          <StatusDot status={status} />
-          {project.timeframe && (
-            <span className="font-mono text-[10px] tracking-wider text-zinc-400 dark:text-zinc-600">
-              {project.timeframe}
-            </span>
-          )}
-        </div>
+    <article
+      ref={ref}
+      onPointerMove={onMove}
+      onPointerLeave={onLeave}
+      className="group relative flex h-full flex-col rounded-xl border border-accent/20 bg-ink-surface/40 p-5 transition-[transform,box-shadow,border-color] duration-300 ease-out [perspective:1200px] hover:border-accent/40 motion-reduce:transform-none motion-reduce:transition-none sm:p-6"
+      style={{
+        transform: tilt.active ? `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)` : undefined,
+        boxShadow: tilt.active
+          ? '0 0 0 1px rgba(91,200,255,0.4), 0 24px 60px -24px rgba(91,200,255,0.45)'
+          : undefined,
+      }}
+    >
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <span className="truncate font-mono text-xs text-accent">{pathLabel(project)}</span>
+        <StatusPill status={status} />
       </div>
 
-      <h3 className="mt-6 text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-        {project.name}
-      </h3>
+      <FramedVisual image={image} url={project.link?.label || ''} name={project.name} tilt={tilt} />
 
-      <p className="mt-3 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-6">
-        {project.description}
-      </p>
+      <div className="mt-5 flex items-baseline justify-between gap-3">
+        <h3 className="text-xl font-semibold tracking-tight text-ink-text">{project.name}</h3>
+        {project.timeframe && (
+          <span className="shrink-0 font-mono text-[10px] tracking-wider text-ink-muted">
+            {project.timeframe}
+          </span>
+        )}
+      </div>
 
-      {project.badges && project.badges.length > 0 && (
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {project.badges.map((b) => (
-            <span
-              key={b}
-              className="rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 text-[10.5px] font-medium uppercase tracking-wider text-zinc-700 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300"
-            >
-              {b}
-            </span>
-          ))}
+      <p className="mt-2 line-clamp-4 text-sm leading-relaxed text-zinc-300">{project.description}</p>
+
+      {project.tech?.length > 0 && (
+        <div className="mt-4">
+          <TechTags tech={project.tech} limit={10} />
         </div>
       )}
 
-      {project.tech && project.tech.length > 0 && (
-        <div className="mt-5">
-          <TechChips tech={project.tech} limit={10} />
-        </div>
-      )}
-
-      <div className="mt-auto flex items-center justify-between gap-4 border-t border-zinc-100 pt-5 dark:border-zinc-900">
-        {primaryHref ? (
+      <div className="mt-auto flex items-center justify-between gap-4 border-t border-white/5 pt-4">
+        {href ? (
           <a
-            href={primaryHref}
+            href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 transition group-hover:text-accent dark:text-zinc-100 dark:group-hover:text-accent"
+            className="inline-flex items-center gap-1.5 font-mono text-xs text-ink-text transition hover:text-accent"
           >
             <span>{project.link.label}</span>
-            <FiArrowUpRight className="h-4 w-4" />
+            <FiArrowUpRight className="h-3.5 w-3.5" />
           </a>
         ) : (
-          <span className="text-sm text-zinc-400">No live link</span>
+          <span className="font-mono text-xs text-ink-muted">no live link</span>
         )}
-        <div className="flex items-center gap-3 text-zinc-400">
+        <div className="flex items-center gap-3 text-ink-muted">
           {status === 'private' && <FaLock className="h-3.5 w-3.5" title="Private repo" />}
           {showGithub && (
             <a
               href={project.github!}
               target="_blank"
               rel="noopener noreferrer"
-              className="transition hover:text-zinc-700 dark:hover:text-zinc-200"
+              className="transition hover:text-ink-text"
               aria-label="View on GitHub"
             >
-              <GitHubIcon className="h-5 w-5" />
+              <GitHubIcon className="h-4 w-4" />
             </a>
           )}
           {typeof project.stats?.stars === 'number' && project.stats.stars > 0 && (
@@ -212,27 +287,30 @@ function HeroCard({ project }: { project: Project }) {
   )
 }
 
-function CompactCard({ project }: { project: Project }) {
+function CompactRecord({ project }: { project: Project }) {
   const status = deriveStatus(project)
-  const primaryHref = project.link?.href
-  const isGithubLink = primaryHref?.toLowerCase().includes('github.com')
+  const href = project.link?.href
+  const isGithubLink = href?.toLowerCase().includes('github.com')
 
   return (
-    <article className="group relative flex h-full flex-col rounded-xl border border-zinc-200 bg-white p-5 transition hover:border-zinc-300 hover:shadow-sm dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700">
-      <div className="flex items-start justify-between">
-        <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-zinc-50 dark:bg-zinc-900">
-          <ProjectLogo logo={project.logo} name={project.name} size={22} />
+    <article className="group relative flex h-full flex-col rounded-lg border border-ink-border bg-ink-surface/30 p-4 transition duration-300 hover:border-accent/30 hover:bg-ink-surface/50 hover:shadow-[0_0_0_1px_rgba(91,200,255,0.18),0_16px_40px_-24px_rgba(91,200,255,0.35)]">
+      <div className="mb-3 flex items-start justify-between gap-2">
+        <div className="flex min-w-0 items-center gap-2">
+          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-white/10 bg-black/40">
+            <ProjectGlyph logo={project.logo} name={project.name} />
+          </span>
+          <span className="truncate font-mono text-[11px] text-accent/80">{pathLabel(project)}</span>
         </div>
-        <StatusDot status={status} />
+        <StatusPill status={status} />
       </div>
 
-      <h3 className="mt-4 text-base font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
-        {primaryHref ? (
+      <h3 className="text-sm font-semibold tracking-tight text-ink-text">
+        {href ? (
           <a
-            href={primaryHref}
+            href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition group-hover:text-accent dark:group-hover:text-accent"
+            className="transition group-hover:text-accent"
           >
             {project.name}
           </a>
@@ -242,25 +320,23 @@ function CompactCard({ project }: { project: Project }) {
       </h3>
 
       {project.description && (
-        <p className="mt-1.5 line-clamp-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+        <p className="mt-1.5 line-clamp-2 text-[13px] leading-relaxed text-ink-muted">
           {project.description}
         </p>
       )}
 
-      {project.tech && project.tech.length > 0 && (
-        <div className="mt-4">
-          <TechChips tech={project.tech} limit={5} />
+      {project.tech?.length > 0 && (
+        <div className="mt-3">
+          <TechTags tech={project.tech} limit={5} />
         </div>
       )}
 
-      <div className="mt-auto flex items-center justify-between gap-2 pt-4 text-xs text-zinc-400 dark:text-zinc-500">
-        <span className="font-mono tracking-wider">
-          {formatMonthYear(project.updatedAt)}
-        </span>
+      <div className="mt-auto flex items-center justify-between gap-2 pt-3 font-mono text-[10px] text-ink-muted">
+        <span className="tracking-wider">{formatMonthYear(project.updatedAt)}</span>
         <div className="flex items-center gap-2.5">
           {status === 'private' && <FaLock className="h-3 w-3" title="Private repo" />}
-          {!isGithubLink && primaryHref && (
-            <FiArrowUpRight className="h-3.5 w-3.5 transition group-hover:text-accent dark:group-hover:text-accent" />
+          {!isGithubLink && href && (
+            <FiArrowUpRight className="h-3.5 w-3.5 transition group-hover:text-accent" />
           )}
           {isGithubLink && <GitHubIcon className="h-3.5 w-3.5" />}
         </div>
@@ -286,16 +362,28 @@ function matchesFilter(project: Project, filter: string): boolean {
   const isLive = Boolean(href) && !href.includes('github.com')
   if (filter === 'production') return isLive
   if (filter === 'open-source') return project.source === 'github' && project.visibility === 'public'
-  if (filter === 'experiments') {
-    // "Experiments" = non-featured open-source GitHub repos
-    return project.source === 'github' && !project.featured
-  }
+  if (filter === 'experiments') return project.source === 'github' && !project.featured
   return true
+}
+
+function Readout({ k, v }: { k: string; v: string | number }) {
+  return (
+    <div className="flex items-baseline gap-2">
+      <span className="font-mono text-[10px] uppercase tracking-wider text-accent/60">{k}</span>
+      <span className="font-mono text-sm font-semibold tabular-nums text-ink-text">{v}</span>
+    </div>
+  )
 }
 
 export function ProjectsClient({ projects = [] }: { projects: Project[] }) {
   const [filter, setFilter] = useState('all')
   const [query, setQuery] = useState('')
+
+  const counts = useMemo(() => {
+    const live = projects.filter((p) => deriveStatus(p) === 'live').length
+    const oss = projects.filter((p) => p.source === 'github' && p.visibility === 'public').length
+    return { total: projects.length, live, oss }
+  }, [projects])
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -308,10 +396,7 @@ export function ProjectsClient({ projects = [] }: { projects: Project[] }) {
   }, [projects, filter, query])
 
   const featured = useMemo(
-    () =>
-      filtered
-        .filter((p) => p.featured)
-        .sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99)),
+    () => filtered.filter((p) => p.featured).sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99)),
     [filtered]
   )
 
@@ -319,92 +404,147 @@ export function ProjectsClient({ projects = [] }: { projects: Project[] }) {
     () =>
       filtered
         .filter((p) => !p.featured)
-        .sort((a, b) => (a.priority ?? 99) - (b.priority ?? 99) || (new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())),
+        .sort(
+          (a, b) =>
+            (a.priority ?? 99) - (b.priority ?? 99) ||
+            new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+        ),
     [filtered]
   )
 
   return (
-    <SimpleLayout
-      title="Things I've shipped, broken, and rebuilt"
-      intro="Production SaaS platforms, research experiments, client launches, and weekend hacks. Featured projects are real applications with live users; everything else is open on GitHub."
-    >
-      <div className="mb-10 flex flex-col gap-4 border-y border-zinc-200 py-4 sm:flex-row sm:items-center sm:justify-between dark:border-zinc-800">
-        <nav className="flex flex-wrap items-center gap-1" aria-label="Project filters">
+    <Container className="mt-16 overflow-x-clip sm:mt-32">
+      {/* ── HUD header ──────────────────────────────────────────────────── */}
+      <header className="hud-brackets relative overflow-hidden rounded-xl border border-accent/20 bg-ink-surface/30 p-6 sm:p-8">
+        <div className="hud-glow pointer-events-none absolute inset-0" aria-hidden />
+        <div className="hud-grid pointer-events-none absolute inset-0 opacity-60" aria-hidden />
+        <div className="relative grid items-center gap-8 lg:grid-cols-[1.15fr_1fr]">
+          <div>
+            <div className="flex items-center gap-3 font-mono text-xs text-accent">
+              <span>~/projects</span>
+              <span className="inline-flex items-center gap-1.5 text-ink-muted">
+                <span aria-hidden className="hud-pulse animate-online-pulse text-accent">
+                  ●
+                </span>
+                registry online
+              </span>
+            </div>
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-ink-text sm:text-4xl">
+              Things I&apos;ve shipped, broken, and rebuilt
+            </h1>
+            <p className="mt-4 max-w-xl text-sm leading-relaxed text-ink-muted">
+              Production SaaS, research experiments, and client launches. Featured records are
+              live applications with real users; everything else is open on GitHub.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-x-7 gap-y-3 border-t border-white/5 pt-5">
+              <Readout k="total" v={counts.total} />
+              <Readout k="production" v={counts.live} />
+              <Readout k="open-source" v={counts.oss} />
+            </div>
+          </div>
+
+          {/* Signature: the live tech-stack constellation */}
+          <div className="rounded-lg border border-white/5 bg-black/30 p-3">
+            <div className="mb-1 flex items-center justify-between px-1 font-mono text-[10px] uppercase tracking-wider text-accent/60">
+              <span>stack constellation</span>
+              <span className="text-ink-muted">shared tech graph</span>
+            </div>
+            <TechConstellation projects={projects} />
+          </div>
+        </div>
+      </header>
+
+      {/* ── Filter toolbar ──────────────────────────────────────────────── */}
+      <div className="mt-10 flex flex-col gap-4 border-y border-ink-border py-4 sm:flex-row sm:items-center sm:justify-between">
+        <nav className="flex flex-wrap items-center gap-1.5" aria-label="Project filters">
           {FILTERS.map((f) => (
             <button
               key={f.value}
               onClick={() => setFilter(f.value)}
               title={f.description}
               className={clsx(
-                'rounded-full px-3 py-1.5 text-[13px] font-medium transition',
+                'rounded-full border px-3 py-1.5 font-mono text-[12px] transition',
                 filter === f.value
-                  ? 'bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-900'
-                  : 'text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-900'
+                  ? 'border-accent/40 bg-accent/10 text-accent'
+                  : 'border-transparent text-ink-muted hover:border-white/10 hover:bg-white/5 hover:text-ink-text'
               )}
             >
               {f.label}
             </button>
           ))}
         </nav>
-        <input
-          type="search"
-          placeholder="Search by name, tech, keyword…"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="w-full rounded-full border border-zinc-200 bg-white px-4 py-1.5 text-sm text-zinc-900 placeholder-zinc-400 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent sm:w-72 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-100"
-        />
+        <div className="flex items-center gap-3">
+          <input
+            type="search"
+            placeholder="grep name · tech · keyword…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="w-full rounded-full border border-ink-border bg-black/30 px-4 py-1.5 font-mono text-xs text-ink-text placeholder-ink-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent/40 sm:w-64"
+          />
+          <span className="hidden shrink-0 font-mono text-[10px] uppercase tracking-wider text-ink-muted sm:inline">
+            {filtered.length}/{projects.length}
+          </span>
+        </div>
       </div>
 
+      {/* ── Featured records ────────────────────────────────────────────── */}
       {featured.length > 0 && (
-        <section className="mb-16">
+        <section className="mt-10">
           <div className="mb-5 flex items-end justify-between">
-            <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-zinc-500 dark:text-zinc-400">
-              Featured · Production
+            <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-accent/70">
+              ~/featured · production
             </h2>
-            <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400 dark:text-zinc-600">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-ink-muted">
               {featured.length} / {filtered.length}
             </span>
           </div>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {featured.map((project) => (
-              <HeroCard key={project.slug} project={project} />
+              <FeaturedRecord key={project.slug} project={project} />
             ))}
           </div>
         </section>
       )}
 
+      {/* ── Compact records ─────────────────────────────────────────────── */}
       {rest.length > 0 && (
-        <section>
+        <section className="mt-14">
           <div className="mb-5 flex items-end justify-between">
-            <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-zinc-500 dark:text-zinc-400">
-              {featured.length > 0 ? 'Everything else' : 'All work'}
+            <h2 className="font-mono text-[11px] font-semibold uppercase tracking-[0.25em] text-accent/70">
+              {featured.length > 0 ? '~/everything-else' : '~/all-work'}
             </h2>
-            <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400 dark:text-zinc-600">
-              {rest.length} {rest.length === 1 ? 'project' : 'projects'}
+            <span className="font-mono text-[11px] uppercase tracking-wider text-ink-muted">
+              {rest.length} {rest.length === 1 ? 'record' : 'records'}
             </span>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((project) => (
-              <CompactCard key={project.slug} project={project} />
+              <CompactRecord key={project.slug} project={project} />
             ))}
           </div>
         </section>
       )}
 
       {filtered.length === 0 && (
-        <div className="rounded-2xl border border-dashed border-zinc-300 py-16 text-center dark:border-zinc-700">
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">No projects match that filter.</p>
-          <button
-            onClick={() => {
-              setFilter('all')
-              setQuery('')
-            }}
-            className="mt-3 text-sm font-medium text-accent hover:underline dark:text-accent"
-          >
-            Reset
-          </button>
+        <div className="mt-10 rounded-xl border border-dashed border-ink-border py-16 text-center">
+          <p className="font-mono text-sm text-ink-muted">
+            {projects.length === 0
+              ? 'registry empty — no records to display'
+              : 'no records match that filter'}
+          </p>
+          {projects.length > 0 && (
+            <button
+              onClick={() => {
+                setFilter('all')
+                setQuery('')
+              }}
+              className="mt-3 font-mono text-xs text-accent transition hover:underline"
+            >
+              reset filters
+            </button>
+          )}
         </div>
       )}
-    </SimpleLayout>
+    </Container>
   )
 }

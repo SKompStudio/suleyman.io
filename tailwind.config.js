@@ -70,6 +70,24 @@ module.exports = {
           '85%': { opacity: '0.9' },
           '100%': { strokeDashoffset: '0', opacity: '0' },
         },
+        // Blend vault reveal: a thin cyan scan band sweeps down once as the
+        // result unlocks. Transform/opacity only.
+        'blend-scan': {
+          '0%': { transform: 'translateY(-110%)', opacity: '0' },
+          '20%': { opacity: '0.85' },
+          '80%': { opacity: '0.85' },
+          '100%': { transform: 'translateY(110%)', opacity: '0' },
+        },
+        // The unlocked content rises into place once.
+        'blend-unlock': {
+          '0%': { opacity: '0', transform: 'translateY(10px) scale(0.985)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
+        // The match ring sweeps in via conic angle (opacity-safe dasharray on SVG).
+        'ring-draw': {
+          '0%': { strokeDashoffset: 'var(--ring-len)' },
+          '100%': { strokeDashoffset: 'var(--ring-target)' },
+        },
       },
       animation: {
         'reveal-up': 'reveal-up 0.5s cubic-bezier(0.16,1,0.3,1) both',
@@ -78,6 +96,9 @@ module.exports = {
         'boot-sweep': 'boot-sweep 0.7s ease-out 1 both',
         'online-pulse': 'online-pulse 2.4s ease-in-out infinite',
         'data-pulse': 'data-pulse 2.6s linear infinite',
+        'blend-scan': 'blend-scan 1.1s ease-out 1 both',
+        'blend-unlock': 'blend-unlock 0.6s cubic-bezier(0.16,1,0.3,1) both',
+        'ring-draw': 'ring-draw 1.2s cubic-bezier(0.16,1,0.3,1) 0.2s both',
       },
     },
     fontSize: {
