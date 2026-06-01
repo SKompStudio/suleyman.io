@@ -3,14 +3,13 @@
 @import './prism.css';
 @import 'tailwindcss/utilities';
 
-/* P0: kill the iOS scroll judder/stick. No element may push a horizontal
-   scroll axis, and the page must not rubber-band into a vertical overscroll
-   feedback loop. `clip` (not `hidden`) is used so position: sticky survives. */
-html,
-body {
-  overflow-x: clip;
-  overscroll-behavior-y: none;
-}
+/* Horizontal-overflow containment lives on a WRAPPER, never on html/body.
+   `overflow-x: clip` (or hidden) on the root scroll element breaks touch
+   scrolling on iOS Safari — the page becomes scrollable only programmatically,
+   which is exactly the regression it caused. The homepage clips horizontal
+   overflow on its own <Container className="... overflow-x-clip">, and the
+   original overflow source (the old Applify blur section) is deleted, so no
+   root-level clip is needed. See design.md §7. */
 
 /* Reduced-motion floor: a non-negotiable global kill-switch, independent of
    any per-component guard. */
