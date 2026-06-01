@@ -17,14 +17,14 @@ type Node = { id: string; x: number; y: number; label: string; sub: string; kind
 
 // Three readable tiers: clients (top) -> server hub (center) -> agent layer.
 const NODES: Node[] = [
-  { id: 'm5', x: 150, y: 52, label: 'M5 MacBook Pro', sub: 'primary dev', kind: 'device' },
-  { id: 'mbp', x: 320, y: 52, label: 'MacBook Pro', sub: 'dev', kind: 'device' },
-  { id: 'iphone', x: 490, y: 52, label: 'iPhone 15 Pro', sub: 'control surface', kind: 'device' },
-  { id: 'hub', x: 320, y: 220, label: 'server', sub: 'ryzen 9 · rtx 3080 · always-on', kind: 'hub' },
-  { id: 'orch', x: 96, y: 372, label: 'orchestrator', sub: '→ workers', kind: 'agent' },
-  { id: 'watch', x: 245, y: 388, label: 'watchers', sub: 'email · ~30s', kind: 'agent' },
-  { id: 'brief', x: 395, y: 388, label: 'briefings', sub: 'nightly · weekday', kind: 'agent' },
-  { id: 'research', x: 544, y: 372, label: 'deep-research', sub: 'weekly → vaults', kind: 'agent' },
+  { id: 'm5', x: 150, y: 64, label: 'M5 MacBook Pro', sub: 'primary dev', kind: 'device' },
+  { id: 'mbp', x: 320, y: 64, label: 'MacBook Pro', sub: 'dev', kind: 'device' },
+  { id: 'iphone', x: 490, y: 64, label: 'iPhone 15 Pro', sub: 'control surface', kind: 'device' },
+  { id: 'hub', x: 320, y: 250, label: 'server', sub: 'ryzen 9 · rtx 3080 · always-on', kind: 'hub' },
+  { id: 'orch', x: 92, y: 420, label: 'orchestrator', sub: '→ workers', kind: 'agent' },
+  { id: 'watch', x: 244, y: 438, label: 'watchers', sub: 'email · ~30s', kind: 'agent' },
+  { id: 'brief', x: 396, y: 438, label: 'briefings', sub: 'nightly · weekday', kind: 'agent' },
+  { id: 'research', x: 548, y: 420, label: 'deep-research', sub: 'weekly → vaults', kind: 'agent' },
 ]
 const N = Object.fromEntries(NODES.map((n) => [n.id, n]))
 
@@ -54,7 +54,7 @@ const READOUTS: { k: string; v: string }[] = [
 
 function ZoneLabel({ x, y, children }: { x: number; y: number; children: string }) {
   return (
-    <text x={x} y={y} className="font-mono" fontSize={9} fill="#5BC8FF" fillOpacity={0.5} letterSpacing="1.5">
+    <text x={x} y={y} className="font-mono" fontSize={12} fill="#5BC8FF" fillOpacity={0.55} letterSpacing="2">
       {children}
     </text>
   )
@@ -62,7 +62,7 @@ function ZoneLabel({ x, y, children }: { x: number; y: number; children: string 
 
 function FabricLabel({ x, y, children }: { x: number; y: number; children: string }) {
   return (
-    <text x={x} y={y} textAnchor="middle" className="font-mono" fontSize={9} fill="#5BC8FF" fillOpacity={0.85} letterSpacing="0.5">
+    <text x={x} y={y} textAnchor="middle" className="font-mono" fontSize={12} fill="#5BC8FF" fillOpacity={0.9} letterSpacing="0.5">
       {children}
     </text>
   )
@@ -72,26 +72,26 @@ function SystemMap({ warm }: { warm: boolean }) {
   const c = warm ? '#E6D9B8' : '#5BC8FF'
   return (
     <svg
-      viewBox="0 0 640 430"
+      viewBox="0 0 640 480"
       role="img"
       aria-label="Agentic OS architecture: an M5 MacBook Pro, a MacBook Pro, and an iPhone connect over a Tailscale mesh with Syncthing vault sync to an always-on Ryzen 9 / RTX 3080 server. The server runs local models (Whisper, Ollama qwen2.5) and an agent layer: an orchestrator dispatching workers behind fail-closed gates, email watchers, scheduled briefings, and weekly deep-research."
       className="w-full"
     >
       {/* Tier labels down the left edge */}
-      <ZoneLabel x={6} y={30}>CLIENTS</ZoneLabel>
-      <ZoneLabel x={6} y={200}>HUB</ZoneLabel>
-      <ZoneLabel x={6} y={350}>AGENTS</ZoneLabel>
+      <ZoneLabel x={6} y={34}>CLIENTS</ZoneLabel>
+      <ZoneLabel x={6} y={224}>HUB</ZoneLabel>
+      <ZoneLabel x={6} y={392}>AGENTS</ZoneLabel>
 
       {/* Syncthing: a continuous sync fabric across the client tier */}
       <path
-        d={`M${N.m5.x} 52 L${N.mbp.x} 52 L${N.iphone.x} 52`}
+        d={`M${N.m5.x} 64 L${N.mbp.x} 64 L${N.iphone.x} 64`}
         stroke={c}
         strokeOpacity={0.3}
         strokeWidth={1}
-        strokeDasharray="2 5"
+        strokeDasharray="2 6"
         fill="none"
       />
-      <FabricLabel x={320} y={26}>syncthing · live vault sync</FabricLabel>
+      <FabricLabel x={320} y={30}>syncthing · live vault sync</FabricLabel>
 
       {/* Links + traveling data-pulses */}
       {LINKS.map(({ from, to, delay }) => {
@@ -100,28 +100,28 @@ function SystemMap({ warm }: { warm: boolean }) {
         const d = `M${a.x} ${a.y} L${b.x} ${b.y}`
         return (
           <g key={`${from}-${to}`}>
-            <path d={d} stroke={c} strokeOpacity={0.28} strokeWidth={1} fill="none" />
+            <path d={d} stroke={c} strokeOpacity={0.3} strokeWidth={1.2} fill="none" />
             <path
               d={d}
               stroke={c}
-              strokeWidth={2.2}
+              strokeWidth={2.6}
               fill="none"
               strokeLinecap="round"
-              strokeDasharray="9 26"
+              strokeDasharray="10 28"
               className="hud-pulse animate-data-pulse"
-              style={{ animationDelay: `${delay}s`, filter: `drop-shadow(0 0 3px ${c})` }}
+              style={{ animationDelay: `${delay}s`, filter: `drop-shadow(0 0 4px ${c})` }}
             />
           </g>
         )
       })}
 
       {/* Tailscale label on the device->hub mesh */}
-      <FabricLabel x={428} y={140}>tailscale mesh</FabricLabel>
+      <FabricLabel x={432} y={158}>tailscale mesh</FabricLabel>
 
       {/* Local-models tag beside the hub */}
-      <g transform="translate(372 214)">
-        <rect x={0} y={-11} width={132} height={22} rx={4} fill="#0A0E14" stroke={c} strokeOpacity={0.35} />
-        <text x={66} y={4} textAnchor="middle" className="font-mono" fontSize={9} fill={c} fillOpacity={0.9}>
+      <g transform="translate(384 244)">
+        <rect x={0} y={-13} width={158} height={26} rx={5} fill="#0A0E14" stroke={c} strokeOpacity={0.4} />
+        <text x={79} y={5} textAnchor="middle" className="font-mono" fontSize={11} fill={c} fillOpacity={0.95}>
           whisper · ollama qwen2.5
         </text>
       </g>
@@ -129,12 +129,12 @@ function SystemMap({ warm }: { warm: boolean }) {
       {/* Nodes */}
       {NODES.map((n) => {
         const isHub = n.kind === 'hub'
-        const r = isHub ? 11 : 5
+        const r = isHub ? 14 : 6.5
         const labelAbove = n.kind !== 'agent'
         return (
           <g key={n.id}>
             {isHub && (
-              <circle cx={n.x} cy={n.y} r={21} fill="none" stroke={c} strokeOpacity={0.45} strokeWidth={1} />
+              <circle cx={n.x} cy={n.y} r={26} fill="none" stroke={c} strokeOpacity={0.45} strokeWidth={1.2} />
             )}
             <circle
               cx={n.x}
@@ -142,8 +142,8 @@ function SystemMap({ warm }: { warm: boolean }) {
               r={r}
               fill={isHub ? c : '#0A0E14'}
               stroke={c}
-              strokeWidth={1.6}
-              style={{ filter: `drop-shadow(0 0 ${isHub ? 8 : 3}px ${c})` }}
+              strokeWidth={2}
+              style={{ filter: `drop-shadow(0 0 ${isHub ? 10 : 4}px ${c})` }}
             />
             {isHub && (
               <circle
@@ -157,22 +157,22 @@ function SystemMap({ warm }: { warm: boolean }) {
             )}
             <text
               x={n.x}
-              y={labelAbove ? n.y - (isHub ? 18 : 13) : n.y + 19}
+              y={labelAbove ? n.y - (isHub ? 26 : 18) : n.y + 26}
               textAnchor="middle"
-              fill="#E8EDF2"
+              fill="#EAF0F6"
               className="font-mono"
-              fontSize={isHub ? 13 : 11}
-              fontWeight={isHub ? 600 : 400}
+              fontSize={isHub ? 20 : 16}
+              fontWeight={isHub ? 600 : 500}
             >
               {n.label}
             </text>
             <text
               x={n.x}
-              y={labelAbove ? n.y - (isHub ? 4 : 1) : n.y + 31}
+              y={labelAbove ? n.y - (isHub ? 8 : 3) : n.y + 41}
               textAnchor="middle"
-              fill="#8893A0"
+              fill="#94A0AE"
               className="font-mono"
-              fontSize={9}
+              fontSize={12}
             >
               {n.sub}
             </text>
@@ -211,25 +211,25 @@ export function SystemConsole() {
           </span>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[3fr_2fr] lg:gap-10">
-          {/* Living architecture map */}
-          <div className="rounded-lg border border-white/5 bg-black/20 p-3">
+        {/* The living architecture map — the centerpiece, full width. */}
+        <div className="mt-6 rounded-lg border border-white/5 bg-black/30 p-4 sm:p-6">
+          <div className="mx-auto max-w-3xl">
             <SystemMap warm={warm} />
           </div>
-
-          {/* Console readouts */}
-          <dl className="self-center font-mono text-xs">
-            {READOUTS.map((r) => (
-              <div
-                key={r.k}
-                className="flex items-baseline justify-between gap-4 border-b border-white/5 py-2 last:border-0"
-              >
-                <dt className="text-accent/70">{r.k}</dt>
-                <dd className="text-right font-medium text-ink-text">{r.v}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
+
+        {/* Console readouts, below the map in two columns. */}
+        <dl className="mt-6 grid grid-cols-1 gap-x-10 font-mono text-xs sm:grid-cols-2">
+          {READOUTS.map((r) => (
+            <div
+              key={r.k}
+              className="flex items-baseline justify-between gap-4 border-b border-white/5 py-2"
+            >
+              <dt className="text-accent/70">{r.k}</dt>
+              <dd className="text-right font-medium text-ink-text">{r.v}</dd>
+            </div>
+          ))}
+        </dl>
 
         <p className="mt-6 max-w-2xl font-sans text-base text-zinc-300">
           A personal multi-agent operating system I built and run across my own
