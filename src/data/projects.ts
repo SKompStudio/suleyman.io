@@ -24,6 +24,26 @@ export interface ProjectOverride {
 }
 
 export const projectOverrides: Record<string, ProjectOverride> = {
+  'kianis4/delta-hacks-12': {
+    name: 'Mike Ross AI',
+    description:
+      'Agentic legal associate for instant, cited access to Canadian law. A LangGraph state machine routes intent and runs hybrid keyword + vector retrieval over 16,000+ legal documents (MongoDB Atlas vector search, HNSW indexing, Google text-embedding-004), with a Gemini 2.0 Flash reasoning core and schema-validated structured outputs to block hallucination. A FastAPI backend streams over SSE into a Next.js 16 frontend. Built for Delta Hacks 12.',
+    link: { href: 'https://mike-ross.ca/', label: 'mike-ross.ca' },
+    logo: { type: 'icon', name: 'ai', className: 'text-cyan-400' },
+    timeframe: 'Jan 2026',
+    tech: [
+      'Python',
+      'LangGraph',
+      'Gemini 2.0 Flash',
+      'MongoDB Atlas',
+      'FastAPI',
+      'Next.js 16',
+      'TypeScript',
+    ],
+    featured: true,
+    priority: 3,
+    badges: ['Agentic AI', 'RAG'],
+  },
   'kianis4/applify-ai': {
     name: 'Applify AI',
     description:
