@@ -1,59 +1,79 @@
-import { Card } from '@/components/Card'
-import { SimpleLayout } from '@/components/SimpleLayout'
-import { getAllArticles, ArticleMeta } from '@/lib/getAllArticles'
-import { formatDate } from '@/lib/formatDate'
+import { Container } from '@/components/Container'
+import { getAllArticles } from '@/lib/getAllArticles'
+import { ArticleRecord } from './ArticleRecord'
+import { ArticleTimeline } from './ArticleTimeline'
 
 export const dynamic = 'force-dynamic'
 
-function Article({ article }: { article: ArticleMeta }) {
-  return (
-    <article className="md:grid md:grid-cols-4 md:items-baseline">
-      <Card className="md:col-span-3">
-        <Card.Title href={`/articles/${article.slug}`}>
-          {article.title}
-        </Card.Title>
-        <Card.Eyebrow
-          as="time"
-          dateTime={article.date}
-          className="md:hidden"
-          decorate
-        >
-          {formatDate(article.date)}
-        </Card.Eyebrow>
-        <Card.Description>{article.description}</Card.Description>
-        <Card.Cta>Read article</Card.Cta>
-      </Card>
-      <Card.Eyebrow
-        as="time"
-        dateTime={article.date}
-        className="mt-1 hidden md:block"
-      >
-        {formatDate(article.date)}
-      </Card.Eyebrow>
-    </article>
-  )
-}
-
 export const metadata = {
   title: 'Articles',
-  description: 'A collection of my thoughts and experiences as I navigate my fitness, academic, and professional journey, from setbacks to successes.',
+  description:
+    'A collection of my thoughts and experiences as I navigate my fitness, academic, and professional journey, from setbacks to successes.',
 }
 
 export default async function ArticlesIndex() {
   const articles = await getAllArticles()
+  const count = articles.length
+  const points = articles
+    .map((a) => ({ t: Date.parse(a.date), title: a.title }))
+    .filter((p) => !Number.isNaN(p.t))
 
   return (
-    <SimpleLayout
-      title="My Journey: Reflections and Insights - A Timeline"
-      intro="A collection of my thoughts and experiences as I navigate my fitness, academic, and professional journey, from setbacks to successes."
-    >
-      <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-        <div className="flex max-w-3xl flex-col space-y-16">
-          {articles.map((article) => (
-            <Article key={article.slug} article={article} />
-          ))}
+    <Container className="mt-16 sm:mt-32">
+      {/* HUD header */}
+      <header className="hud-brackets relative max-w-2xl rounded-xl border border-accent/25 bg-ink-surface/40 p-6 sm:p-8">
+        <div className="hud-glow pointer-events-none absolute inset-0" aria-hidden />
+        <div className="relative">
+          <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-xs">
+            <span className="text-accent">~/articles</span>
+            <span className="inline-flex items-center gap-1.5 text-ink-muted">
+              <span aria-hidden className="hud-pulse animate-online-pulse text-accent">
+                ●
+              </span>
+              {count} {count === 1 ? 'record' : 'records'}
+            </span>
+          </div>
+          <h1 className="mt-4 text-4xl font-bold tracking-tight text-ink-text sm:text-5xl">
+            Writing &amp; reflections
+          </h1>
+          <p className="mt-4 text-base leading-relaxed text-ink-muted">
+            A chronological archive of what I&apos;ve been thinking through —
+            across fitness, academics, and the work of building things. Setbacks
+            and what came after.
+          </p>
         </div>
+      </header>
+
+      {/* Signature graphic — publishing-activity timeline from real dates */}
+      <div className="mt-8 lg:max-w-4xl">
+        <ArticleTimeline points={points} />
       </div>
-    </SimpleLayout>
+
+      {/* Record stream */}
+      <div className="mt-12 sm:mt-16">
+        {count === 0 ? (
+          <div className="max-w-2xl rounded-lg border border-ink-border/70 bg-ink-surface/20 px-6 py-12 text-center">
+            <p className="font-mono text-sm text-ink-muted">
+              no records — the archive is empty
+            </p>
+          </div>
+        ) : (
+          <div className="flex max-w-2xl flex-col gap-4">
+            {articles.map((article, i) => (
+              <ArticleRecord
+                key={article.slug}
+                slug={article.slug}
+                title={article.title}
+                description={article.description}
+                date={article.date}
+                index={i}
+                total={count}
+                delay={Math.min(i, 6)}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    </Container>
   )
 }

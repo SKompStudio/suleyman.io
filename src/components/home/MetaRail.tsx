@@ -3,20 +3,19 @@
 import { LensToggle } from './LensToggle'
 
 const NAV: { id: string; label: string }[] = [
+  { id: 'system', label: 'system' },
   { id: 'work', label: 'work' },
   { id: 'experience', label: 'experience' },
+  { id: 'signals', label: 'signals' },
   { id: 'education', label: 'education' },
-  { id: 'system', label: 'system' },
   { id: 'contact', label: 'contact' },
 ]
 
 export function MetaRail({ lastBuild }: { lastBuild: string }) {
   return (
     <aside className="sticky top-28 hidden h-fit w-[260px] flex-none lg:block">
-      <div className="font-mono text-sm text-zinc-900 dark:text-ink-text">Suleyman Kiani</div>
-      <p className="mt-1 text-sm text-zinc-500 dark:text-ink-muted">
-        Software Engineer · Equipment Finance
-      </p>
+      <div className="font-mono text-sm text-ink-text">Suleyman Kiani</div>
+      <p className="mt-1 text-sm text-ink-muted">Software Engineer · Equipment Finance</p>
 
       <div className="mt-6">
         <LensToggle />
@@ -28,7 +27,7 @@ export function MetaRail({ lastBuild }: { lastBuild: string }) {
             <li key={n.id}>
               <a
                 href={`#${n.id}`}
-                className="text-zinc-500 transition-colors hover:text-accent dark:text-ink-muted dark:hover:text-accent"
+                className="text-ink-muted transition-colors hover:text-accent"
               >
                 {n.label}
               </a>
@@ -37,8 +36,9 @@ export function MetaRail({ lastBuild }: { lastBuild: string }) {
         </ul>
       </nav>
 
-      <div className="mt-8 font-mono text-xs text-zinc-400 dark:text-ink-muted">
-        <span className="text-signal">●</span> agents: online · last build {lastBuild}
+      <div className="mt-8 font-mono text-xs text-ink-muted">
+        <span className="text-accent hud-pulse animate-online-pulse">●</span> agents:
+        online · build {lastBuild}
       </div>
     </aside>
   )

@@ -1,0 +1,135 @@
+/* ── JARVIS reading theme ──────────────────────────────────────────────────
+   Page-local prose override for the article reading view. The base
+   @tailwindcss/typography `prose-invert` leans zinc/teal; this re-skins it to
+   the command-center palette: ink-text body on near-black, arc-reactor cyan
+   links, mono inline code/blocks with a faint cyan tint, generous measure and
+   line-height for premium long-form reading. Dark-only by design. */
+
+.jarvis-prose .prose {
+  /* Body + structure */
+  --tw-prose-invert-body: #C8D2DD;
+  --tw-prose-invert-headings: #EAF0F6;
+  --tw-prose-invert-bold: #EAF0F6;
+  --tw-prose-invert-counters: #5BC8FF;
+  --tw-prose-invert-bullets: rgba(91, 200, 255, 0.55);
+  --tw-prose-invert-hr: rgba(91, 200, 255, 0.14);
+  --tw-prose-invert-captions: #7C8896;
+
+  /* Links — arc-reactor cyan */
+  --tw-prose-invert-links: #5BC8FF;
+  --tw-prose-invert-links-hover: #93DBFF;
+  --tw-prose-invert-underline: rgba(91, 200, 255, 0.32);
+  --tw-prose-invert-underline-hover: #5BC8FF;
+
+  /* Inline code + code blocks — mono, faint cyan tint */
+  --tw-prose-invert-code: #93DBFF;
+  --tw-prose-invert-code-bg: rgba(91, 200, 255, 0.08);
+  --tw-prose-invert-pre-code: #E8EDF2;
+  --tw-prose-invert-pre-bg: rgba(6, 8, 11, 0.85);
+  --tw-prose-invert-pre-border: rgba(91, 200, 255, 0.16);
+
+  /* Quotes + table rules in the HUD key */
+  --tw-prose-invert-quote-borders: rgba(91, 200, 255, 0.4);
+  --tw-prose-invert-th-borders: rgba(91, 200, 255, 0.22);
+  --tw-prose-invert-td-borders: rgba(91, 200, 255, 0.1);
+
+  color: var(--tw-prose-invert-body);
+  font-size: 1.0625rem;
+  line-height: 1.85;
+}
+
+/* Headings get the mono "machine voice" eyebrow weight + a hair of cyan on the
+   left when they open a section. Subtle, not loud. */
+.jarvis-prose .prose :is(h2, h3) {
+  letter-spacing: -0.01em;
+}
+.jarvis-prose .prose h2 {
+  position: relative;
+  padding-left: 0.85rem;
+}
+.jarvis-prose .prose h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.18em;
+  bottom: 0.18em;
+  width: 2px;
+  border-radius: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(91, 200, 255, 0.9),
+    rgba(91, 200, 255, 0.1)
+  );
+}
+
+/* Inline code reads as a mono chip, not a pill. */
+.jarvis-prose .prose code {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  border: 1px solid rgba(91, 200, 255, 0.16);
+}
+
+/* Code blocks: framed like a console panel. */
+.jarvis-prose .prose pre {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  box-shadow: inset 0 0 0 1px rgba(91, 200, 255, 0.04);
+}
+
+/* Blockquote: a HUD aside with a faint cyan wash. */
+.jarvis-prose .prose blockquote {
+  background: rgba(91, 200, 255, 0.04);
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  color: #AEB9C5;
+}
+
+/* Links keep an animated underline that reads on dark. */
+.jarvis-prose .prose a {
+  text-underline-offset: 3px;
+}
+
+/* ── Header scan reveal ────────────────────────────────────────────────────
+   One-shot cyan sweep that resolves the article header on load — mirrors the
+   homepage hero boot. Transform/opacity only; killed by the global
+   prefers-reduced-motion floor in tailwind.css. */
+.article-scan {
+  position: relative;
+}
+.article-scan::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(91, 200, 255, 0) 40%,
+    rgba(91, 200, 255, 0.5) 50%,
+    rgba(91, 200, 255, 0) 60%,
+    transparent 100%
+  );
+  transform: translateX(-110%);
+  animation: article-sweep 0.85s ease-out 1 both;
+}
+@keyframes article-sweep {
+  0% {
+    transform: translateX(-110%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(110%);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .article-scan::after {
+    display: none;
+  }
+}

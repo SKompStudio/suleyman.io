@@ -54,40 +54,10 @@ export const metadata = {
   },
 }
 
-const modeScript = `
-  let darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-
-  updateMode()
-  darkModeMediaQuery.addEventListener('change', updateModeWithoutTransitions)
-  window.addEventListener('storage', updateModeWithoutTransitions)
-
-  function updateMode() {
-    let isSystemDarkMode = darkModeMediaQuery.matches
-    let isDarkMode = window.localStorage.isDarkMode === 'true' || (!('isDarkMode' in window.localStorage) && isSystemDarkMode)
-
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
-
-    if (isDarkMode === isSystemDarkMode) {
-      delete window.localStorage.isDarkMode
-    }
-  }
-
-  function disableTransitionsTemporarily() {
-    document.documentElement.classList.add('[&_*]:!transition-none')
-    window.setTimeout(() => {
-      document.documentElement.classList.remove('[&_*]:!transition-none')
-    }, 0)
-  }
-
-  function updateModeWithoutTransitions() {
-    disableTransitionsTemporarily()
-    updateMode()
-  }
-`
+// The site is a dark-first command-center; it is locked to dark. (Light mode
+// rendered the dark-surface tokens unreadable on white, and the aesthetic is
+// fundamentally dark, so the theme toggle is removed and dark is forced.)
+const modeScript = `document.documentElement.classList.add('dark')`
 
 export default function RootLayout({
   children,
@@ -96,7 +66,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      className={`h-full antialiased ${inter.variable} ${jetbrainsMono.variable}`}
+      className={`dark h-full antialiased ${inter.variable} ${jetbrainsMono.variable}`}
       lang="en"
       suppressHydrationWarning
     >
@@ -132,12 +102,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="flex h-full flex-col bg-zinc-50 font-sans dark:bg-black">
-        <div className="fixed inset-0 flex justify-center sm:px-8">
-          <div className="flex w-full max-w-7xl lg:px-8">
-            <div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
-          </div>
-        </div>
+      <body className="flex h-full flex-col bg-zinc-50 font-sans dark:bg-[#06080B]">
+        {/* Uniform page background — one near-black surface, no centered "card"
+            and no side bars. */}
+        <div className="pointer-events-none fixed inset-0 dark:bg-[#06080B]" />
         <div className="relative">
           <Header />
           <main>{children}</main>
