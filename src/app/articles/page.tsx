@@ -1,6 +1,7 @@
 import { Container } from '@/components/Container'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { ArticleRecord } from './ArticleRecord'
+import { ArticleTimeline } from './ArticleTimeline'
 
 export const dynamic = 'force-dynamic'
 
@@ -13,6 +14,9 @@ export const metadata = {
 export default async function ArticlesIndex() {
   const articles = await getAllArticles()
   const count = articles.length
+  const points = articles
+    .map((a) => ({ t: Date.parse(a.date), title: a.title }))
+    .filter((p) => !Number.isNaN(p.t))
 
   return (
     <Container className="mt-16 sm:mt-32">
@@ -39,6 +43,11 @@ export default async function ArticlesIndex() {
           </p>
         </div>
       </header>
+
+      {/* Signature graphic — publishing-activity timeline from real dates */}
+      <div className="mt-8 lg:max-w-4xl">
+        <ArticleTimeline points={points} />
+      </div>
 
       {/* Record stream */}
       <div className="mt-12 sm:mt-16">
