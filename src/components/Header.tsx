@@ -14,7 +14,7 @@ import {
   FaLaptopCode,
   FaTools,
   FaSpotify,
-  FaInstagram,
+  FaShareAlt,
   FaProjectDiagram
 } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
@@ -149,7 +149,7 @@ function MobileNavigation(props: any) {
                 <MobileNavItem href="/resume" icon={FaBriefcase}>Resume</MobileNavItem>
                 <MobileNavItem href="/articles" icon={FaFileAlt}>Articles</MobileNavItem>
                 <MobileNavItem href="/spotify" icon={FaSpotify}>Spotify</MobileNavItem>
-                <MobileNavItem href="/insta" icon={FaInstagram}>Instagram</MobileNavItem>
+                <MobileNavItem href="/insta" icon={FaShareAlt}>Social</MobileNavItem>
                 <MobileNavItem href="/leetcode" icon={SiLeetcode}>Leetcode</MobileNavItem>
                 <MobileNavItem href="/uses" icon={FaTools}>Uses</MobileNavItem>
               </ul>
@@ -200,7 +200,7 @@ function DesktopNavigation(props: any) {
         <NavItem href='/resume' icon={FaBriefcase}>resume</NavItem>
         <NavItem href="/articles" icon={FaFileAlt}>articles</NavItem>
         <NavItem href="/spotify" icon={FaSpotify}>spotify</NavItem>
-        <NavItem href="/insta" icon={FaInstagram}>instagram</NavItem>
+        <NavItem href="/insta" icon={FaShareAlt}>social</NavItem>
         <NavItem href="/leetcode" icon={SiLeetcode}>leetcode</NavItem>
         <NavItem href="/uses" icon={FaTools}>uses</NavItem>
       </ul>
