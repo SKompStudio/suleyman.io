@@ -464,11 +464,9 @@ export function Header({ isOverlay = false }: HeaderProps) {
                 <MobileNavigation className="pointer-events-auto md:hidden" />
                 <DesktopNavigation className="pointer-events-auto hidden md:block" />
               </div>
-              <div className="flex justify-end md:flex-1">
-                <div className="pointer-events-auto">
-                  <ModeToggle />
-                </div>
-              </div>
+              {/* Right slot kept for layout balance; theme toggle removed
+                  (the site is locked to dark). */}
+              <div className="flex justify-end md:flex-1" />
             </div>
           </Container>
         </div>
