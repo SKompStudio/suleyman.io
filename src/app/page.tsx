@@ -17,6 +17,7 @@ import { OffHours } from '@/components/home/OffHours'
 import { HeroBoot } from '@/components/home/HeroBoot'
 import { GrainOverlay } from '@/components/home/GrainOverlay'
 import { Reveal } from '@/components/home/Reveal'
+import { HomeTerminalShell } from '@/components/terminal/HomeTerminalShell'
 
 export const metadata = {
   title: 'Suleyman Kiani | Home',
@@ -68,6 +69,10 @@ export default function Home() {
                 </p>
 
                 <HeroBoot />
+
+                {/* Interactive JARVIS console — server-rendered shell (LCP/CLS
+                    safe), enhanced into the live REPL after mount. */}
+                <HomeTerminalShell />
               </div>
 
               <Reveal className="mt-6">

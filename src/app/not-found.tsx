@@ -4,19 +4,53 @@ import { Container } from '@/components/Container'
 
 export default function NotFound() {
   return (
-    <Container className="flex h-full items-center pt-16 sm:pt-32">
-      <div className="flex flex-col items-center">
-        <p className="text-base font-semibold text-zinc-400 dark:text-zinc-500">
+    <Container className="flex min-h-[70vh] items-center justify-center">
+      <div className="hud-brackets w-full max-w-lg border border-ink-border bg-ink-surface/40 px-8 py-12 text-center">
+        <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink-muted">
+          <span className="text-gold">▲</span> signal lost
+        </p>
+
+        <p className="mt-6 font-mono text-6xl font-bold tracking-tight text-accent sm:text-7xl">
           404
         </p>
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-          Page not found
+
+        {/* Hairline + one-pass cyan sweep under the code */}
+        <div className="relative mx-auto mt-6 h-px w-40 overflow-hidden">
+          <div
+            className="h-px w-full"
+            style={{
+              background:
+                'linear-gradient(90deg, transparent, rgba(91,200,255,0.3), transparent)',
+            }}
+          />
+          <div
+            className="absolute inset-y-0 left-0 w-16 animate-boot-sweep motion-reduce:hidden"
+            style={{
+              background:
+                'linear-gradient(90deg, transparent, #5BC8FF 50%, transparent)',
+              boxShadow: '0 0 8px rgba(91,200,255,0.6)',
+            }}
+          />
+        </div>
+
+        <h1 className="mt-6 text-2xl font-semibold tracking-tight text-ink-text">
+          No route at these coordinates
         </h1>
-        <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
-          Sorry, we couldn’t find the page you’re looking for.
+        <p className="mt-3 text-sm text-ink-muted">
+          The page you requested is off-grid or has been decommissioned.
         </p>
-        <Link href="/" className="mt-4 text-base text-zinc-500 hover:text-zinc-600 dark:text-zinc-400 dark:hover:text-zinc-300">
-          Go back home
+
+        <Link
+          href="/"
+          className="group mt-8 inline-flex items-center gap-2 border border-accent/40 px-4 py-2 font-mono text-xs text-accent transition-colors hover:bg-accent/10"
+        >
+          <span className="animate-online-pulse motion-reduce:animate-none">
+            ●
+          </span>
+          return to base
+          <span className="transition-transform group-hover:translate-x-0.5">
+            →
+          </span>
         </Link>
       </div>
     </Container>

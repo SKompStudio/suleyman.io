@@ -348,3 +348,68 @@ export async function getLanguageStats(
     .sort((a, b) => b.bytes - a.bytes || b.repoCount - a.repoCount)
     .slice(0, topN)
 }
+
+// ── Recent public commits (the `git log` terminal command) ───────────────────
+//
+// Reads the user's public PushEvents (no token required, but we send the token
+// when present to raise the rate limit), flattens payload.commits[], and
+// returns the newest few with a 7-char sha, first-line message, repo name, and
+// a relative age. Server-side only; cached at the fetch layer.
+
+export interface RecentCommit {
+  sha7: string
+  message: string
+  repo: string
+  ageRelative: string
+}
+
+function relativeAge(iso: string): string {
+  const then = new Date(iso).getTime()
+  const secs = Math.max(0, Math.floor((Date.now() - then) / 1000))
+  if (secs < 60) return `${secs}s ago`
+  const mins = Math.floor(secs / 60)
+  if (mins < 60) return `${mins}m ago`
+  const hours = Math.floor(mins / 60)
+  if (hours < 24) return `${hours}h ago`
+  const days = Math.floor(hours / 24)
+  if (days < 30) return `${days}d ago`
+  const months = Math.floor(days / 30)
+  if (months < 12) return `${months}mo ago`
+  return `${Math.floor(months / 12)}y ago`
+}
+
+export async function fetchRecentCommits(limit = 8): Promise<RecentCommit[]> {
+  const url = `https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=100`
+  const headers: HeadersInit = { Accept: 'application/vnd.github+json' }
+  if (GITHUB_TOKEN) headers.Authorization = `Bearer ${GITHUB_TOKEN}`
+
+  const res = await fetch(url, {
+    headers,
+    next: { revalidate: 900, tags: ['github-events'] },
+  })
+  if (!res.ok) throw new Error(`GitHub events error: ${res.status}`)
+
+  const events = (await res.json()) as Array<{
+    type: string
+    created_at: string
+    repo: { name: string }
+    payload: { commits?: Array<{ sha: string; message: string }> }
+  }>
+
+  const out: RecentCommit[] = []
+  for (const ev of events) {
+    if (ev.type !== 'PushEvent') continue
+    const repo = ev.repo.name.split('/').pop() || ev.repo.name
+    // newest commit in a push is last; walk in reverse for recency.
+    for (const c of (ev.payload.commits ?? []).slice().reverse()) {
+      out.push({
+        sha7: c.sha.slice(0, 7),
+        message: (c.message || '').split('\n')[0],
+        repo,
+        ageRelative: relativeAge(ev.created_at),
+      })
+      if (out.length >= limit) return out
+    }
+  }
+  return out
+}
