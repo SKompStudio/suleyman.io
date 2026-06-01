@@ -73,16 +73,16 @@ function SystemMap({ warm }: { warm: boolean }) {
         const d = `M${a.x} ${a.y} L${b.x} ${b.y}`
         return (
           <g key={`${from}-${to}`}>
-            <path d={d} stroke={stroke} strokeOpacity={0.18} strokeWidth={1} fill="none" />
+            <path d={d} stroke={stroke} strokeOpacity={0.32} strokeWidth={1} fill="none" />
             <path
               d={d}
               stroke={stroke}
-              strokeWidth={1.6}
+              strokeWidth={2.2}
               fill="none"
               strokeLinecap="round"
-              strokeDasharray="10 30"
+              strokeDasharray="9 26"
               className="hud-pulse animate-data-pulse"
-              style={{ animationDelay: `${delay}s` }}
+              style={{ animationDelay: `${delay}s`, filter: `drop-shadow(0 0 3px ${stroke})` }}
             />
           </g>
         )
@@ -101,7 +101,7 @@ function SystemMap({ warm }: { warm: boolean }) {
                 r={16}
                 fill="none"
                 stroke={stroke}
-                strokeOpacity={0.25}
+                strokeOpacity={0.5}
                 strokeWidth={1}
               />
             )}
@@ -109,10 +109,11 @@ function SystemMap({ warm }: { warm: boolean }) {
               cx={n.x}
               cy={n.y}
               r={r}
-              fill={isHub ? stroke : '#06080B'}
+              fill={isHub ? stroke : '#0A0E14'}
               stroke={stroke}
-              strokeWidth={1.4}
-              fillOpacity={isHub ? 0.9 : 1}
+              strokeWidth={1.6}
+              fillOpacity={isHub ? 1 : 1}
+              style={{ filter: `drop-shadow(0 0 ${isHub ? 7 : 3}px ${stroke})` }}
             />
             {isHub && (
               <circle
@@ -195,8 +196,8 @@ export function SystemConsole() {
                 key={r.k}
                 className="flex items-baseline justify-between gap-4 border-b border-white/5 py-2 last:border-0"
               >
-                <dt className="text-ink-muted">{r.k}</dt>
-                <dd className="text-right text-ink-text/90">{r.v}</dd>
+                <dt className="text-accent/70">{r.k}</dt>
+                <dd className="text-right font-medium text-ink-text">{r.v}</dd>
               </div>
             ))}
           </dl>

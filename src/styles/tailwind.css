@@ -56,20 +56,21 @@
    none, sits in its own clipping layer (set on the element). */
 .hud-grid {
   background-image:
-    linear-gradient(rgba(91, 200, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(91, 200, 255, 0.05) 1px, transparent 1px);
-  background-size: 44px 44px;
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 30%, #000 0%, transparent 75%);
-  mask-image: radial-gradient(ellipse 80% 70% at 30% 30%, #000 0%, transparent 75%);
+    linear-gradient(rgba(91, 200, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 200, 255, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  -webkit-mask-image: radial-gradient(ellipse 85% 75% at 28% 32%, #000 0%, transparent 78%);
+  mask-image: radial-gradient(ellipse 85% 75% at 28% 32%, #000 0%, transparent 78%);
 }
 
 /* One soft cyan radial glow behind the hero. Static gradient, never animated
    on scroll, never a blurred positioned circle (those break iOS scroll). */
 .hud-glow {
   background: radial-gradient(
-    ellipse 60% 50% at 25% 25%,
-    rgba(91, 200, 255, 0.1) 0%,
-    transparent 70%
+    ellipse 65% 55% at 25% 22%,
+    rgba(91, 200, 255, 0.22) 0%,
+    rgba(91, 200, 255, 0.06) 38%,
+    transparent 72%
   );
 }
 
