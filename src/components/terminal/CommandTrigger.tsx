@@ -32,12 +32,7 @@ export function CommandTrigger({ prefetch, className }: CommandTriggerProps) {
     else setLabel(detectIsMac() ? 'mac' : 'win')
   }, [prefetch])
 
-  const shortcut =
-    label === 'mac' ? (
-      <kbd className="font-mono text-[11px] text-accent">⌘K</kbd>
-    ) : label === 'win' ? (
-      <kbd className="font-mono text-[11px] text-accent">Ctrl K</kbd>
-    ) : null
+  const keycap = label === 'mac' ? '⌘K' : label === 'win' ? 'Ctrl K' : null
 
   return (
     <button
@@ -47,18 +42,17 @@ export function CommandTrigger({ prefetch, className }: CommandTriggerProps) {
       onFocus={prefetchEngine}
       aria-label="Open command terminal"
       aria-keyshortcuts="Meta+K Control+K"
+      title="Command terminal"
       className={
-        'group inline-flex min-h-[44px] items-center gap-2 rounded-md border border-accent/25 bg-ink-surface/70 px-3 py-2 font-mono text-xs text-ink-muted backdrop-blur transition-colors hover:border-accent/50 hover:text-accent ' +
+        'group inline-flex h-9 shrink-0 items-center gap-1.5 self-center whitespace-nowrap rounded-md border border-accent/25 bg-ink-surface/70 px-2.5 font-mono text-xs text-ink-muted backdrop-blur transition-colors hover:border-accent/50 hover:text-accent ' +
         (className ?? '')
       }
     >
-      <span className="text-accent">▸</span>
-      {label === 'touch' ? (
-        <span>tap to run commands</span>
+      <span className="text-accent">▸_</span>
+      {keycap ? (
+        <kbd className="font-mono text-[11px] text-accent">{keycap}</kbd>
       ) : (
-        <span>
-          press {shortcut} <span className="text-ink-border">·</span> or tap
-        </span>
+        <span>commands</span>
       )}
     </button>
   )
