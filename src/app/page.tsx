@@ -40,7 +40,7 @@ export default function Home() {
   return (
     <LensProvider>
       <GrainOverlay />
-      <Container className="relative z-10 mt-9 overflow-x-clip">
+      <Container className="relative z-10 mt-9">
         <div className="lg:flex lg:gap-12">
           <MetaRail lastBuild={lastBuild} />
 
