@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react'
 import type { Project } from '@/lib/projects'
+import type { LanguageStat } from '@/lib/github'
 
 // ── Signature graphic: the tech-stack constellation. ─────────────────────────
 // A real graph of the portfolio: the most-shared technologies become hub stars,
@@ -34,8 +35,16 @@ function canon(raw: string): string {
   return raw
 }
 
-type Star = { tech: string; count: number; x: number; y: number }
+type Star = { tech: string; count: number; x: number; y: number; r: number }
 type Edge = { x1: number; y1: number; x2: number; y2: number; i: number }
+
+// Pure styling / build-config — not "languages I coded". Everything else
+// (incl. C, C++, C#, PHP, Swift, Java, Dart, TeX, Jupyter, HTML) is kept so the
+// constellation shows real range.
+const SKIP_LANGS = new Set([
+  'CSS', 'SCSS', 'Sass', 'Less', 'Stylus',
+  'Dockerfile', 'Makefile', 'CMake', 'Procfile', 'Roff', 'Rich Text Format', 'Gnuplot',
+])
 
 function build(projects: Project[]) {
   const counts = new Map<string, number>()
@@ -63,6 +72,7 @@ function build(projects: Project[]) {
     return {
       tech,
       count,
+      r: 4.5 + Math.sqrt(count) * 2.4,
       x: CX + Math.cos(angle) * R,
       y: CY + Math.sin(angle) * (R * 0.82),
     }
@@ -77,11 +87,73 @@ function build(projects: Project[]) {
     i,
   }))
 
-  return { stars, edges, total: projects.length }
+  return { stars, edges, total: projects.length, more: [] as string[] }
 }
 
-export function TechConstellation({ projects }: { projects: Project[] }) {
-  const { stars, edges, total } = useMemo(() => build(projects), [projects])
+// Real GitHub language footprint → constellation. Drops pure styling/config,
+// ranks every real language by code volume (bytes), features a diverse top set,
+// and lists the rest so nothing is hidden. Stars are sized on a compressed log
+// scale so the leaders read big while the long tail stays visible and balanced.
+// `count` is repoCount (the honest "×N" label); `total` stays the registry size.
+function buildFromLanguages(langs: LanguageStat[], projectTotal: number) {
+  const real = langs
+    .filter((l) => l.bytes > 0 && !SKIP_LANGS.has(l.language))
+    .sort((a, b) => b.bytes - a.bytes)
+
+  // Pin the distinctive languages worth a star even when low-volume (the
+  // coursework C / C++ / C# / PHP work), swapping out the lowest-volume
+  // non-pinned entries to make room. Everything else spills into the "+ also"
+  // tail so the full breadth is shown, never hidden.
+  const PIN = new Set(['C', 'C++', 'C#', 'PHP', 'Swift', 'Java', 'Go', 'Rust', 'Kotlin'])
+  const CAP = 14
+  const top = real.slice(0, CAP)
+  const missingPins = real.filter((l) => PIN.has(l.language) && !top.includes(l))
+  let chosen = top
+  if (missingPins.length) {
+    const drop = new Set(
+      top
+        .filter((l) => !PIN.has(l.language))
+        .sort((a, b) => a.bytes - b.bytes)
+        .slice(0, missingPins.length)
+    )
+    chosen = [...top.filter((l) => !drop.has(l)), ...missingPins]
+  }
+  const stars0 = chosen.sort((a, b) => b.bytes - a.bytes)
+  const more = real.filter((l) => !stars0.includes(l)).map((l) => l.language)
+  const n = stars0.length
+  const R = 172
+  const maxLog = Math.log((stars0[0]?.bytes ?? 1) + 1) || 1
+  const stars: Star[] = stars0.map((l, i) => {
+    const angle = (i / Math.max(n, 1)) * Math.PI * 2 - Math.PI / 2
+    const norm = Math.log(l.bytes + 1) / maxLog
+    return {
+      tech: l.language,
+      count: l.repoCount,
+      r: 4 + norm * 8,
+      x: CX + Math.cos(angle) * R,
+      y: CY + Math.sin(angle) * (R * 0.82),
+    }
+  })
+
+  const edges: Edge[] = stars.map((s, i) => ({ x1: CX, y1: CY, x2: s.x, y2: s.y, i }))
+
+  return { stars, edges, total: projectTotal, more }
+}
+
+export function TechConstellation({
+  projects,
+  languageStats,
+}: {
+  projects: Project[]
+  languageStats?: LanguageStat[]
+}) {
+  const { stars, edges, total, more } = useMemo(
+    () =>
+      languageStats && languageStats.length > 0
+        ? buildFromLanguages(languageStats, projects.length)
+        : build(projects),
+    [projects, languageStats]
+  )
 
   if (stars.length === 0) {
     return (
@@ -94,11 +166,12 @@ export function TechConstellation({ projects }: { projects: Project[] }) {
   }
 
   return (
-    <svg
+    <div className="w-full">
+      <svg
       viewBox={`0 0 ${VB_W} ${VB_H}`}
       role="img"
       aria-label={`Technology constellation across ${total} projects: ${stars
-        .map((s) => `${s.tech} in ${s.count} projects`)
+        .map((s) => `${s.tech} in ${s.count} repos`)
         .join(', ')}.`}
       className="w-full"
     >
@@ -124,7 +197,7 @@ export function TechConstellation({ projects }: { projects: Project[] }) {
 
       {/* Shared-tech stars */}
       {stars.map((s, i) => {
-        const r = 4.5 + s.count * 1.6
+        const r = s.r
         const labelBelow = s.y > CY
         return (
           <g key={`s-${s.tech}`}>
@@ -182,6 +255,12 @@ export function TechConstellation({ projects }: { projects: Project[] }) {
       <text x={CX} y={CY + 4} textAnchor="middle" className="font-mono" fontSize={11} fontWeight={700} fill="#06080B">
         {total}
       </text>
-    </svg>
+      </svg>
+      {more.length > 0 && (
+        <p className="mt-1 px-2 text-center font-mono text-[10.5px] leading-relaxed text-ink-muted">
+          <span className="text-accent/70">+ also</span> {more.join(' · ')}
+        </p>
+      )}
+    </div>
   )
 }

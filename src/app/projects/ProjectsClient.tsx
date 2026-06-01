@@ -23,6 +23,7 @@ import { MdPhoneIphone } from 'react-icons/md'
 import { Container } from '@/components/Container'
 import { GitHubIcon } from '@/components/SocialIcons'
 import type { Project } from '@/lib/projects'
+import type { LanguageStat } from '@/lib/github'
 import type { ProjectLogo as ProjectLogoType } from '@/data/projects'
 import { TechConstellation } from './TechConstellation'
 import { screenshotFor } from './showcase'
@@ -375,7 +376,13 @@ function Readout({ k, v }: { k: string; v: string | number }) {
   )
 }
 
-export function ProjectsClient({ projects = [] }: { projects: Project[] }) {
+export function ProjectsClient({
+  projects = [],
+  languageStats = [],
+}: {
+  projects: Project[]
+  languageStats?: LanguageStat[]
+}) {
   const [filter, setFilter] = useState('all')
   const [query, setQuery] = useState('')
 
@@ -449,7 +456,7 @@ export function ProjectsClient({ projects = [] }: { projects: Project[] }) {
               <span>stack constellation</span>
               <span className="text-ink-muted">shared tech graph</span>
             </div>
-            <TechConstellation projects={projects} />
+            <TechConstellation projects={projects} languageStats={languageStats} />
           </div>
         </div>
       </header>

@@ -5,6 +5,11 @@ const GITHUB_USERNAME =
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || process.env.NEXT_PUBLIC_GITHUB_TOKEN || ''
 const DEFAULT_LIMIT = 40
 
+// Orgs whose repos count toward the language footprint alongside the user's own.
+// Aggregated server-side; only rolled-up language totals (never repo names) reach
+// the client, so private repos under these owners stay private.
+const GITHUB_ORGS = ['SKompStudio', 'E-S-Solutions', 'CAS735-F25']
+
 interface GitHubRepo {
   id: number
   name: string
@@ -190,4 +195,156 @@ function formatMonthYear(dateString: string): string {
     month: 'short',
     year: 'numeric',
   }).format(new Date(dateString))
+}
+
+// ── Language footprint (the Tech Constellation data source) ──────────────────
+//
+// Aggregates Linguist language data across the user's non-fork, non-archived
+// repos plus the GITHUB_ORGS, using one paginated GraphQL query per owner.
+// Private repos ARE counted in the aggregate, but only the rolled-up
+// { language, repoCount, bytes } array crosses to the client — repo names never
+// leave the server. With a `repo`+`read:org` token this reproduces the full
+// 91-repo footprint; with a public-only token it lands on the ~40-repo public set.
+
+export interface LanguageStat {
+  language: string // GitHub's canonical Linguist name, e.g. "TypeScript"
+  repoCount: number // # repos whose /languages map contains this language
+  bytes: number // summed bytes across those repos (secondary weight)
+}
+
+const GITHUB_GRAPHQL = 'https://api.github.com/graphql'
+
+interface LangEdge {
+  size: number
+  node: { name: string }
+}
+interface RepoNode {
+  name: string
+  isArchived: boolean
+  isFork: boolean
+  languages: { edges: LangEdge[] }
+}
+interface RepoConnection {
+  pageInfo: { hasNextPage: boolean; endCursor: string | null }
+  nodes: RepoNode[]
+}
+
+const VIEWER_QUERY = `
+query($cursor: String) {
+  viewer {
+    repositories(first: 50, after: $cursor, ownerAffiliations: [OWNER], isFork: false) {
+      pageInfo { hasNextPage endCursor }
+      nodes {
+        name isArchived isFork
+        languages(first: 50) { edges { size node { name } } }
+      }
+    }
+  }
+}`
+
+const ORG_QUERY = `
+query($login: String!, $cursor: String) {
+  organization(login: $login) {
+    repositories(first: 50, after: $cursor, ownerAffiliations: [OWNER], isFork: false) {
+      pageInfo { hasNextPage endCursor }
+      nodes {
+        name isArchived isFork
+        languages(first: 50) { edges { size node { name } } }
+      }
+    }
+  }
+}`
+
+async function graphql(query: string, variables: Record<string, unknown>): Promise<any> {
+  const res = await fetch(GITHUB_GRAPHQL, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/vnd.github+json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
+    },
+    body: JSON.stringify({ query, variables }),
+    // Language footprint changes slowly and this is N paginated calls; cache at
+    // the fetch layer (matching spotify.ts) so visitors never trigger a GitHub
+    // call even though the page is force-dynamic. Tag allows future revalidation.
+    next: { revalidate: 21600, tags: ['github-languages'] },
+  })
+  if (!res.ok) {
+    throw new Error(`GitHub GraphQL error: ${res.status}`)
+  }
+  const json = await res.json()
+  if (json.errors) {
+    throw new Error(`GitHub GraphQL error: ${JSON.stringify(json.errors).slice(0, 200)}`)
+  }
+  return json.data
+}
+
+async function collectOwnerRepos(
+  query: string,
+  baseVars: Record<string, unknown>,
+  pick: (data: any) => RepoConnection | null | undefined
+): Promise<RepoNode[]> {
+  const out: RepoNode[] = []
+  let cursor: string | null = null
+  // Bounded loop; 50/page against ~83 repos is at most a couple of pages.
+  for (let page = 0; page < 20; page++) {
+    const data = await graphql(query, { ...baseVars, cursor })
+    const conn = pick(data)
+    if (!conn) break
+    out.push(...conn.nodes)
+    if (!conn.pageInfo.hasNextPage) break
+    cursor = conn.pageInfo.endCursor
+    if (!cursor) break
+  }
+  return out
+}
+
+export async function getLanguageStats(
+  opts: { topN?: number; minRepos?: number } = {}
+): Promise<LanguageStat[]> {
+  const topN = opts.topN ?? 24
+  const minRepos = opts.minRepos ?? 1
+
+  if (!GITHUB_TOKEN) {
+    // GraphQL requires auth; without a token return empty so the constellation
+    // gracefully falls back to the project-tag derivation.
+    throw new Error('GITHUB_TOKEN is required for GraphQL language stats')
+  }
+
+  const ownerFetches: Promise<RepoNode[]>[] = [
+    collectOwnerRepos(VIEWER_QUERY, {}, (d) => d?.viewer?.repositories),
+    ...GITHUB_ORGS.map((login) =>
+      collectOwnerRepos(ORG_QUERY, { login }, (d) => d?.organization?.repositories)
+    ),
+  ]
+
+  // Tolerate a single org going missing/inaccessible without failing the whole
+  // footprint — the user's own repos are the dominant signal.
+  const settled = await Promise.allSettled(ownerFetches)
+  const repos: RepoNode[] = settled
+    .filter((r): r is PromiseFulfilledResult<RepoNode[]> => r.status === 'fulfilled')
+    .flatMap((r) => r.value)
+    .filter((repo) => !repo.isArchived && !repo.isFork)
+
+  const byLang = new Map<string, { repoCount: number; bytes: number }>()
+  for (const repo of repos) {
+    const seen = new Set<string>()
+    for (const edge of repo.languages?.edges ?? []) {
+      const name = edge.node?.name
+      if (!name) continue
+      const cur = byLang.get(name) ?? { repoCount: 0, bytes: 0 }
+      cur.bytes += edge.size || 0
+      if (!seen.has(name)) {
+        cur.repoCount += 1
+        seen.add(name)
+      }
+      byLang.set(name, cur)
+    }
+  }
+
+  return Array.from(byLang.entries())
+    .map(([language, v]) => ({ language, repoCount: v.repoCount, bytes: v.bytes }))
+    .filter((s) => s.repoCount >= minRepos)
+    .sort((a, b) => b.bytes - a.bytes || b.repoCount - a.repoCount)
+    .slice(0, topN)
 }
