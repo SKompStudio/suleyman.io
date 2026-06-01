@@ -131,6 +131,13 @@
     \resumeSubHeadingListStart
 
       \resumeProjectHeading
+          {\href{https://mike-ross.ca/}{\textbf{Mike Ross AI}} $\cdot$ agentic legal RAG (Delta Hacks 12) $|$ \emph{LangGraph, Gemini 2.0, MongoDB Atlas, FastAPI, Next.js}}{2026}
+          \resumeItemListStart
+            \resumeItem{Built an \textbf{agentic legal assistant} that answers Canadian-law questions with section-level citations: a \textbf{LangGraph state machine} routes intent, runs hybrid keyword + vector retrieval over \textbf{16,000+ legal documents} (MongoDB Atlas, HNSW indexing), and returns schema-validated output to block hallucination.}
+            \resumeItem{Wired a \textbf{Gemini 2.0 Flash} reasoning core to a FastAPI backend streaming over SSE into a Next.js 16 frontend; deployed live at mike-ross.ca.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
           {\textbf{Personal Agentic OS} $\cdot$ multi-agent automation platform $|$ \emph{Python, TypeScript, Claude, systemd, Tailscale}}{2026}
           \resumeItemListStart
             \resumeItem{Built and run a \textbf{self-hosted multi-agent system} on an always-on Linux server: a \textbf{Claude orchestrator} dispatches scheduled workers for email-triggered document validation, document generation, and daily research; autonomous overnight runs are bounded by a \textbf{cost circuit-breaker, sub-agent caps, and idle-paced cycle floors} so spend and side effects stay capped and reversible.}
@@ -138,11 +145,17 @@
           \resumeItemListEnd
 
       \resumeProjectHeading
-          {\href{https://www.solsticepilates.ca/}{\textbf{Solstice Pilates}} $\cdot$ multi-tenant booking \& payments SaaS $|$ \emph{Next.js, Prisma, Neon Postgres, Square, Vercel}}{2025 -- Present}
+          {\href{https://www.solsticepilates.ca/}{\textbf{Solstice Pilates}} $\cdot$ multi-tenant booking \& payments SaaS $|$ \emph{Next.js, Prisma, Neon, Square}}{2025 -- Present}
           \resumeItemListStart
             \resumeItem{Sole engineer on a \textbf{live multi-tenant booking and payments platform} running real studio operations, backed by \textbf{about 5,000 passing tests} and an in-app issue reporter feeding operator feedback straight to the backlog.}
             \resumeItem{Found and fixed \textbf{money-losing production payment bugs}: a double cents conversion saving a \textbf{\$50 discount as \$5,000}, a 4x undercount in conversion reporting, and tax under-reported on subscription renewals.}
             \resumeItem{Ran a \textbf{parallel agent-orchestrated release} $\cdot$ five production fixes in one session across isolated git worktrees, each with its own test-and-verify loop, merged through branch-protected PRs.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
+          {\textbf{MEng Research} $\cdot$ LLM study companion $|$ \emph{retrieval, local model serving}}{2026}
+          \resumeItemListStart
+            \resumeItem{Graduate research with \textbf{Dr. Farmer and Dr. Paige}: an \textbf{LLM-based study companion} that pairs retrieval over course material with locally served models, for grounded, low-cost answers that keep student data off third-party APIs.}
           \resumeItemListEnd
 
       \resumeProjectHeading
@@ -157,18 +170,6 @@
           \resumeItemListStart
             \resumeItem{Built and shipped an iOS app in \textbf{Swift / SwiftUI} (MVVM + Coordinator) with a \textbf{progressive-overload engine} that recommends weight increases and flags plateaus from a lifter's training history.}
             \resumeItem{Modeled workout data with \textbf{SwiftData} and reactive \textbf{Combine} pipelines for real-time logging and progress visualization.}
-          \resumeItemListEnd
-
-      \resumeProjectHeading
-          {\href{https://github.com/kianis4/Saftey-Net}{\textbf{NYC Crime Analysis System}} $|$ \emph{Java, OpenCSV, Dijkstra's algorithm}}{2023}
-          \resumeItemListStart
-            \resumeItem{Built a desktop analytics app over \textbf{four million NYPD records} with an OpenCSV processing pipeline and binary-search retrieval, plus a \textbf{safest-path navigator using Dijkstra's algorithm} on crime-weighted edges; covered by JUnit tests.}
-          \resumeItemListEnd
-
-      \resumeProjectHeading
-          {\textbf{Micrograd Neural-Network Engine} $|$ \emph{Python, automatic differentiation}}{2025}
-          \resumeItemListStart
-            \resumeItem{Implemented a \textbf{scalar-autograd engine with full backpropagation} from first principles (Value / Neuron / Layer / MLP), following Karpathy's neural-nets curriculum, to internalize gradient-based learning end to end.}
           \resumeItemListEnd
 
     \resumeSubHeadingListEnd
@@ -193,7 +194,7 @@
       {McMaster University}{Hamilton, ON}
       {MEng, Computing \& Software}{Sept. 2025 -- Expected Dec. 2026}
       \resumeItemListStart
-        \resumeItem{Research with \textbf{Dr. Farmer and Dr. Paige}: an LLM-based study companion combining retrieval with local model serving. Coursework: \textbf{A+ in Simple Type Theory and Microservices-Oriented Architectures}.}
+        \resumeItem{Coursework: \textbf{A+ in Simple Type Theory and Microservices-Oriented Architectures}.}
       \resumeItemListEnd
     \resumeSubheading
       {McMaster University}{Hamilton, ON}
