@@ -324,20 +324,20 @@ export function SpotifyDashboard() {
           </section>
 
           {/* Analyzers: drift + era */}
-          <section className="mt-10 grid gap-8 lg:grid-cols-2">
-            <div>
+          <section className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-2">
+            <div className="min-w-0">
               <SectionHeading label="taste drift" />
               <TasteDrift artists={data.artists} />
             </div>
-            <div>
+            <div className="min-w-0">
               <SectionHeading label="era spectrum" />
               <EraSpectrum tracks={tracksForRange} />
             </div>
           </section>
 
           {/* Top lists + recently played */}
-          <section className="mt-10 grid gap-8 lg:grid-cols-[1fr_340px]">
-            <div>
+          <section className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_340px]">
+            <div className="min-w-0">
               <SectionHeading label={view === 'artists' ? 'top artists' : 'top tracks'} />
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
                 {view === 'artists'
@@ -363,7 +363,7 @@ export function SpotifyDashboard() {
                     ))}
               </div>
             </div>
-            <div>
+            <div className="min-w-0">
               <SectionHeading label="recently played" />
               {recent.length > 0 ? (
                 <RecentlyPlayed plays={recent} />
