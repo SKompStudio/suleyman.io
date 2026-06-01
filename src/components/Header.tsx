@@ -103,9 +103,9 @@ function MobileNavItem({ href, children, icon: Icon }: MobileNavItemProps) {
 function MobileNavigation(props: any) {
   return (
     <Popover {...props}>
-      <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
-        Menu
-        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
+      <Popover.Button className="group flex items-center rounded-full border border-accent/15 bg-ink-surface/70 px-4 py-2 font-mono text-sm text-ink-muted shadow-lg shadow-black/30 backdrop-blur">
+        menu
+        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-accent/70 group-hover:stroke-accent" />
       </Popover.Button>
       <Transition.Root>
         <Transition.Child
@@ -175,15 +175,13 @@ function NavItem({ href, children, icon: Icon }: NavItemProps) {
         href={href}
         className={clsx(
           'relative flex items-center px-3 py-2 transition',
-          isActive
-            ? 'text-teal-500 dark:text-teal-400'
-            : 'hover:text-teal-500 dark:hover:text-teal-400'
+          isActive ? 'text-accent' : 'text-ink-muted hover:text-accent'
         )}
       >
-        {Icon && <Icon className="mr-1.5 h-4 w-4 flex-shrink-0" />}
+        {Icon && <Icon className="mr-1.5 h-3.5 w-3.5 flex-shrink-0 opacity-80" />}
         <span>{children}</span>
         {isActive && (
-          <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
+          <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-accent/0 via-accent/60 to-accent/0" />
         )}
       </Link>
     </li>
@@ -193,15 +191,15 @@ function NavItem({ href, children, icon: Icon }: NavItemProps) {
 function DesktopNavigation(props: any) {
   return (
     <nav {...props}>
-      <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <NavItem href="/about" icon={FaUser}>About</NavItem>
-        <NavItem href="/projects" icon={FaLaptopCode}>Projects</NavItem>
-        <NavItem href='/resume' icon={FaBriefcase}>Resume</NavItem>        
-        <NavItem href="/articles" icon={FaFileAlt}>Articles</NavItem>
-        <NavItem href="/spotify" icon={FaSpotify}>Spotify</NavItem>
-        <NavItem href="/insta" icon={FaInstagram}>Instagram</NavItem>
-        <NavItem href="/leetcode" icon={SiLeetcode}>Leetcode</NavItem>
-        <NavItem href="/uses" icon={FaTools}>Uses</NavItem>
+      <ul className="flex rounded-full border border-accent/15 bg-ink-surface/70 px-2 font-mono text-sm text-ink-muted shadow-lg shadow-black/30 backdrop-blur">
+        <NavItem href="/about" icon={FaUser}>about</NavItem>
+        <NavItem href="/projects" icon={FaLaptopCode}>projects</NavItem>
+        <NavItem href='/resume' icon={FaBriefcase}>resume</NavItem>
+        <NavItem href="/articles" icon={FaFileAlt}>articles</NavItem>
+        <NavItem href="/spotify" icon={FaSpotify}>spotify</NavItem>
+        <NavItem href="/insta" icon={FaInstagram}>instagram</NavItem>
+        <NavItem href="/leetcode" icon={SiLeetcode}>leetcode</NavItem>
+        <NavItem href="/uses" icon={FaTools}>uses</NavItem>
       </ul>
     </nav>
   )

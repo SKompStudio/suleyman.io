@@ -20,7 +20,7 @@ const NODES: Node[] = [
   { id: 'm5', x: 150, y: 64, label: 'M5 MacBook Pro', sub: 'primary dev', kind: 'device' },
   { id: 'mbp', x: 320, y: 64, label: 'MacBook Pro', sub: 'dev', kind: 'device' },
   { id: 'iphone', x: 490, y: 64, label: 'iPhone 15 Pro', sub: 'control surface', kind: 'device' },
-  { id: 'hub', x: 320, y: 250, label: 'server', sub: 'ryzen 9 · rtx 3080 · always-on', kind: 'hub' },
+  { id: 'hub', x: 320, y: 250, label: 'server', sub: 'always-on linux server · ryzen 9 · rtx 3080', kind: 'hub' },
   { id: 'orch', x: 92, y: 420, label: 'orchestrator', sub: '→ workers', kind: 'agent' },
   { id: 'watch', x: 244, y: 438, label: 'watchers', sub: 'email · ~30s', kind: 'agent' },
   { id: 'brief', x: 396, y: 438, label: 'briefings', sub: 'nightly · weekday', kind: 'agent' },
@@ -118,14 +118,6 @@ function SystemMap({ warm }: { warm: boolean }) {
       {/* Tailscale label on the device->hub mesh */}
       <FabricLabel x={432} y={158}>tailscale mesh</FabricLabel>
 
-      {/* Local-models tag beside the hub */}
-      <g transform="translate(384 244)">
-        <rect x={0} y={-13} width={158} height={26} rx={5} fill="#0A0E14" stroke={c} strokeOpacity={0.4} />
-        <text x={79} y={5} textAnchor="middle" className="font-mono" fontSize={11} fill={c} fillOpacity={0.95}>
-          whisper · ollama qwen2.5
-        </text>
-      </g>
-
       {/* Nodes */}
       {NODES.map((n) => {
         const isHub = n.kind === 'hub'
@@ -157,7 +149,7 @@ function SystemMap({ warm }: { warm: boolean }) {
             )}
             <text
               x={n.x}
-              y={labelAbove ? n.y - (isHub ? 26 : 18) : n.y + 26}
+              y={labelAbove ? n.y - (isHub ? 52 : 18) : n.y + 26}
               textAnchor="middle"
               fill="#EAF0F6"
               className="font-mono"
@@ -168,9 +160,10 @@ function SystemMap({ warm }: { warm: boolean }) {
             </text>
             <text
               x={n.x}
-              y={labelAbove ? n.y - (isHub ? 8 : 3) : n.y + 41}
+              y={labelAbove ? n.y - (isHub ? 36 : 3) : n.y + 41}
               textAnchor="middle"
-              fill="#94A0AE"
+              fill={isHub ? '#5BC8FF' : '#94A0AE'}
+              fillOpacity={isHub ? 0.9 : 1}
               className="font-mono"
               fontSize={12}
             >

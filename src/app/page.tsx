@@ -163,10 +163,16 @@ export default function Home() {
               </h2>
               <div className="mt-6 flex flex-col gap-3 font-mono text-sm">
                 <a
-                  href="mailto:suleyman@skompxcel.com"
+                  href="mailto:suley.kiani@outlook.com"
                   className="text-accent underline-offset-4 hover:underline"
                 >
-                  suleyman@skompxcel.com
+                  suley.kiani@outlook.com
+                </a>
+                <a
+                  href="mailto:kianis4@mcmaster.ca"
+                  className="text-accent underline-offset-4 hover:underline"
+                >
+                  kianis4@mcmaster.ca
                 </a>
                 <a
                   href="/resume-1page.pdf"
