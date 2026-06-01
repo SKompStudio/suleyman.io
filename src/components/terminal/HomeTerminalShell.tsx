@@ -16,8 +16,8 @@ export function HomeTerminalShell() {
             client enhancer overlays the live engine and hides this once ready. */}
         <div className="font-mono text-xs" aria-hidden="true">
           <p className="whitespace-pre-wrap text-accent">
-            suleyman.io ▸ hi — i&apos;m an interactive console. type
-            &apos;help&apos; or just say hi.
+            suleyman.io ▸ operator console. type &apos;help&apos;, or start
+            typing.
           </p>
           <p className="mt-2 text-ink-muted">
             <span className="text-accent">▸</span>{' '}

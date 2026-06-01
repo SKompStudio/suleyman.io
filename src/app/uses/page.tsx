@@ -62,10 +62,10 @@ export default function Uses() {
             I engineered my whole workflow.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-zinc-400">
-            Not a list of apps — a system. Four devices on a private mesh, an
-            always-on server running local AI, and a personal multi-agent OS
-            built on Claude that compounds my research, ops, and engineering
-            while I sleep.
+            Not a list of apps. A system. Four devices on a private mesh, an
+            always-on server running local AI, and a personal multi-agent OS I
+            built on Claude. I engineered it as force multiplication: it keeps
+            my research and ops moving while I sleep, so I ship at 10x awake.
           </p>
           <p className="mt-6 font-mono text-sm text-ink-muted">
             <span className="text-ink-text">4</span> devices{' '}

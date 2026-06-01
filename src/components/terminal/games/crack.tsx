@@ -76,14 +76,13 @@ export default function CrackTheCode({ hard = false, onExit }: GameProps) {
     setNote('')
     if (t.tone === 'win') {
       setWon(true)
-      const elite = nextAttempts < 7
       const newBest = best === null || nextAttempts < best ? nextAttempts : best
       setBest(newBest)
       if (typeof localStorage !== 'undefined') {
         localStorage.setItem('crackBest', String(newBest))
       }
       setNote(
-        `✔ ACCESS GRANTED in ${nextAttempts}${elite ? ' — elite operator' : ''}. best: ${newBest}`
+        `✔ ACCESS GRANTED in ${nextAttempts} guess${nextAttempts === 1 ? '' : 'es'} · personal best ${newBest}`
       )
     }
   }
@@ -102,8 +101,8 @@ export default function CrackTheCode({ hard = false, onExit }: GameProps) {
   return (
     <div className="mt-2 border-l-2 border-accent/40 pl-3 font-mono text-xs">
       <p className="text-accent">
-        crack ▸ access lock engaged. {hard ? '4' : '3'}-digit code. you have ∞
-        tries (pride is finite).
+        crack ▸ lock engaged · {hard ? '4' : '3'}-digit code · warmer = closer ·
+        q quits
       </p>
       <div className="mt-1 space-y-0.5" aria-live="polite">
         {log.map((t, i) => (

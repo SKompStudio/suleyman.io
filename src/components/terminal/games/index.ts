@@ -6,12 +6,15 @@ import type { ComponentType } from 'react'
 
 export type CrackProps = { hard?: boolean; onExit: (summary: string) => void }
 export type PlayProps = { reduced: boolean; onExit: (summary: string) => void }
+export type BigoProps = { onExit: (summary: string) => void }
 
 export const GAME_LOADERS = {
   crack: () =>
     import('./crack').then((m) => m.default as ComponentType<CrackProps>),
   play: () =>
     import('./play').then((m) => m.default as ComponentType<PlayProps>),
+  bigo: () =>
+    import('./bigo').then((m) => m.default as ComponentType<BigoProps>),
 } as const
 
 export type GameId = keyof typeof GAME_LOADERS

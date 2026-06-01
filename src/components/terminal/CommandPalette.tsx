@@ -11,7 +11,7 @@ interface CommandPaletteProps {
 }
 
 const GREETING: OutputLine[] = [
-  { text: "suleyman.io ▸ command terminal. type 'help' or just say hi.", tone: 'accent' },
+  { text: "suleyman.io ▸ ⌘K console. 'help' for commands, 'whoami' for the short version.", tone: 'accent' },
 ]
 
 // LAZY overlay wrapper — dialog semantics, focus trap, ESC, scroll lock, and
@@ -81,7 +81,7 @@ export default function CommandPalette({ onClose }: CommandPaletteProps) {
       />
       <div
         ref={dialogRef}
-        className="hud-brackets relative mt-[8vh] w-full max-w-2xl rounded-lg border border-accent/30 bg-ink-surface/95 p-4 shadow-2xl shadow-black/60 sm:mt-0"
+        className="hud-brackets relative mt-[8vh] w-full max-w-2xl animate-palette-in rounded-lg border border-accent/30 bg-ink-surface/95 p-4 shadow-2xl shadow-black/60 motion-reduce:animate-none sm:mt-0"
       >
         <div className="mb-2 flex items-center justify-between font-mono text-[11px] text-ink-muted">
           <span>

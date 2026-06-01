@@ -105,6 +105,11 @@ module.exports = {
           '0%, 49%': { opacity: '1' },
           '50%, 100%': { opacity: '0' },
         },
+        // Command-palette open — opacity + tiny scale, transform/opacity only.
+        'palette-in': {
+          '0%': { opacity: '0', transform: 'scale(0.98)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
       },
       animation: {
         'reveal-up': 'reveal-up 0.5s cubic-bezier(0.16,1,0.3,1) both',
@@ -119,6 +124,7 @@ module.exports = {
         'boot-ring-spin': 'boot-ring-spin 0.9s linear infinite',
         'boot-line-in': 'boot-line-in 0.25s ease-out both',
         'caret-blink': 'caret-blink 1.05s step-end infinite',
+        'palette-in': 'palette-in 0.14s ease-out both',
       },
     },
     fontSize: {

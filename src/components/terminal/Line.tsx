@@ -1,5 +1,7 @@
 'use client'
 
+import { memo } from 'react'
+
 import type { OutputLine, Tone } from './types'
 
 const TONE_CLASS: Record<Tone, string> = {
@@ -17,8 +19,9 @@ interface LineViewProps {
 
 // Renders one output line. If the line has clickable `runs` tokens, the text is
 // split around each token and the token becomes a button. `href` makes the
-// whole line an anchor. Otherwise it's plain toned text.
-export function LineView({ line, onRun }: LineViewProps) {
+// whole line an anchor. Otherwise it's plain toned text. Memoized so appending a
+// new entry doesn't re-render the entire scrollback (onRun is a stable ref).
+export const LineView = memo(function LineView({ line, onRun }: LineViewProps) {
   const cls = TONE_CLASS[line.tone ?? 'normal']
 
   if (line.href) {
@@ -41,7 +44,7 @@ export function LineView({ line, onRun }: LineViewProps) {
   }
 
   return <p className={`whitespace-pre-wrap ${cls}`}>{line.text || ' '}</p>
-}
+})
 
 function renderWithRuns(line: OutputLine, onRun: (cmd: string) => void) {
   const runs = line.runs ?? []
@@ -55,6 +58,7 @@ function renderWithRuns(line: OutputLine, onRun: (cmd: string) => void) {
     nodes.push(
       <button
         key={key++}
+        onMouseDown={(e) => e.preventDefault()}
         onClick={() => onRun(r.command)}
         className="text-accent underline-offset-2 hover:underline focus:underline focus:outline-none"
       >
