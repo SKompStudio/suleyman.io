@@ -287,8 +287,16 @@ interface HeaderProps {
 }
 
 export function Header({ isOverlay = false }: HeaderProps) {
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
+  // NOTE: intentionally NOT pathname === "/". The Spotlight template's
+  // homepage-only header (large avatar that shrinks on scroll) drives the
+  // <header> height, a trailing spacer's height, and a negative --header-mb
+  // from a passive scroll listener that fires on every scroll tick. On iOS
+  // Safari, mutating in-flow box heights during touch-momentum scroll makes
+  // WebKit re-clamp the scroll offset to the freshly-shrunk content height,
+  // so the homepage scrolls a hair then sticks (other pages don't render this
+  // machinery, so they scroll fine). Render the homepage with the same
+  // lightweight header every other page uses.
+  const isHomePage = false;
 
   const headerRef = useRef<HTMLDivElement>(null);
   const avatarRef = useRef<HTMLDivElement>(null);
