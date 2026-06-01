@@ -83,7 +83,7 @@ export function blendRedirectUri(): string {
 
 // ── OWNER (refresh-token) flow ───────────────────────────────────────────────
 
-async function getOwnerAccessToken(): Promise<string> {
+export async function getOwnerAccessToken(): Promise<string> {
   const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN
   if (!refresh_token) throw new Error('Missing Spotify environment variables')
 
@@ -100,6 +100,25 @@ async function getOwnerAccessToken(): Promise<string> {
   const data = await res.json()
   if (!res.ok) throw new Error(`Spotify token error: ${data.error || 'unknown'}`)
   return data.access_token as string
+}
+
+// Reusable owner GET against the Web API. Returns a discriminated result so
+// callers can treat 204 (nothing playing) as a normal state, not an error.
+export async function ownerApi<T>(
+  path: string,
+  opts?: { revalidate?: number; noStore?: boolean },
+  token?: string
+): Promise<{ ok: boolean; status: number; data: T | null }> {
+  const access = token ?? (await getOwnerAccessToken())
+  const res = await fetch(`${API}${path}`, {
+    headers: { Authorization: `Bearer ${access}` },
+    ...(opts?.noStore
+      ? { cache: 'no-store' }
+      : { next: { revalidate: opts?.revalidate ?? 1800, tags: ['spotify-owner'] } }),
+  })
+  if (res.status === 204) return { ok: true, status: 204, data: null }
+  if (!res.ok) return { ok: false, status: res.status, data: null }
+  return { ok: true, status: res.status, data: (await res.json()) as T }
 }
 
 async function ownerTop(
