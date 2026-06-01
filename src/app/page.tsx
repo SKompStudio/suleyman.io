@@ -115,6 +115,36 @@ export default function Home() {
               </Reveal>
             </section>
 
+            {/* Architecture — Grand Unified map → /architecture gallery */}
+            <section id="architecture" className="scroll-mt-28 py-16">
+              <SectionLabel>architecture</SectionLabel>
+              <Reveal>
+                <Link
+                  href="/architecture"
+                  className="group block overflow-hidden rounded-xl border border-ink-border bg-ink-bg transition-colors hover:border-accent/40"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/diagrams/d7-grand-unified.svg"
+                    alt="Grand unified system architecture map"
+                    loading="lazy"
+                    className="w-full"
+                  />
+                </Link>
+                <p className="mt-4 max-w-2xl text-base text-zinc-400">
+                  Seven production architectures, every node sourced from the real
+                  codebases: a multi-agent OS run by Claude Code, distributed
+                  microservices, multi-tenant SaaS, and engineer-built automation.{' '}
+                  <Link
+                    href="/architecture"
+                    className="text-accent underline-offset-4 hover:underline"
+                  >
+                    See the full set →
+                  </Link>
+                </p>
+              </Reveal>
+            </section>
+
             {/* Metrics ledger */}
             <section className="py-16">
               <Reveal>

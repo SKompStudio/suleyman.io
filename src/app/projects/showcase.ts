@@ -19,3 +19,16 @@ const BY_NAME: Record<string, StaticImageData> = {
 export function screenshotFor(slug: string, name: string): StaticImageData | null {
   return BY_SLUG[slug.toLowerCase()] ?? BY_NAME[name] ?? null
 }
+
+// Projects that have a real, sourced architecture diagram on /architecture.
+// Keyed loosely so DB/GitHub name or slug variants still match.
+const DIAGRAM_SLUGS = new Set(['skomp-studio', 'delta-hacks-12', 'cas-735-podcasthub'])
+const DIAGRAM_NAMES = new Set(['Applify AI', 'PodcastHub', 'Mike Ross AI'])
+
+export function diagramHref(slug: string, name: string): string | null {
+  const has =
+    DIAGRAM_SLUGS.has(slug.toLowerCase()) ||
+    DIAGRAM_NAMES.has(name) ||
+    /podcast|applify|skomp|solstice/i.test(`${slug} ${name}`)
+  return has ? '/architecture' : null
+}

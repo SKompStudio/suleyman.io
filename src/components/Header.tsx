@@ -11,10 +11,11 @@ import {
   FaUser, 
   FaFileAlt, 
   FaBriefcase, 
-  FaLaptopCode, 
-  FaTools, 
-  FaSpotify, 
-  FaInstagram 
+  FaLaptopCode,
+  FaTools,
+  FaSpotify,
+  FaInstagram,
+  FaProjectDiagram
 } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 
@@ -144,6 +145,7 @@ function MobileNavigation(props: any) {
               <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
                 <MobileNavItem href="/about" icon={FaUser}>About</MobileNavItem>
                 <MobileNavItem href="/projects" icon={FaLaptopCode}>Projects</MobileNavItem>
+                <MobileNavItem href="/architecture" icon={FaProjectDiagram}>Architecture</MobileNavItem>
                 <MobileNavItem href="/resume" icon={FaBriefcase}>Resume</MobileNavItem>
                 <MobileNavItem href="/articles" icon={FaFileAlt}>Articles</MobileNavItem>
                 <MobileNavItem href="/spotify" icon={FaSpotify}>Spotify</MobileNavItem>
@@ -194,6 +196,7 @@ function DesktopNavigation(props: any) {
       <ul className="flex rounded-full border border-accent/15 bg-ink-surface/70 px-2 font-mono text-sm text-ink-muted shadow-lg shadow-black/30 backdrop-blur">
         <NavItem href="/about" icon={FaUser}>about</NavItem>
         <NavItem href="/projects" icon={FaLaptopCode}>projects</NavItem>
+        <NavItem href="/architecture" icon={FaProjectDiagram}>architecture</NavItem>
         <NavItem href='/resume' icon={FaBriefcase}>resume</NavItem>
         <NavItem href="/articles" icon={FaFileAlt}>articles</NavItem>
         <NavItem href="/spotify" icon={FaSpotify}>spotify</NavItem>
