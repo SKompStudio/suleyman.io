@@ -92,6 +92,12 @@ const help: Command = {
           { token: 'clear', command: 'clear' },
         ],
       }),
+      line('  games         play in the terminal     play        typing-speed sprint', 'normal', {
+        runs: [
+          { token: 'games', command: 'games' },
+          { token: 'play', command: 'play' },
+        ],
+      }),
       line(''),
       line("  ↑/↓ history · Tab completes · Ctrl+R search · ⌘K anywhere · 'man <cmd>' for help", 'muted', {
         runs: [{ token: 'man <cmd>', command: 'man' }],
@@ -632,7 +638,6 @@ const play: Command = {
   name: 'play',
   aliases: ['snake'],
   desc: 'play a game',
-  hidden: true,
   group: 'fun',
   usage: 'play [bigo]',
   examples: ['play', 'play bigo'],
@@ -648,9 +653,26 @@ const play: Command = {
 const bigo: Command = {
   name: 'bigo',
   desc: 'guess the time complexity',
-  hidden: true,
   group: 'fun',
   run: (): CommandResult => ({ lines: [], startGame: 'bigo' }),
+}
+
+const games: Command = {
+  name: 'games',
+  desc: 'list the games',
+  group: 'fun',
+  run: (): CommandResult => ({
+    lines: [
+      line('games // pick one, or just type its name', 'accent'),
+      line('  play    typing-speed sprint (live CPM + accuracy)', 'normal', {
+        runs: [{ token: 'play', command: 'play' }],
+      }),
+      line('  bigo    guess the Big-O, 5 rounds', 'normal', {
+        runs: [{ token: 'bigo', command: 'bigo' }],
+      }),
+      line("  press 'q' or Esc to quit a game.", 'muted'),
+    ],
+  }),
 }
 
 const man: Command = {
@@ -769,6 +791,7 @@ export const COMMANDS: Command[] = [
   crack,
   play,
   bigo,
+  games,
 ]
 
 // name → command (incl. aliases) lookup.
