@@ -4,12 +4,14 @@ import { Container } from '@/components/Container'
 import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
 import { Reveal, OperatorPortrait } from './AboutClient'
+import { buildMeta } from '@/lib/buildMeta'
 
-export const metadata = {
+export const metadata = buildMeta({
   title: 'About',
   description:
     'Software engineer with equipment-finance experience. Production SaaS, an ML product, and a personal multi-agent operating system.',
-}
+  path: '/about',
+})
 
 function MailIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -41,7 +43,7 @@ type Ship = {
 const SHIPS: Ship[] = [
   {
     name: 'mike-ross-ai',
-    outcome: 'Agentic legal RAG — cited Canadian-law answers.',
+    outcome: 'Agentic legal RAG: cited Canadian-law answers.',
     detail:
       'A LangGraph state machine runs hybrid vector retrieval over 16,000+ legal documents (MongoDB Atlas) with a Gemini 2.0 Flash reasoning core, returning schema-validated, section-cited answers that block hallucination. FastAPI + Next.js, streamed over SSE. Built for Delta Hacks 12.',
     href: 'https://mike-ross.ca/',
@@ -51,7 +53,7 @@ const SHIPS: Ship[] = [
     name: 'skomp-studio',
     outcome: 'Multi-tenant SaaS running a pilates studio.',
     detail:
-      'Class booking, waitlists, Square payments for a studio that ran on paper. Row-level tenant isolation, a 5,000+ test Vitest suite and a Playwright e2e gate every release.',
+      'Class booking, waitlists, Square payments for a studio that ran on paper. Row-level tenant isolation, a ~790-test Vitest suite and a Playwright e2e gate every release.',
     href: 'https://skomp.studio/',
     linkLabel: 'skomp.studio',
   },
@@ -171,8 +173,8 @@ export default function About() {
           <p className="mt-8 max-w-2xl text-lg text-zinc-400">
             I ship production software and I fund equipment-finance deals at
             Mitsubishi HC Capital. Full-stack and ML engineering on one side,
-            structured finance on the other — and a personal multi-agent OS that
-            runs the rest.
+            structured finance on the other. A personal multi-agent OS runs the
+            rest.
           </p>
 
           <div className="mt-14 space-y-14">
@@ -191,7 +193,7 @@ export default function About() {
                 Off the clock I built my own JARVIS: a personal multi-agent
                 operating system I run across my machines. It watches itself,
                 recovers from failures behind fail-closed gates, and compounds
-                my research and ops into a layered memory — the engineering and
+                my research and ops into a layered memory, the engineering and
                 the finance feeding each other.
               </p>
             </Reveal>

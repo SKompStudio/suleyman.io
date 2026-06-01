@@ -2,8 +2,9 @@ import { Metadata } from 'next'
 import DealsClient from './DealsClient'
 
 export const metadata: Metadata = {
-  title: 'Deal Board - MHCCA',
-  description: 'Corporate leasing deal management board',
+  title: 'Deals',
+  description: 'Private deal-management workspace (disabled demo).',
+  robots: { index: false, follow: false },
 }
 
 export default function DealsPage() {

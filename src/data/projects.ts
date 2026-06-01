@@ -217,7 +217,7 @@ export const customProjects: CustomProject[] = [
     slug: 'skomp-studio',
     name: 'Skomp Studio',
     description:
-      'Production multi-tenant SaaS platform for fitness studio management. 99K+ lines of TypeScript, 500+ users, $20K+ CAD processed. Row-level tenant isolation via a scopedPrisma client; Square SDK with idempotent payments and per-studio credentials; AWS SES/SNS/AppSync for email, SMS and real-time messaging; a 5,000+ test Vitest suite and 70 Playwright e2e specs against every Vercel preview; branch-protected CI with shadow-DB migration checks and Gitleaks secret scanning.',
+      'Production multi-tenant SaaS platform for fitness studio management. 99K+ lines of TypeScript, 500+ users, $20K+ CAD processed. Row-level tenant isolation via a scopedPrisma client; Square SDK with idempotent payments and per-studio credentials; AWS SES/SNS/AppSync for email, SMS and real-time messaging; a ~790-test Vitest suite and 70 Playwright e2e specs against every Vercel preview; branch-protected CI with shadow-DB migration checks and Gitleaks secret scanning.',
     link: { href: 'https://skomp.studio/', label: 'skomp.studio' },
     logo: { type: 'image', src: '/SKomp.svg' },
     timeframe: 'Jul 2025 - Present',
@@ -238,13 +238,13 @@ export const customProjects: CustomProject[] = [
     badges: ['Production SaaS', 'Multi-tenant'],
     source: 'custom',
     visibility: 'private',
-    github: 'https://github.com/kianis4/skomp-studio',
+    github: null,
   },
   {
     slug: 'skompxcel',
     name: 'SKompXcel',
     description:
-      'Academic excellence platform and mentorship service supporting 20+ CS students with guided career roadmaps.',
+      'Academic excellence platform and mentorship service supporting 100+ learners with guided career roadmaps.',
     link: { href: 'https://skompxcel.com/', label: 'skompxcel.com' },
     logo: { type: 'image', src: '/SKomp.svg' },
     timeframe: 'Jan 2024 - Present',

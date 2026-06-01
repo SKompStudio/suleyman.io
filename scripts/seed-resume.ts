@@ -54,7 +54,7 @@ const educations = [
     startDate: 'Sept 2025',
     endDate: 'Dec 2026 (expected)',
     details:
-      'Research with Dr. Farmer and Dr. Paige on an LLM-based study companion that combines retrieval with local model serving. A+ in Simple Type Theory and Microservices-Oriented Architectures.',
+      'Research with Dr. Farmer and Dr. Paige on an LLM-based study companion that combines retrieval with local model serving. A+ in Simple Type Theory and Microservices-Oriented Architectures. Built PodcastHub for the distributed-systems course: six event-driven microservices across Node/Express and Python/FastAPI, each a hexagonal bounded context, choreographed over a RabbitMQ topic exchange with MinIO object storage and FFmpeg media processing.',
     order: 0,
   },
   {

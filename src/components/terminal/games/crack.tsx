@@ -45,7 +45,7 @@ export default function CrackTheCode({ hard = false, onExit }: GameProps) {
     const dist = Math.abs(guess - code)
     const dir = hard ? '' : guess < code ? '↑ higher' : guess > code ? '↓ lower' : ''
     if (dist === 0) return { guess, band: '✔ ACCESS GRANTED', meter: 10, tone: 'win', dir: '' }
-    if (dist <= 10) return { guess, band: 'CRITICAL — almost in', meter: 9, tone: 'gold', dir }
+    if (dist <= 10) return { guess, band: 'CRITICAL · almost in', meter: 9, tone: 'gold', dir }
     if (dist <= 40) return { guess, band: 'warm', meter: 6, tone: 'muted', dir }
     if (dist <= 120) return { guess, band: 'cool', meter: 3, tone: 'muted', dir }
     return { guess, band: 'cold', meter: 1, tone: 'muted', dir }

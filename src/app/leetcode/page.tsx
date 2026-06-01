@@ -1,11 +1,13 @@
 import { Container } from '@/components/Container'
 import { StatsConsole } from './StatsConsole'
+import { buildMeta } from '@/lib/buildMeta'
 
-export const metadata = {
+export const metadata = buildMeta({
   title: 'LeetCode',
   description:
-    'Algorithm-training telemetry — live LeetCode solve counts, difficulty breakdown, ranking, and submission activity rendered as a command-center readout.',
-}
+    'Algorithm-training telemetry: live LeetCode solve counts, difficulty breakdown, ranking, and submission activity rendered as a command-center readout.',
+  path: '/leetcode',
+})
 
 export default function LeetCodePage() {
   return (
@@ -20,7 +22,7 @@ export default function LeetCodePage() {
         </h1>
         <p className="mt-5 font-mono text-sm leading-relaxed text-ink-muted">
           A live diagnostic readout of my data-structures &amp; algorithms
-          practice — solve counts by difficulty, ranking, and submission cadence,
+          practice: solve counts by difficulty, ranking, and submission cadence,
           pulled straight from LeetCode. Real numbers only; if the feed is down
           the panel says so rather than guessing.
         </p>

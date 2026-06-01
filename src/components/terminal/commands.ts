@@ -125,7 +125,7 @@ const whoami: Command = {
       /* degrade gracefully — identity is still real */
     }
     const lines: OutputLine[] = [
-      line('suleyman kiani — software engineer · M.Eng @ McMaster', 'accent'),
+      line('suleyman kiani · software engineer · M.Eng @ McMaster', 'accent'),
       line('  building   Solstice (skomp-studio) + an agentic OS that runs itself'),
       line(`  shipping   ${count} public repos · ${topLang} primary · Toronto, ON`),
       line('  status     ● online · open to senior / staff conversations'),
@@ -138,7 +138,7 @@ const whoami: Command = {
       }),
     ]
     if (ctx.raw.trim().toLowerCase() === 'whoareyou') {
-      lines.push(line("(everything here is real — type 'git log' to check)", 'muted', {
+      lines.push(line("(everything here is real, type 'git log' to check)", 'muted', {
         runs: [{ token: 'git log', command: 'git log' }],
       }))
     }
@@ -191,12 +191,12 @@ const ls: Command = {
     try {
       const projects = await ctx.fetchProjects()
       if (!projects.length) {
-        return { lines: [line('no projects resolved — try \'open projects\'', 'muted')] }
+        return { lines: [line('no projects resolved, try \'open projects\'', 'muted')] }
       }
       return { lines: [line('projects//', 'accent'), ...projectRows(projects)] }
     } catch {
       return {
-        lines: [line('fatal: unable to list projects (offline) — try \'open projects\'', 'error')],
+        lines: [line('fatal: unable to list projects (offline), try \'open projects\'', 'error')],
       }
     }
   },
@@ -382,7 +382,7 @@ const gitLog: Command = {
       return { lines }
     } catch {
       return {
-        lines: [line('fatal: unable to reach origin (offline) — try \'open projects\'', 'error', {
+        lines: [line('fatal: unable to reach origin (offline), try \'open projects\'', 'error', {
           runs: [{ token: 'open projects', command: 'open projects' }],
         })],
       }
@@ -688,7 +688,7 @@ const man: Command = {
       const names = COMMANDS.filter((c) => !c.hidden).map((c) => c.name)
       return {
         lines: [
-          line('man <command> — show usage for any command.', 'accent'),
+          line('man <command>: show usage for any command.', 'accent'),
           line(`  documented: ${names.join('  ')}`, 'muted'),
         ],
       }
@@ -698,7 +698,7 @@ const man: Command = {
       return { lines: [line(`man: no entry for ${name}`, 'error')] }
     }
     const lines: OutputLine[] = [
-      line(`${cmd.name} — ${cmd.desc}`, 'accent'),
+      line(`${cmd.name}: ${cmd.desc}`, 'accent'),
       line(`  usage   ${cmd.usage ?? cmd.name}`),
     ]
     if (cmd.aliases?.length) {

@@ -135,7 +135,7 @@ function AudioPanel({ audio }: { audio: AudioSummary }) {
         </dl>
       ) : (
         <p className="font-mono text-xs text-ink-muted">
-          audio-features unavailable for this app — Spotify deprecated the endpoint for newly
+          audio-features unavailable for this app. Spotify deprecated the endpoint for newly
           registered apps. (Real state, not a placeholder.)
         </p>
       )}
@@ -181,7 +181,7 @@ export function SpotifyDashboard() {
         setAudio(null)
       }
     } catch {
-      setError('Could not reach the Spotify API. This is a live error state — try again shortly.')
+      setError('Could not reach the Spotify API. This is a live error state. Try again shortly.')
     } finally {
       setLoading(false)
     }
@@ -191,6 +191,11 @@ export function SpotifyDashboard() {
     load()
   }, [load])
 
+  // 200 OK with empty arrays = the owner token is missing/expired in prod.
+  // Treat it as an intentional offline state, not a blank grid.
+  const isEmpty = !loading && !error && artists.length === 0 && tracks.length === 0
+  const isLive = !loading && !error && !isEmpty
+
   return (
     <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       {/* Header / HUD frame */}
@@ -199,18 +204,27 @@ export function SpotifyDashboard() {
         <div className="relative">
           <div className="flex flex-wrap items-center justify-between gap-2 font-mono text-sm">
             <span className="text-accent">~/spotify</span>
-            <span className="inline-flex items-center gap-1.5 text-xs text-accent">
-              <span aria-hidden className="hud-pulse animate-online-pulse">
-                ●
+            {isLive ? (
+              <span className="inline-flex items-center gap-1.5 text-xs text-accent">
+                <span aria-hidden className="hud-pulse animate-online-pulse">
+                  ●
+                </span>
+                live
               </span>
-              live
-            </span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 text-xs text-ink-muted">
+                <span aria-hidden style={{ color: '#E8B84B' }}>
+                  ○
+                </span>
+                {error ? 'error' : isEmpty ? 'offline' : 'connecting'}
+              </span>
+            )}
           </div>
           <h1 className="mt-4 font-sans text-3xl font-semibold text-ink-text sm:text-4xl">
             Listening readout
           </h1>
           <p className="mt-2 max-w-2xl font-sans text-base text-zinc-400">
-            A live window into what I&apos;m playing — top artists, tracks, genres, and an audio-feature
+            A live window into what I&apos;m playing: top artists, tracks, genres, and an audio-feature
             summary, pulled from the Spotify API. Then connect your own to run a taste blend.
           </p>
         </div>
@@ -267,6 +281,20 @@ export function SpotifyDashboard() {
             </div>
           ) : loading ? (
             <CardSkeleton />
+          ) : isEmpty ? (
+            <div className="rounded-xl border border-gold/30 bg-gold/5 p-6">
+              <p className="font-mono text-sm text-gold">listening data offline</p>
+              <p className="mt-2 font-sans text-sm text-zinc-400">
+                The Spotify connection isn&apos;t returning data right now (the owner
+                token is missing or expired). This is a real state, not a placeholder.
+              </p>
+              <button
+                onClick={load}
+                className="mt-4 rounded-lg border border-accent/40 bg-accent/10 px-4 py-2 font-mono text-xs text-accent hover:bg-accent/20"
+              >
+                retry
+              </button>
+            </div>
           ) : (
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
               {view === 'artists'

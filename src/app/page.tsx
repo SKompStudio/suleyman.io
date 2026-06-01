@@ -18,12 +18,14 @@ import { HeroBoot } from '@/components/home/HeroBoot'
 import { GrainOverlay } from '@/components/home/GrainOverlay'
 import { Reveal } from '@/components/home/Reveal'
 import { HomeTerminalShell } from '@/components/terminal/HomeTerminalShell'
+import { buildMeta } from '@/lib/buildMeta'
 
-export const metadata = {
+export const metadata = buildMeta({
   title: 'Suleyman Kiani | Home',
   description:
     'Software engineer and equipment-finance professional. Production SaaS, an ML product, and a personal multi-agent operating system.',
-}
+  path: '/',
+})
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -64,8 +66,8 @@ export default function Home() {
                 </h1>
                 <p className="mt-6 max-w-2xl text-lg text-zinc-400">
                   Production SaaS and an ML product, both with paying users. 200% of
-                  monthly funding quota at Mitsubishi HC Capital. A personal multi-agent
-                  OS that runs my research and ops.
+                  monthly funding quota ($4M funded against a $2M target) at Mitsubishi
+                  HC Capital. A personal multi-agent OS that runs my research and ops.
                 </p>
 
                 <HeroBoot />
@@ -128,13 +130,17 @@ export default function Home() {
                   href="/architecture"
                   className="group block overflow-hidden rounded-xl border border-ink-border bg-ink-bg transition-colors hover:border-accent/40"
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/diagrams/d7-grand-unified.svg"
-                    alt="Grand unified system architecture map"
-                    loading="lazy"
-                    className="w-full"
-                  />
+                  {/* Horizontal scroll on narrow screens keeps the diagram
+                      labels legible instead of crushing it to viewport width. */}
+                  <div className="overflow-x-auto">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src="/diagrams/d7-grand-unified.svg"
+                      alt="Grand unified system architecture map"
+                      loading="lazy"
+                      className="w-full min-w-[720px] sm:min-w-0"
+                    />
+                  </div>
                 </Link>
                 <p className="mt-4 max-w-2xl text-base text-zinc-400">
                   Seven production architectures, every node sourced from the real

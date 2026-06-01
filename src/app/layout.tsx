@@ -28,12 +28,12 @@ export const metadata = {
   },
   description:
     'Equipment finance professional and software engineer. Production SaaS, ML, and event-driven systems.',
-  keywords: ['Suleyman Kiani', 'equipment finance', 'full-stack engineer', 'ML engineer', 'SaaS', 'microservices'],
-  metadataBase: new URL('https://suleyman.io'),
+  metadataBase: new URL('https://www.suleyman.io'),
+  alternates: { canonical: '/' },
   openGraph: {
     title: 'Suleyman Kiani - Software Engineer & Equipment Finance',
     description: 'Equipment finance professional and software engineer. Production SaaS, ML, and event-driven systems.',
-    url: 'https://suleyman.io',
+    url: 'https://www.suleyman.io',
     siteName: 'Suleyman Kiani',
     images: [
       {
@@ -90,8 +90,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               "name": "Suleyman Kiani",
-              "url": "https://suleyman.io",
-              "image": "https://suleyman.io/profile-image.jpg",
+              "url": "https://www.suleyman.io",
+              "image": "https://www.suleyman.io/profile-image.jpg",
               "jobTitle": "Equipment Finance Professional & Software Engineer",
               "sameAs": [
                 "https://linkedin.com/in/suleyman-kiani",

@@ -1,11 +1,13 @@
 import { Container } from '@/components/Container'
 import { Reveal } from '@/components/home/Reveal'
+import { buildMeta } from '@/lib/buildMeta'
 
-export const metadata = {
+export const metadata = buildMeta({
   title: 'Architecture',
   description:
     'The system behind the system: seven production architectures, from a personal multi-agent OS run by Claude Code to distributed microservices, multi-tenant SaaS, and engineer-built automation. Every node sourced from the real codebases.',
-}
+  path: '/architecture',
+})
 
 type Diagram = {
   file: string
@@ -32,7 +34,7 @@ const DIAGRAMS: Diagram[] = [
   {
     file: 'd6-agentic-os',
     tag: 'built on Claude Code',
-    title: 'Personal Agentic OS — the brain',
+    title: 'Personal Agentic OS: the brain',
     blurb:
       'An always-on multi-agent operating system run by Claude Code. The orchestrator fans work out to custom Skills via the Agent tool; systemd-timed watchers spawn headless claude -p workers; a layered memory (session → project → vault) compounds research and ops. Local models on an RTX 3080 handle the free tier; the iOS bridge runs the Claude Agent SDK.',
     tech: [
@@ -44,7 +46,7 @@ const DIAGRAMS: Diagram[] = [
   {
     file: 'd5-podcasthub',
     tag: 'distributed systems',
-    title: 'PodcastHub — distributed microservices',
+    title: 'PodcastHub: distributed microservices',
     blurb:
       'A polyglot, event-driven recording platform built for graduate distributed-systems work (CAS 735). Six services across Node and Python, each a hexagonal ports-and-adapters bounded context owning its own data, choreographed over a RabbitMQ topic exchange plus a dedicated work queue for FFmpeg media processing.',
     tech: [
@@ -55,7 +57,7 @@ const DIAGRAMS: Diagram[] = [
   {
     file: 'd2-booking-roles',
     tag: 'multi-tenant SaaS',
-    title: 'Booking SaaS — access & role model',
+    title: 'Booking SaaS: access & role model',
     blurb:
       'Four roles (member, instructor, admin, platform owner), each with distinct authentication and capabilities, gated through a single pipeline: role-scoped JWT → edge middleware → multi-tenant subdomain routing → app-level studio isolation. The isolation boundary is enforced in the data layer by a scoped-Prisma wrapper, not by database RLS.',
     tech: [
@@ -66,7 +68,7 @@ const DIAGRAMS: Diagram[] = [
   {
     file: 'd3-booking-dataflow',
     tag: 'multi-tenant SaaS',
-    title: 'Booking SaaS — data-flow',
+    title: 'Booking SaaS: data-flow',
     blurb:
       'The same product traced by data movement: a synchronous request spine (booking, auth, card checkout) split cleanly from a durable, event-driven async tier (payment webhooks with HMAC verification, Inngest functions, scheduled cron, realtime push). One shared serverless Postgres, every row studio-scoped.',
     tech: [
@@ -79,7 +81,7 @@ const DIAGRAMS: Diagram[] = [
     tag: 'automation',
     title: 'Internal Automation Fleet',
     blurb:
-      'Engineer-built automation for an operations role: an email-triggered, fail-closed document pipeline. A systemd timer claims each thread exactly once via a Gmail-label state machine, spawns a detached Claude worker that validates or generates documents, writes a markdown ledger, and replies on the same thread. Idle cost is zero. (Genericized — no employer internals.)',
+      'Engineer-built automation for an operations role: an email-triggered, fail-closed document pipeline. A systemd timer claims each thread exactly once via a Gmail-label state machine, spawns a detached Claude worker that validates or generates documents, writes a markdown ledger, and replies on the same thread. Idle cost is zero. (Genericized: no employer internals.)',
     tech: [
       'Python', 'systemd', 'Gmail API (DWD)', 'fail-closed FSM',
       'LibreOffice / PyMuPDF', 'FastAPI / arq', 'Tailscale',
@@ -88,9 +90,9 @@ const DIAGRAMS: Diagram[] = [
   {
     file: 'd4-applify',
     tag: 'ML product',
-    title: 'Applify AI — resume-tailoring pipeline',
+    title: 'Applify AI: resume-tailoring pipeline',
     blurb:
-      'A resume-tailoring ML product with paying users. A JWT-gated request enqueues a durable, step-checkpointed Inngest pipeline that drives the OpenAI Responses API with Zod-validated structured outputs. Shown sparse on purpose — only the publicly self-reported stack, nothing inferred.',
+      'A resume-tailoring ML product with paying users. A JWT-gated request enqueues a durable, step-checkpointed Inngest pipeline that drives the OpenAI Responses API with Zod-validated structured outputs. Shown sparse on purpose: only the publicly self-reported stack, nothing inferred.',
     tech: [
       'Next.js 15', 'Inngest', 'OpenAI GPT-5.1 + Zod', 'Prisma 7',
       'Stripe', 'Sentry',
@@ -140,13 +142,17 @@ function DiagramFigure({ d }: { d: Diagram }) {
         rel="noopener noreferrer"
         className="group block overflow-hidden rounded-xl border border-ink-border bg-ink-bg transition-colors hover:border-accent/40"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={`/diagrams/${d.file}.svg`}
-          alt={`${d.title} — architecture diagram`}
-          loading="lazy"
-          className="w-full"
-        />
+        {/* Horizontal scroll on narrow screens keeps the SVG labels legible
+            instead of crushing the wide diagram to viewport width. */}
+        <div className="overflow-x-auto">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`/diagrams/${d.file}.svg`}
+            alt={`${d.title}: architecture diagram`}
+            loading="lazy"
+            className="w-full min-w-[720px] sm:min-w-0"
+          />
+        </div>
       </a>
       <p className="mt-4 max-w-3xl text-base text-zinc-400">{d.blurb}</p>
       <div className="mt-4 flex flex-wrap gap-2">
@@ -175,7 +181,7 @@ export default function Architecture() {
           The system behind the system.
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-zinc-400">
-          Seven production architectures — a personal multi-agent OS run by
+          Seven production architectures: a personal multi-agent OS run by
           Claude Code, distributed microservices, multi-tenant SaaS, and
           engineer-built automation. Every node was extracted from the real
           codebases, not sketched.
@@ -205,7 +211,7 @@ export default function Architecture() {
         </div>
         <p className="mt-6 max-w-3xl border-l-2 border-accent/40 pl-4 font-mono text-sm text-ink-muted">
           These seven diagrams were generated by a Claude Code super-orchestrator
-          running a multi-agent workflow — one sub-agent per diagram, each
+          running a multi-agent workflow: one sub-agent per diagram, each
           rendering and visually reviewing its own output. This page was built by
           the system it documents.
         </p>

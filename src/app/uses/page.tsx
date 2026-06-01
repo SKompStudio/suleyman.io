@@ -1,16 +1,18 @@
 import { Container } from '@/components/Container'
 import { Reveal } from '@/components/home/Reveal'
 import { CadenceTimeline, ComputeSplit, SystemMesh } from './SetupClient'
+import { buildMeta } from '@/lib/buildMeta'
 
-export const metadata = {
+export const metadata = buildMeta({
   title: 'Uses',
   description:
     'The setup behind the work: a 4-device Tailscale mesh, an always-on Linux server running local AI, and a personal multi-agent OS built on Claude.',
-}
+  path: '/uses',
+})
 
 // ── Stack, grouped. Real, non-proprietary tooling. ─────────────────────────
 const STACK: { group: string; items: string[] }[] = [
-  { group: 'languages', items: ['TypeScript', 'Python', 'C# / .NET', 'SQL'] },
+  { group: 'languages', items: ['TypeScript', 'Python', 'SQL'] },
   { group: 'frameworks', items: ['Next.js 16', 'React 19', 'Tailwind', 'FastAPI'] },
   { group: 'data', items: ['Postgres / Neon', 'Prisma', 'LanceDB', 'BGE-M3', 'Docling'] },
   { group: 'infra', items: ['Vercel', 'AWS', 'Docker', 'Tailscale', 'Syncthing', 'systemd'] },
@@ -123,8 +125,8 @@ export default function Uses() {
                 The server is the brain: it never sleeps, watches itself,
                 recovers stuck or failed runs automatically, and ships
                 autonomous work only behind deterministic, fail-closed gates.
-                Cheap and private work — voice transcription, voice-note
-                filtering, local LLM tasks — runs on the RTX 3080. Heavy
+                Cheap and private work, voice transcription, voice-note
+                filtering, local LLM tasks, runs on the RTX 3080. Heavy
                 reasoning and multi-agent orchestration run on Claude. Built
                 after Andrej Karpathy&apos;s LLM-OS and his LLM-Wiki memory
                 pattern.

@@ -91,7 +91,7 @@ function IntegrationRail() {
         is pulled live from the Instagram Graph API, server-rendered and cached
         hourly. The long-lived OAuth token is stored server-side and{' '}
         <span className="text-ink-text">auto-refreshes on a weekly cron</span>, so
-        it renews itself before it can expire — no manual token swaps, the feed
+        it renews itself before it can expire, no manual token swaps, the feed
         just stays online. Same pattern wires up Spotify and LeetCode.
       </p>
     </div>
@@ -105,7 +105,7 @@ function OfflinePanel() {
         <FaInstagram className="h-6 w-6 text-gold" />
       </div>
       <p className="font-mono text-sm text-ink-text">
-        <span className="text-gold">○ feed offline</span> — access token missing or expired
+        <span className="text-gold">○ feed offline</span>: access token missing or expired
       </p>
       <p className="mx-auto mt-3 max-w-md text-sm text-ink-muted">
         The feed pulls live from the Instagram Graph API. Set a valid{' '}

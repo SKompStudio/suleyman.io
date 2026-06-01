@@ -17,13 +17,13 @@ export const RESUME_VARIANTS: ResumeVariant[] = [
     id: '1page',
     label: '1-page',
     file: '/resume-1page.pdf',
-    caption: 'Tightest cut — the default one-page scan for fast review.',
+    caption: 'Tightest cut: the default one-page scan for fast review.',
   },
   {
     id: '2page',
     label: '2-page',
     file: '/resume-2page.pdf',
-    caption: 'Fuller detail — extended bullets, projects, and stack depth.',
+    caption: 'Fuller detail: extended bullets, projects, and stack depth.',
   },
   {
     id: 'finance',
@@ -105,7 +105,7 @@ export function ResumePdfSwitcher() {
         >
           <div className="flex h-[40vh] flex-col items-center justify-center gap-3 p-8 text-center">
             <p className="text-sm text-ink-muted">
-              Your browser can&apos;t render the PDF inline — download or open it instead.
+              Your browser can&apos;t render the PDF inline. Download or open it instead.
             </p>
             <a
               href={active.file}

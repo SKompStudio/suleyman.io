@@ -379,7 +379,11 @@ function relativeAge(iso: string): string {
 }
 
 export async function fetchRecentCommits(limit = 8): Promise<RecentCommit[]> {
-  const url = `https://api.github.com/users/${GITHUB_USERNAME}/events/public?per_page=100`
+  // With a token, the authenticated events feed surfaces the user's own
+  // private-repo PushEvents (most recent commits are to private repos like
+  // skomp-studio). Without one, only the public feed is available.
+  const path = GITHUB_TOKEN ? 'events' : 'events/public'
+  const url = `https://api.github.com/users/${GITHUB_USERNAME}/${path}?per_page=100`
   const headers: HeadersInit = { Accept: 'application/vnd.github+json' }
   if (GITHUB_TOKEN) headers.Authorization = `Bearer ${GITHUB_TOKEN}`
 

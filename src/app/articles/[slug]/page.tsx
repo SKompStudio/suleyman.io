@@ -5,6 +5,7 @@ import { formatDate } from '@/lib/formatDate'
 import { getArticle } from '@/lib/getAllArticles'
 import { MarkdownArticle } from '@/components/MarkdownArticle'
 import { articleStats } from '../readingTime'
+import { buildMeta } from '@/lib/buildMeta'
 import '../article.css'
 
 export const dynamic = 'force-dynamic'
@@ -13,7 +14,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const article = await getArticle(slug)
   if (!article) return {}
-  return { title: article.title, description: article.description }
+  return buildMeta({
+    title: article.title,
+    description: article.description,
+    path: `/articles/${slug}`,
+  })
 }
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {

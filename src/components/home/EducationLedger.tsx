@@ -43,7 +43,7 @@ export function EducationLedger() {
         <Degree
           degree="MEng, Computing & Software"
           detail="Year 1 complete · expected Dec 2026"
-          timeline="2025 — present"
+          timeline="2025 - present"
           current
         >
           <dl className="mt-3 space-y-1.5">
@@ -59,7 +59,7 @@ export function EducationLedger() {
         <Degree
           degree="BASc (Honours), Computer Science"
           detail="Bachelor of Applied Science"
-          timeline="2018 — 2024"
+          timeline="2018 - 2024"
         />
       </div>
     </div>

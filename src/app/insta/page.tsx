@@ -1,12 +1,14 @@
 import { Container } from '@/components/Container'
 import { fetchInstagramMedia, type IgPost } from '@/lib/fetchInstagram'
 import { SocialFeed } from '@/components/social/SocialFeed'
+import { buildMeta } from '@/lib/buildMeta'
 
-export const metadata = {
+export const metadata = buildMeta({
   title: 'Social',
   description:
     'A live Instagram feed via the Instagram Graph API, plus the other services this site integrates with.',
-}
+  path: '/insta',
+})
 
 // Render live per-request so the feed never freezes a build-time snapshot.
 // The Instagram fetch itself is still cached ~1h (see fetchInstagram), so the
