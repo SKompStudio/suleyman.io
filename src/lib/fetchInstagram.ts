@@ -1,3 +1,5 @@
+import { getInstagramToken } from './instagramToken'
+
 const INSTAGRAM_GRAPH_API_URL = 'https://graph.instagram.com'
 
 export type IgPost = {
@@ -14,7 +16,7 @@ export type IgPost = {
 // Cached at the fetch layer so a valid token isn't hit on every request, and a
 // later token expiry still serves the last-good feed until revalidation.
 export async function fetchInstagramMedia(): Promise<{ data: IgPost[] }> {
-  const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN
+  const accessToken = await getInstagramToken()
   if (!accessToken) {
     throw new Error('INSTAGRAM_ACCESS_TOKEN is missing')
   }

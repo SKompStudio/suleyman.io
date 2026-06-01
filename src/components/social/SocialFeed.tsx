@@ -85,6 +85,15 @@ function IntegrationRail() {
           )
         })}
       </div>
+
+      <p className="mt-4 max-w-2xl text-xs leading-relaxed text-ink-muted">
+        <span className="font-mono text-accent/80">how this works:</span> the feed
+        is pulled live from the Instagram Graph API, server-rendered and cached
+        hourly. The long-lived OAuth token is stored server-side and{' '}
+        <span className="text-ink-text">auto-refreshes on a weekly cron</span>, so
+        it renews itself before it can expire — no manual token swaps, the feed
+        just stays online. Same pattern wires up Spotify and LeetCode.
+      </p>
     </div>
   )
 }
