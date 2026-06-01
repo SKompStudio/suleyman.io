@@ -8,7 +8,10 @@ export const metadata = {
     'A live Instagram feed via the Instagram Graph API, plus the other services this site integrates with.',
 }
 
-export const revalidate = 3600
+// Render live per-request so the feed never freezes a build-time snapshot.
+// The Instagram fetch itself is still cached ~1h (see fetchInstagram), so the
+// IG API is hit at most hourly while the page always reflects the real state.
+export const dynamic = 'force-dynamic'
 
 export default async function Social() {
   let posts: IgPost[] = []
