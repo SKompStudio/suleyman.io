@@ -20,6 +20,8 @@ import {
 import { SiLeetcode } from 'react-icons/si';
 
 import { Container } from '@/components/Container'
+import { CommandTrigger } from '@/components/terminal/CommandTrigger'
+import { prefetchPalette } from '@/components/terminal/CommandPaletteMount'
 import avatarImage from '@/images/avatar.jpeg'
 import { Fragment, useEffect, useRef, ReactNode, SVGProps, ElementType, ComponentType } from 'react'
 
@@ -465,9 +467,13 @@ export function Header({ isOverlay = false }: HeaderProps) {
                 <MobileNavigation className="pointer-events-auto md:hidden" />
                 <DesktopNavigation className="pointer-events-auto hidden md:block" />
               </div>
-              {/* Right slot kept for layout balance; theme toggle removed
-                  (the site is locked to dark). */}
-              <div className="flex justify-end md:flex-1" />
+              {/* Right slot: global command-terminal trigger (⌘K / tap). */}
+              <div className="flex justify-end md:flex-1">
+                <CommandTrigger
+                  prefetch={prefetchPalette}
+                  className="pointer-events-auto hidden sm:inline-flex"
+                />
+              </div>
             </div>
           </Container>
         </div>

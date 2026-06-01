@@ -88,6 +88,23 @@ module.exports = {
           '0%': { strokeDashoffset: 'var(--ring-len)' },
           '100%': { strokeDashoffset: 'var(--ring-target)' },
         },
+        // Route-transition boot: arc-reactor ring rotates while the segment is
+        // pending. Freezes to a static ring under reduced motion via the global
+        // floor + the per-element motion-reduce override.
+        'boot-ring-spin': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
+        // Mono status lines resolve in, staggered. Opacity + small lift only.
+        'boot-line-in': {
+          '0%': { opacity: '0', transform: 'translateY(4px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        // Terminal caret blink — opacity only, reduced-motion floor steadies it.
+        'caret-blink': {
+          '0%, 49%': { opacity: '1' },
+          '50%, 100%': { opacity: '0' },
+        },
       },
       animation: {
         'reveal-up': 'reveal-up 0.5s cubic-bezier(0.16,1,0.3,1) both',
@@ -99,6 +116,9 @@ module.exports = {
         'blend-scan': 'blend-scan 1.1s ease-out 1 both',
         'blend-unlock': 'blend-unlock 0.6s cubic-bezier(0.16,1,0.3,1) both',
         'ring-draw': 'ring-draw 1.2s cubic-bezier(0.16,1,0.3,1) 0.2s both',
+        'boot-ring-spin': 'boot-ring-spin 0.9s linear infinite',
+        'boot-line-in': 'boot-line-in 0.25s ease-out both',
+        'caret-blink': 'caret-blink 1.05s step-end infinite',
       },
     },
     fontSize: {

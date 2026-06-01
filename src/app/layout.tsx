@@ -4,6 +4,7 @@ import React from 'react'
 
 import { Footer } from '@/components/Footer'
 import { Header } from '@/components/Header'
+import { CommandPaletteMount } from '@/components/terminal/CommandPaletteMount'
 
 import '@/styles/tailwind.css'
 import 'focus-visible'
@@ -111,6 +112,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
         </div>
+        <CommandPaletteMount />
         <Analytics />
       </body>
     </html>

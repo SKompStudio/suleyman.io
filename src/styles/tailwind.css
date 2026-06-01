@@ -109,3 +109,28 @@
     opacity: 0.5 !important;
   }
 }
+
+/* ── Terminal accent variable ──────────────────────────────────────────────
+   The `theme` command cycles --hud-accent; nothing reads it unless set, so the
+   default arc-cyan governs until the visitor opts in. Dark-only, never bg. */
+:root {
+  --hud-accent: #5bc8ff;
+}
+
+/* CRT mode (konami egg): one fixed, opacity-only scanline overlay. No flicker
+   animation → reduced-motion safe by construction. Scoped to the terminal so
+   it never bleeds into the rest of the page. */
+.hud-crt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(91, 200, 255, 0.06) 0px,
+    rgba(91, 200, 255, 0.06) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
