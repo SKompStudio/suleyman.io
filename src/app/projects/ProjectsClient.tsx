@@ -548,7 +548,7 @@ export function ProjectsClient({
         <div className="mt-10 rounded-xl border border-dashed border-ink-border py-16 text-center">
           <p className="font-mono text-sm text-ink-muted">
             {projects.length === 0
-              ? 'registry empty — no records to display'
+              ? 'registry empty, no records to display'
               : 'no records match that filter'}
           </p>
           {projects.length > 0 && (

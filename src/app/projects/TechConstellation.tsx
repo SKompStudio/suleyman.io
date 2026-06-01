@@ -159,7 +159,7 @@ export function TechConstellation({
     return (
       <div className="flex h-full min-h-[180px] items-center justify-center rounded-lg border border-white/5 bg-black/30 p-6">
         <span className="font-mono text-xs text-ink-muted">
-          tech graph unavailable — no shared stack detected
+          tech graph unavailable, no shared stack detected
         </span>
       </div>
     )

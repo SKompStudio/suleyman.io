@@ -18,8 +18,8 @@ type Props = {
 }
 
 function formatDateRange(start: string, end: string | null, current: boolean) {
-  if (current) return `${start} — present`
-  if (end) return `${start} — ${end}`
+  if (current) return `${start} - present`
+  if (end) return `${start} - ${end}`
   return start
 }
 

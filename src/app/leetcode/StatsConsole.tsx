@@ -40,7 +40,10 @@ type Tier = {
 }
 
 // ── motion-aware reveal gate ────────────────────────────────────────────────
-function useReveal<T extends HTMLElement>() {
+// `ready` re-runs the effect once the observed node actually mounts. The ref'd
+// div only renders in the ready branch, so a mount-only effect would observe a
+// null node and the reveal would never fire (center stuck at 0).
+function useReveal<T extends HTMLElement>(ready = true) {
   const ref = useRef<T | null>(null)
   const [shown, setShown] = useState(false)
   useEffect(() => {
@@ -66,7 +69,7 @@ function useReveal<T extends HTMLElement>() {
     )
     obs.observe(el)
     return () => obs.disconnect()
-  }, [])
+  }, [ready])
   return { ref, shown }
 }
 
@@ -98,8 +101,15 @@ function useCountUp(target: number, run: boolean, duration = 1100) {
 }
 
 // ── signature: concentric arc-reactor difficulty rings ──────────────────────
-function ReactorRings({ tiers, shown }: { tiers: Tier[]; shown: boolean }) {
-  const total = tiers.reduce((s, t) => s + t.solved, 0)
+function ReactorRings({
+  tiers,
+  total,
+  shown,
+}: {
+  tiers: Tier[]
+  total: number
+  shown: boolean
+}) {
   const count = useCountUp(total, shown)
   const size = 240
   const c = size / 2
@@ -449,7 +459,7 @@ function SkeletonLine({ w }: { w: string }) {
 export function StatsConsole() {
   const [stats, setStats] = useState<LeetCodeData | null>(null)
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
-  const reactor = useReveal<HTMLDivElement>()
+  const reactor = useReveal<HTMLDivElement>(status === 'ready')
 
   useEffect(() => {
     let alive = true
@@ -524,7 +534,7 @@ export function StatsConsole() {
         </div>
         <p className="mt-4 max-w-md font-mono text-sm text-ink-muted">
           The LeetCode telemetry feed is offline right now. No cached numbers are
-          shown — this panel reflects live data only.
+          shown. This panel reflects live data only.
         </p>
         <a
           href="https://leetcode.com/kianis4"
@@ -564,7 +574,7 @@ export function StatsConsole() {
           ref={reactor.ref}
           className="mt-7 grid grid-cols-1 items-center gap-8 lg:grid-cols-[auto_1fr] lg:gap-12"
         >
-          <ReactorRings tiers={tiers} shown={reactor.shown} />
+          <ReactorRings tiers={tiers} total={stats.totalSolved} shown={reactor.shown} />
           <div className="w-full">
             <DifficultyBars tiers={tiers} shown={reactor.shown} />
             <p className="mt-6 font-mono text-[0.7rem] leading-relaxed text-ink-muted">

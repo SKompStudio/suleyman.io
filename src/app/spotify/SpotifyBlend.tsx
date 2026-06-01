@@ -11,7 +11,7 @@ const ERROR_COPY: Record<string, { title: string; body: string }> = {
   not_whitelisted: {
     title: 'account not on the allow-list',
     body:
-      "Spotify is in development mode, so only a handful of manually-approved accounts can run the blend. Your account isn't on the list yet — nothing broke, the app just needs Spotify's extended-quota approval (or your email added) to open this to everyone.",
+      "Spotify is in development mode, so only a handful of manually-approved accounts can run the blend. Your account isn't on the list yet, nothing broke, the app just needs Spotify's extended-quota approval (or your email added) to open this to everyone.",
   },
   denied: {
     title: 'authorization cancelled',
@@ -31,7 +31,7 @@ const ERROR_COPY: Record<string, { title: string; body: string }> = {
   },
   unknown: {
     title: 'could not complete the blend',
-    body: 'Something went wrong talking to Spotify. This is a real error state, not fabricated data — try reconnecting.',
+    body: 'Something went wrong talking to Spotify. This is a real error state, not fabricated data. Try reconnecting.',
   },
 }
 
@@ -115,7 +115,7 @@ function BlendReveal({ result }: { result: BlendResult }) {
           <div className="text-center sm:text-left">
             <p className="font-sans text-lg text-ink-text">
               {result.matchPercent >= 60
-                ? 'Strong overlap — we listen on the same wavelength.'
+                ? 'Strong overlap: we listen on the same wavelength.'
                 : result.matchPercent >= 30
                   ? 'Some real common ground in here.'
                   : 'Different lanes, but a few shared threads.'}
@@ -229,7 +229,7 @@ export function SpotifyBlend({
         <div className="h-px flex-1 bg-gradient-to-r from-accent/30 to-transparent" />
       </div>
       <p className="mb-6 max-w-2xl font-sans text-base text-zinc-400">
-        Connect your Spotify and I&apos;ll compute how closely our taste lines up — shared
+        Connect your Spotify and I&apos;ll compute how closely our taste lines up: shared
         artists, overlapping genres, and a weighted match score. Your token is exchanged
         server-side and never stored; only the computed result comes back.
       </p>
@@ -259,7 +259,7 @@ export function SpotifyBlend({
           <ConnectCta range={range} />
           <p className="mt-4 max-w-2xl font-mono text-xs text-ink-muted">
             note: this Spotify app is in development mode. Until it&apos;s granted extended
-            quota, only allow-listed accounts can complete the connect — others get a clean
+            quota, only allow-listed accounts can complete the connect, others get a clean
             explainer, not a crash.
           </p>
         </div>

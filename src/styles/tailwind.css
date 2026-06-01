@@ -3,6 +3,16 @@
 @import './prism.css';
 @import 'tailwindcss/utilities';
 
+/* Global high-contrast keyboard focus ring (cyan accent). The focus-visible
+   polyfill is imported in layout.tsx but had no backing style, so keyboard
+   focus was invisible site-wide. */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid #5bc8ff;
+  outline-offset: 2px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 4px rgba(91, 200, 255, 0.25);
+}
+
 /* Horizontal-overflow containment lives on a WRAPPER, never on html/body.
    `overflow-x: clip` (or hidden) on the root scroll element breaks touch
    scrolling on iOS Safari — the page becomes scrollable only programmatically,

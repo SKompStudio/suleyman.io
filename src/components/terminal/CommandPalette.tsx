@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 
 import { Terminal } from './Terminal'
+import { detectIsMac } from './useCommandPalette'
 import type { OutputLine } from './types'
 
 interface CommandPaletteProps {
@@ -10,15 +11,19 @@ interface CommandPaletteProps {
   prefetch?: () => void
 }
 
-const GREETING: OutputLine[] = [
-  { text: "suleyman.io ▸ ⌘K console. 'help' for commands, 'whoami' for the short version.", tone: 'accent' },
-]
-
 // LAZY overlay wrapper — dialog semantics, focus trap, ESC, scroll lock, and
 // return-focus. Shares the Terminal engine + registry with the inline hero.
 export default function CommandPalette({ onClose }: CommandPaletteProps) {
   const dialogRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<Element | null>(null)
+  // Platform-aware keycap so the palette banner matches the nav chip.
+  const keycap = detectIsMac() ? '⌘K' : 'Ctrl-K'
+  const greeting: OutputLine[] = [
+    {
+      text: `suleyman.io ▸ ${keycap} console. 'help' for commands, 'whoami' for the short version.`,
+      tone: 'accent',
+    },
+  ]
 
   useEffect(() => {
     // capture the element that had focus when we opened, to restore on close
@@ -95,7 +100,7 @@ export default function CommandPalette({ onClose }: CommandPaletteProps) {
             esc ✕
           </button>
         </div>
-        <Terminal variant="overlay" greeting={GREETING} onRequestClose={onClose} />
+        <Terminal variant="overlay" greeting={greeting} onRequestClose={onClose} />
       </div>
     </div>
   )

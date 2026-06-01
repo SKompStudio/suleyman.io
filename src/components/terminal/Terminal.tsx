@@ -223,7 +223,7 @@ export function Terminal({ variant, greeting, onRequestClose }: TerminalProps) {
         const needle = args.join(' ').toLowerCase()
         if (!needle) {
           pushOutput(echoInput, [
-            { text: "usage: grep <text>  — filters this session's history", tone: 'muted' },
+            { text: "usage: grep <text>  filters this session's history", tone: 'muted' },
           ])
           return
         }

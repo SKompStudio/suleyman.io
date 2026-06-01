@@ -1,13 +1,15 @@
 import { ProjectsClient } from './ProjectsClient'
 import { getProjectsData } from '@/lib/projects'
 import { getLanguageStats } from '@/lib/github'
+import { buildMeta } from '@/lib/buildMeta'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata = {
+export const metadata = buildMeta({
   title: 'Projects',
   description: 'Things I’ve made trying to put my dent in the universe.',
-}
+  path: '/projects',
+})
 
 export default async function Projects() {
   // Real GitHub language footprint feeds the constellation; on any failure

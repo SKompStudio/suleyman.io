@@ -105,7 +105,7 @@ export default function BootSequence({ reduced, onExit }: GameProps) {
 
   return (
     <div className="mt-2 border-l-2 border-accent/40 pl-3 font-mono text-xs">
-      <p className="text-accent">play ▸ BOOT SEQUENCE — type each command. 20s. go.</p>
+      <p className="text-accent">play ▸ BOOT SEQUENCE · type each command. 20s. go.</p>
       {!done ? (
         <p className="mt-1" aria-live="polite">
           <span className="text-ink-muted">target → </span>

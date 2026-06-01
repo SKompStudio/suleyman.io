@@ -2,14 +2,16 @@ import { Container } from '@/components/Container'
 import { getAllArticles } from '@/lib/getAllArticles'
 import { ArticleRecord } from './ArticleRecord'
 import { ArticleTimeline } from './ArticleTimeline'
+import { buildMeta } from '@/lib/buildMeta'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata = {
+export const metadata = buildMeta({
   title: 'Articles',
   description:
     'A collection of my thoughts and experiences as I navigate my fitness, academic, and professional journey, from setbacks to successes.',
-}
+  path: '/articles',
+})
 
 export default async function ArticlesIndex() {
   const articles = await getAllArticles()
@@ -37,7 +39,7 @@ export default async function ArticlesIndex() {
             Writing &amp; reflections
           </h1>
           <p className="mt-4 text-base leading-relaxed text-ink-muted">
-            A chronological archive of what I&apos;ve been thinking through —
+            A chronological archive of what I&apos;ve been thinking through,
             across fitness, academics, and the work of building things. Setbacks
             and what came after.
           </p>
@@ -54,7 +56,7 @@ export default async function ArticlesIndex() {
         {count === 0 ? (
           <div className="max-w-2xl rounded-lg border border-ink-border/70 bg-ink-surface/20 px-6 py-12 text-center">
             <p className="font-mono text-sm text-ink-muted">
-              no records — the archive is empty
+              no records, the archive is empty
             </p>
           </div>
         ) : (
