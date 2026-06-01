@@ -42,7 +42,7 @@ export default function Home() {
         <div className="lg:flex lg:gap-12">
           <MetaRail lastBuild={lastBuild} />
 
-          <div className="min-w-0 flex-1 lg:max-w-[1100px]">
+          <div className="min-w-0 flex-1 lg:max-w-[1240px]">
             {/* Hero — server-rendered LCP headline + HUD ambient + boot island */}
             <section className="relative flex min-h-[60svh] flex-col justify-center py-8">
               {/* Ambient HUD layer: one faint grid + one soft cyan glow, behind

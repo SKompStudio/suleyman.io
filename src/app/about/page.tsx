@@ -40,6 +40,14 @@ type Ship = {
 
 const SHIPS: Ship[] = [
   {
+    name: 'mike-ross-ai',
+    outcome: 'Agentic legal RAG — cited Canadian-law answers.',
+    detail:
+      'A LangGraph state machine runs hybrid vector retrieval over 16,000+ legal documents (MongoDB Atlas) with a Gemini 2.0 Flash reasoning core, returning schema-validated, section-cited answers that block hallucination. FastAPI + Next.js, streamed over SSE. Built for Delta Hacks 12.',
+    href: 'https://mike-ross.ca/',
+    linkLabel: 'mike-ross.ca',
+  },
+  {
     name: 'skomp-studio',
     outcome: 'Multi-tenant SaaS running a pilates studio.',
     detail:
@@ -67,13 +75,14 @@ const SHIPS: Ship[] = [
 
 const STACK = [
   'typescript',
+  'python',
   'next',
   'react',
   'prisma',
   'neon',
   'postgres',
-  '.net',
-  'python',
+  'fastapi',
+  'langgraph',
   'aws',
   'vercel',
 ]
@@ -140,8 +149,8 @@ export default function About() {
                   >
                     LinkedIn
                   </SocialLine>
-                  <SocialLine href="mailto:suleyman@skompxcel.com" icon={MailIcon}>
-                    suleyman@skompxcel.com
+                  <SocialLine href="mailto:suley.kiani@outlook.com" icon={MailIcon}>
+                    suley.kiani@outlook.com
                   </SocialLine>
                 </div>
               </div>
@@ -189,7 +198,7 @@ export default function About() {
 
             <Reveal as="section">
               <SectionLabel>ships</SectionLabel>
-              <div className="space-y-6">
+              <div className="grid gap-x-10 gap-y-6 lg:grid-cols-2">
                 {SHIPS.map((ship) => (
                   <ShipCard key={ship.name} ship={ship} />
                 ))}
