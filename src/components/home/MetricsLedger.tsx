@@ -1,5 +1,6 @@
 'use client'
 
+import clsx from 'clsx'
 import { useLens, orderFor, type Lens } from './lens'
 
 type Metric = {
@@ -20,7 +21,6 @@ const METRICS: Metric[] = [
 const KEYS = METRICS.map((m) => m.key)
 
 const RANKS: Record<Lens, readonly string[]> = {
-  // quota leads in fin + both; engineering surfaces software metrics first
   both: ['quota', 'live', 'users', 'mentored'],
   fin: ['quota', 'live', 'users', 'mentored'],
   eng: ['live', 'users', 'mentored', 'quota'],
@@ -29,27 +29,41 @@ const RANKS: Record<Lens, readonly string[]> = {
 export function MetricsLedger() {
   const { lens } = useLens()
   const order = orderFor(lens, KEYS, RANKS)
+  const leadKey = RANKS[lens][0]
+  const warm = lens === 'eng'
 
   return (
-    <dl className="grid grid-cols-2 gap-x-8 gap-y-8 font-mono lg:grid-cols-4">
-      {METRICS.map((m) => (
-        <div
-          key={m.key}
-          style={{ order: order[m.key], viewTransitionName: `metric-${m.key}` }}
-          className="flex flex-col"
-        >
-          <dt className="text-3xl font-semibold tabular-nums text-zinc-900 dark:text-ink-text lg:text-4xl">
-            {m.value}
-          </dt>
-          <dd className="mt-2 text-sm leading-snug text-zinc-500 dark:text-ink-muted">
-            {m.l1}
-            <br />
-            {m.l2}
-            <br />
-            {m.l3}
-          </dd>
-        </div>
-      ))}
+    <dl className="grid grid-cols-2 gap-x-8 gap-y-8 rounded-xl border border-ink-border bg-ink-surface/30 p-6 font-mono lg:grid-cols-4">
+      {METRICS.map((m) => {
+        const isLead = m.key === leadKey
+        return (
+          <div
+            key={m.key}
+            style={{ order: order[m.key], viewTransitionName: `metric-${m.key}` }}
+            className="flex flex-col"
+          >
+            <dt
+              className={clsx(
+                'text-3xl font-semibold tabular-nums lg:text-4xl',
+                isLead && !warm
+                  ? 'text-gold'
+                  : isLead && warm
+                  ? 'text-engineering'
+                  : 'text-ink-text'
+              )}
+            >
+              {m.value}
+            </dt>
+            <dd className="mt-2 text-sm leading-snug text-ink-muted">
+              {m.l1}
+              <br />
+              {m.l2}
+              <br />
+              {m.l3}
+            </dd>
+          </div>
+        )
+      })}
     </dl>
   )
 }

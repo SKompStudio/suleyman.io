@@ -18,8 +18,8 @@ const ROLES: Role[] = [
     company: 'Mitsubishi HC Capital',
     title: 'Equipment Finance',
     outcome:
-      'Structure and fund equipment-finance deals. 200% of monthly funding quota. Built a TypeScript quoting tool that consolidates 13 manufacturer pricing models into one validated tool used on live deals.',
-    stack: ['credit', 'structuring', 'typescript'],
+      'Structure and fund equipment-finance deals at 200% of monthly funding quota, and shipped multiple internal automation and AI tools in production.',
+    stack: ['credit', 'structuring', 'automation'],
   },
   {
     key: 'skompxcel',
@@ -59,16 +59,15 @@ export function ExperienceList() {
         <div
           key={r.key}
           style={{ order: order[r.key], viewTransitionName: `role-${r.key}` }}
-          className="grid grid-cols-1 gap-2 border-t border-zinc-200 pt-6 dark:border-ink-border lg:grid-cols-[180px_1fr]"
+          className="grid grid-cols-1 gap-2 border-t border-ink-border pt-6 lg:grid-cols-[180px_1fr]"
         >
-          <div className="font-mono text-sm text-zinc-500 dark:text-ink-muted">{r.timeline}</div>
+          <div className="font-mono text-sm text-ink-muted">{r.timeline}</div>
           <div>
-            <h3 className="text-lg font-medium text-zinc-900 dark:text-ink-text">
-              {r.company}{' '}
-              <span className="text-zinc-400 dark:text-ink-muted">· {r.title}</span>
+            <h3 className="text-lg font-medium text-ink-text">
+              {r.company} <span className="text-ink-muted">· {r.title}</span>
             </h3>
-            <p className="mt-2 text-base text-zinc-700 dark:text-zinc-300">{r.outcome}</p>
-            <div className="mt-3 font-mono text-xs text-zinc-400 dark:text-ink-muted">
+            <p className="mt-2 text-base text-zinc-300">{r.outcome}</p>
+            <div className="mt-3 font-mono text-xs text-ink-muted">
               {r.stack.join(' · ')}
             </div>
           </div>

@@ -31,6 +31,8 @@ export function Reveal({ children, className, delay = 0, as = 'div' }: RevealPro
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
+            // Promote to its own layer only for the duration of the animation.
+            el.style.willChange = 'transform, opacity'
             setShown(true)
             obs.disconnect()
           }
@@ -42,8 +44,11 @@ export function Reveal({ children, className, delay = 0, as = 'div' }: RevealPro
     return () => obs.disconnect()
   }, [])
 
+  // Clear will-change once the reveal finishes so GPU layers don't pile up.
   const onTransitionEnd = (e: React.TransitionEvent) => {
-    ;(e.currentTarget as HTMLElement).style.willChange = 'auto'
+    if (e.target === ref.current) {
+      ;(e.currentTarget as HTMLElement).style.willChange = 'auto'
+    }
   }
 
   const Tag = as as any
@@ -55,7 +60,7 @@ export function Reveal({ children, className, delay = 0, as = 'div' }: RevealPro
       onTransitionEnd={onTransitionEnd}
       style={{ transitionDelay: shown && delay ? `${delay * 70}ms` : undefined }}
       className={clsx(
-        'translate-y-4 opacity-0 transition-[opacity,transform] duration-500 ease-out [will-change:transform,opacity] data-[shown]:translate-y-0 data-[shown]:opacity-100',
+        'translate-y-4 opacity-0 transition-[opacity,transform] duration-500 ease-out data-[shown]:translate-y-0 data-[shown]:opacity-100',
         className
       )}
     >

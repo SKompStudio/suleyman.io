@@ -46,3 +46,65 @@
 .lens-shifting [style*='order'] {
   transition: opacity 360ms cubic-bezier(0.65, 0, 0.35, 1);
 }
+
+/* ── JARVIS HUD layer ──────────────────────────────────────────────────────
+   One coherent command-center surface: a faint grid, a single soft cyan
+   radial glow, and thin corner brackets. All static, GPU-cheap, behind
+   content. No scanlines, no scattered cursors, no ASCII boxes. */
+
+/* Faint dotted grid, rationed to the hero backdrop. Static, pointer-events
+   none, sits in its own clipping layer (set on the element). */
+.hud-grid {
+  background-image:
+    linear-gradient(rgba(91, 200, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(91, 200, 255, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 30% 30%, #000 0%, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 70% at 30% 30%, #000 0%, transparent 75%);
+}
+
+/* One soft cyan radial glow behind the hero. Static gradient, never animated
+   on scroll, never a blurred positioned circle (those break iOS scroll). */
+.hud-glow {
+  background: radial-gradient(
+    ellipse 60% 50% at 25% 25%,
+    rgba(91, 200, 255, 0.1) 0%,
+    transparent 70%
+  );
+}
+
+/* Thin corner brackets — drawn with borders on ::before/::after, no extra DOM,
+   no layout impact. Applied to the hero frame and the system console. */
+.hud-brackets {
+  position: relative;
+}
+.hud-brackets::before,
+.hud-brackets::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: rgba(91, 200, 255, 0.4);
+  border-style: solid;
+  pointer-events: none;
+}
+.hud-brackets::before {
+  top: -1px;
+  left: -1px;
+  border-width: 1px 0 0 1px;
+}
+.hud-brackets::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 1px 1px 0;
+}
+
+/* The boot enhancement and the console pulses are gated OFF under reduced
+   motion by the global floor above (animation:none). Belt-and-suspenders:
+   pause the looping data-pulses on the system map when motion is reduced. */
+@media (prefers-reduced-motion: reduce) {
+  .hud-pulse {
+    animation: none !important;
+    opacity: 0.5 !important;
+  }
+}
