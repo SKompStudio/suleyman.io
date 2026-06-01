@@ -20,26 +20,12 @@
 \usepackage{tabularx}
 \input{glyphtounicode}
 
-
-%----------FONT OPTIONS----------
-% sans-serif
-% \usepackage[sfdefault]{FiraSans}
-% \usepackage[sfdefault]{roboto}
-% \usepackage[sfdefault]{noto-sans}
-% \usepackage[default]{sourcesanspro}
-
-% serif
-% \usepackage{CormorantGaramond}
-% \usepackage{charter}
-
-
 \pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
+\fancyhf{}
 \fancyfoot{}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
-% Adjust margins
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1in}
@@ -47,21 +33,16 @@
 \addtolength{\textheight}{1.0in}
 
 \urlstyle{same}
-
 \raggedbottom
 \raggedright
 \setlength{\tabcolsep}{0in}
 
-% Sections formatting
 \titleformat{\section}{
   \vspace{-4pt}\scshape\raggedright\large
 }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
 
-% Ensure that generate pdf is machine readable/ATS parsable
 \pdfgentounicode=1
 
-%-------------------------
-% Custom commands
 \newcommand{\resumeItem}[1]{
   \item\small{
     {#1 \vspace{-2pt}}
@@ -76,21 +57,12 @@
     \end{tabular*}\vspace{-7pt}
 }
 
-\newcommand{\resumeSubSubheading}[2]{
-    \item
-    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \textit{\small#1} & \textit{\small #2} \\
-    \end{tabular*}\vspace{-7pt}
-}
-
 \newcommand{\resumeProjectHeading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
       \small#1 & #2 \\
     \end{tabular*}\vspace{-7pt}
 }
-
-\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
 
@@ -100,51 +72,63 @@
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
 %-------------------------------------------
-%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \begin{document}
 
-%-----------Header-----------
+%-----------HEADER-----------
 \begin{center}
-    \textbf{\Huge \scshape Suleyman Kiani} \\ \vspace{2pt}
-    \small \scshape Equipment Finance $\cdot$ Credit \& Underwriting $\cdot$ Asset / Portfolio Management \\ \vspace{2pt}
-    \small +1 (289) 788-8260 $|$ \href{mailto:kianis4@mcmaster.ca}{\underline{kianis4@mcmaster.ca}} $|$ \href{https://www.linkedin.com/in/suleyman-kiani}{\underline{linkedin.com/in/suleyman-kiani}} $|$ \href{https://github.com/kianis4}{\underline{github.com/kianis4}} $|$ \href{https://suleyman.io}{\underline{suleyman.io}}
+    \textbf{\Huge \scshape Suleyman Kiani} \\ \vspace{3pt}
+    \small Equipment Finance $\cdot$ Credit \& Analytics $\cdot$ Engineer-Built Tooling \\ \vspace{3pt}
+    \small +1 (289) 788-8260 $|$ \href{mailto:suley.kiani@outlook.com}{\underline{suley.kiani@outlook.com}} $|$ \href{https://www.linkedin.com/in/suleyman-kiani}{\underline{linkedin.com/in/suleyman-kiani}} $|$ \href{https://github.com/kianis4}{\underline{github.com/kianis4}} $|$ \href{https://suleyman.io}{\underline{suleyman.io}}
 \end{center}
 
 %-----------SUMMARY-----------
 \section{Summary}
 \vspace{2pt}
-\small{Equipment-finance professional who underwrites and structures multi-million-dollar leases and loans. I spread customer financial statements, run credit analysis, and structure FMV, capital, and vendor-finance deals, currently funding \textbf{200\% of monthly quota} (\$4M against a \$2M monthly target) at Mitsubishi HC Capital. I also build the tools the desk runs on, from a validated quoting application to a predictive default-risk model, and bring a software engineer's rigor to credit and portfolio work.}
+\small{Equipment-finance professional who also builds the tooling the desk runs on. At Mitsubishi HC Capital I carry a vendor-sales book funding \textbf{200\% of new-business target}, co-designed a \textbf{predictive collections scorecard} now in rollout, and reverse-engineered manufacturer lease and subsidy math into a quoting engine that matches the industry-standard lease-math engine (\textbf{TValue}) to the penny. I pair credit, amortization, and portfolio fluency with the rare ability to ship the software that operationalizes it.}
 \vspace{-4pt}
 
 %-----------EXPERIENCE-----------
 \section{Experience}
   \resumeSubHeadingListStart
     \resumeSubheading
-      {Associate Account Manager, Equipment Finance}{Sept. 2025 - Present}
+      {Associate Account Manager, Equipment Finance}{Sept. 2025 -- Present}
       {Mitsubishi HC Capital Canada}{Burlington, ON}
       \resumeItemListStart
-        \resumeItem{Funded \textbf{\$4M against a \$2M monthly target (200\% of quota)} in April and May 2026, exceeding funding quota every month since my second month in the role.}
-        \resumeItem{Underwrite and structure equipment leases and loans (FMV, capital, and vendor-finance structures) across construction, transportation, and material-handling; spread customer financial statements and compute coverage, net-investment, and residual metrics for credit decisions.}
-        \resumeItem{Own the end-to-end lease-transfer desk, managing deal structuring, documentation, and funding through to settlement.}
-        \resumeItem{Contributed \textbf{Python} modeling to a cross-functional predictive default-risk model and built \textbf{Power BI} portfolio and variance analyses supporting credit and collections decisions.}
-        \resumeItem{Built a validated quoting application consolidating \textbf{13 manufacturer-specific pricing models} into one tool used on live deals, eliminating a class of manual rate-calculation errors.}
+        \resumeItem{Carry a vendor-sales equipment-finance book, funding \textbf{200\% of new-business target (\$4M against \$2M)} across construction and transportation assets.}
+        \resumeItem{Designed and am implementing a \textbf{predictive collections scorecard} with the credit and portfolio teams: a dual-track model that auto-triages low-risk accounts and scores the rest by recovery priority across about \textbf{\$17--18M of assets in recovery}, where \textbf{each 1\% of recovery improvement is worth about \$1M}; owned the business case, won approval to proceed, and am driving the rollout.}
+        \resumeItem{Reverse-engineered each manufacturer's lease and subsidy math into a quoting engine hitting \textbf{exact penny-parity with TValue}, replacing \textbf{13 abandoned Excel calculators} across all 11 product lines and giving the desk one trusted pricing tool.}
+        \resumeItem{Built an \textbf{AI document-validation prototype} for deal-funding review and carried it through the company's first internal innovation review; it now runs as a live service that audits real deal packages unattended.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Junior Web Developer}{May 2021 -- Jun. 2022}
+      {Giftcash Inc.}{Remote}
+      \resumeItemListStart
+        \resumeItem{Built payout and gift-card valuation services on a \textbf{Node.js / AWS Lambda} stack, automated balance verification across providers, and stood up \textbf{CI/CD} for rapid, reliable releases.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
-%-----------ENGINEERING-----------
-\section{Engineering}
+%-----------SKILLS-----------
+\section{Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Finance \& Credit}{: Equipment \& lease structuring, credit analysis, amortization math (PMT / PV / FV / RATE / IRR, TValue-validated), manufacturer subsidy \& blended-rate modeling, credit-scorecard \& recovery modeling, portfolio \& variance analysis} \\
+     \textbf{Tools}{: TValue, Excel (advanced), InfoLease, Power BI, SQL} \\
+     \textbf{Engineering}{: TypeScript, Python, Next.js / React, Node.js, PostgreSQL, multi-agent automation, payments integrations (Square, Stripe)}
+    }}
+\end{itemize}
+
+%-----------PROJECTS-----------
+\section{Selected Projects}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\href{https://github.com/kianis4/Deal-Flow-Sandbox}{\textbf{DealFlow Sandbox}} (event-driven microservices) $|$ \emph{.NET, RabbitMQ, PostgreSQL, Docker}}{2025}
+          {\textbf{Personal Agentic OS} $\cdot$ multi-agent automation that runs real document workflows $|$ \emph{Python, TypeScript, Claude}}{2026}
           \resumeItemListStart
-            \resumeItem{Modeled an equipment-finance pipeline as decoupled \textbf{.NET} microservices, replacing a 15--20 minute manual party-exposure lookup with a sub-second API returning total exposure, delinquency, and document requirements.}
+            \resumeItem{Built and run a \textbf{self-hosted multi-agent system} that automates power-of-attorney, asset-registration, and pre-funding document packages: email-triggered services that reply within minutes with complete, ready-to-file documents.}
           \resumeItemListEnd
       \resumeProjectHeading
-          {\href{https://www.solsticepilates.ca/}{\textbf{Skomp Studio}} (multi-tenant SaaS, founded) $|$ \emph{Next.js, Prisma/Neon, Square, AWS}}{2025 - Present}
+          {\href{https://www.solsticepilates.ca/}{\textbf{Solstice Pilates}} $\cdot$ multi-tenant booking \& payments platform $|$ \emph{Next.js, Prisma, Square}}{2025 -- Present}
           \resumeItemListStart
-            \resumeItem{Built a multi-tenant TypeScript SaaS processing live \textbf{Square} payments for a paying studio, with row-level tenant isolation, idempotent billing reconciliation, and a 5{,}000+ test suite gating releases.}
+            \resumeItem{Sole engineer on a live payments platform; found and fixed \textbf{money-losing production bugs}, including a double cents conversion saving a \textbf{\$50 discount as \$5,000} and tax under-reported on subscription renewals.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
@@ -153,24 +137,10 @@
   \resumeSubHeadingListStart
     \resumeSubheading
       {McMaster University}{Hamilton, ON}
-      {Master of Engineering (MEng), Computing and Software}{Sept. 2025 - Dec. 2026 (expected)}
-      \resumeItemListStart
-        \resumeItem{Year 1 complete with \textbf{A+} in Simple Type Theory and Microservices-Oriented Architectures.}
-      \resumeItemListEnd
+      {MEng, Computing \& Software (in progress)}{Sept. 2025 -- Dec. 2026}
     \resumeSubheading
       {McMaster University}{Hamilton, ON}
-      {Bachelor of Applied Science (BASc), Computer Science}{Sept. 2018 - Nov. 2024}
+      {BASc (Honours), Computer Science}{Sept. 2018 -- Nov. 2024}
   \resumeSubHeadingListEnd
-
-%-----------SKILLS-----------
-\section{Skills}
-\begin{itemize}[leftmargin=0.15in, label={}]
-    \small{\item{
-     \textbf{Finance}{: Credit analysis \& adjudication, financial-statement spreading, DSCR \& net-investment, lease/loan structuring (FMV, capital, vendor finance), residual value, amortization modeling, portfolio \& delinquency analysis} \\
-     \textbf{Tools}{: Power BI, Excel modeling, InfoLease, Salesforce} \\
-     \textbf{Engineering}{: Python, TypeScript, SQL, .NET, predictive risk modeling, automation of credit and funding workflows}
-    }}
-\end{itemize}
-
 
 \end{document}
