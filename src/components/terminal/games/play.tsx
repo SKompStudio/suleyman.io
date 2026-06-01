@@ -2,22 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react'
 
+import { COMMAND_WORDS } from '../commands'
+
 // Game B — "Boot Sequence". A 20s command-speed sprint that doubles as a
 // stealth tutorial: real registry commands flash, you type them fast. Lazy
 // imported on invocation. reduced-motion → discrete per-second countdown.
 
-const TOKENS = [
-  'whoami',
-  'langs',
-  'git log',
-  'ls',
-  'stack',
-  'uptime',
-  'leetcode',
-  'contact',
-  'theme',
-  'reactor',
-]
+// Seed the prompt list from the live command registry so it auto-stays in sync.
+// Plain alphabetic words only (skip aliases like '?' / 'help?' / very short ones).
+const TOKENS = COMMAND_WORDS.filter((w) => /^[a-z]{3,9}$/.test(w))
 
 const DURATION = 20
 
@@ -42,6 +35,7 @@ export default function BootSequence({ reduced, onExit }: GameProps) {
   const [target, setTarget] = useState(() => TOKENS[0])
   const [draft, setDraft] = useState('')
   const [score, setScore] = useState(0)
+  const [attempts, setAttempts] = useState(0)
   const [left, setLeft] = useState(DURATION)
   const [done, setDone] = useState(false)
   const [miss, setMiss] = useState(false)
@@ -90,6 +84,7 @@ export default function BootSequence({ reduced, onExit }: GameProps) {
         onExit(`score ${score} · best ${best ?? score}`)
         return
       }
+      setAttempts((a) => a + 1)
       if (draft.trim().toLowerCase() === target.toLowerCase()) {
         setScore((s) => s + 1)
         setTarget((t) => pickToken(t))
@@ -102,8 +97,11 @@ export default function BootSequence({ reduced, onExit }: GameProps) {
   }
 
   const cells = Math.round((left / DURATION) * 10)
-  const cpm = done ? Math.round((score / DURATION) * 60) : 0
-  const grade = score >= 8 ? ' · reflexes: stark-grade' : ''
+  const elapsed = Math.max(0.001, DURATION - left)
+  const liveCpm = Math.round((score / elapsed) * 60)
+  const cpm = done ? Math.round((score / DURATION) * 60) : liveCpm
+  const acc = attempts > 0 ? Math.round((score / attempts) * 100) : 100
+  const grade = acc >= 90 && score >= 8 ? ' · top 10% reflexes' : ''
 
   return (
     <div className="mt-2 border-l-2 border-accent/40 pl-3 font-mono text-xs">
@@ -120,10 +118,12 @@ export default function BootSequence({ reduced, onExit }: GameProps) {
           <span className={miss ? 'text-gold' : 'text-accent'}>
             {miss ? '✗' : '✔'} {score}
           </span>
+          {'   '}
+          <span className="text-ink-muted">{liveCpm}/min · {acc}%</span>
         </p>
       ) : (
         <p className="mt-1 text-accent" aria-live="polite">
-          done · {score} commands · {cpm}/min · best {best ?? score}
+          done · {score} commands · {cpm}/min · {acc}% accuracy · best {best ?? score}
           {grade}
         </p>
       )}

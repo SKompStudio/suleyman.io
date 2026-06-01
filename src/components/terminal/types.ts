@@ -18,8 +18,9 @@ export interface CommandResult {
   navigate?: string // router.push target
   openUrl?: string // window.open target (new tab)
   clear?: boolean // wipe scrollback
-  startGame?: 'crack' | 'play'
+  startGame?: 'crack' | 'play' | 'bigo'
   setAccent?: string // theme cycle: new --hud-accent hex
+  copy?: string // text to write to the clipboard
 }
 
 export interface CommandContext {
@@ -40,6 +41,10 @@ export interface Command {
   desc: string
   hidden?: boolean
   group?: 'core' | 'data' | 'fun'
+  // One-line usage shown by `man <cmd>` / `<cmd> --help`.
+  usage?: string
+  // Optional example invocations for `man`.
+  examples?: string[]
   run: (ctx: CommandContext) => CommandResult | Promise<CommandResult>
 }
 

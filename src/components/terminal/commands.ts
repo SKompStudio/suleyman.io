@@ -93,8 +93,8 @@ const help: Command = {
         ],
       }),
       line(''),
-      line("  tip: ↑/↓ history · Tab completes · ⌘K opens me anywhere · try 'play'", 'muted', {
-        runs: [{ token: 'play', command: 'play' }],
+      line("  ↑/↓ history · Tab completes · Ctrl+R search · ⌘K anywhere · 'man <cmd>' for help", 'muted', {
+        runs: [{ token: 'man <cmd>', command: 'man' }],
       }),
     ],
   }),
@@ -132,7 +132,9 @@ const whoami: Command = {
       }),
     ]
     if (ctx.raw.trim().toLowerCase() === 'whoareyou') {
-      lines.push(line("(you can also just read the page — i don't bite)", 'muted'))
+      lines.push(line("(everything here is real — type 'git log' to check)", 'muted', {
+        runs: [{ token: 'git log', command: 'git log' }],
+      }))
     }
     return { lines }
   },
@@ -168,6 +170,8 @@ const ls: Command = {
   name: 'ls',
   desc: 'list projects / pages',
   group: 'core',
+  usage: 'ls [pages]',
+  examples: ['ls', 'ls pages'],
   run: async (ctx): Promise<CommandResult> => {
     const sub = (ctx.args[0] || '').toLowerCase()
     if (sub === 'pages') {
@@ -196,6 +200,8 @@ const catCmd: Command = {
   name: 'cat',
   desc: 'open the resume PDF',
   group: 'core',
+  usage: 'cat resume [--1 | --2 | --finance]',
+  examples: ['cat resume', 'cat resume --finance'],
   run: (ctx): CommandResult => {
     const target = (ctx.args[0] || '').toLowerCase()
     if (target !== 'resume') {
@@ -307,6 +313,8 @@ const open: Command = {
   name: 'open',
   desc: 'jump to any section',
   group: 'core',
+  usage: 'open <page|project>',
+  examples: ['open about', 'open projects', 'open architecture'],
   run: async (ctx): Promise<CommandResult> => {
     const target = (ctx.args[0] || '').toLowerCase()
     if (!target) {
@@ -434,8 +442,12 @@ const contact: Command = {
         href: `mailto:${EMAIL}`,
       }),
       line('  github   github.com/kianis4     linkedin  /in/suleyman-kiani', 'normal'),
-      line("  fastest  'open about' has the form · or just reply to this line", 'muted', {
-        runs: [{ token: 'open about', command: 'open about' }],
+      line("  copy     copy email   ·   copy github   ·   open about for the form", 'muted', {
+        runs: [
+          { token: 'copy email', command: 'copy email' },
+          { token: 'copy github', command: 'copy github' },
+          { token: 'open about', command: 'open about' },
+        ],
       }),
     ],
   }),
@@ -450,14 +462,52 @@ const clear: Command = {
 }
 
 const ACCENTS = ['#5BC8FF', '#E8B84B', '#7FE3FF']
-const ACCENT_NAMES = ['arc-cyan', 'gold', 'ice']
+const ACCENT_NAMES = ['cyan', 'gold', 'ice']
+const THEME_BY_NAME: Record<string, string> = {
+  cyan: '#5BC8FF',
+  gold: '#E8B84B',
+  ice: '#7FE3FF',
+}
 
 const theme: Command = {
   name: 'theme',
-  desc: 'cycle accent hue',
+  desc: 'set accent hue',
   group: 'core',
-  run: (): CommandResult => {
-    // Determine the next accent from the current CSS var (read in the engine).
+  usage: 'theme [list | cyan | gold | ice | crt]',
+  examples: ['theme', 'theme gold', 'theme list', 'theme crt'],
+  run: (ctx): CommandResult => {
+    const arg = (ctx.args[0] || '').toLowerCase()
+
+    if (arg === 'list') {
+      return {
+        lines: [
+          line('accents:', 'accent'),
+          line('  cyan   gold   ice          set: theme <name>', 'muted', {
+            runs: [
+              { token: 'cyan', command: 'theme cyan' },
+              { token: 'gold', command: 'theme gold' },
+              { token: 'ice', command: 'theme ice' },
+            ],
+          }),
+          line('  crt                          toggle: theme crt', 'muted', {
+            runs: [{ token: 'crt', command: 'theme crt' }],
+          }),
+        ],
+      }
+    }
+
+    if (arg === 'crt') {
+      return { lines: [line('crt mode toggled.', 'gold')], setAccent: 'crt-toggle' }
+    }
+
+    if (THEME_BY_NAME[arg]) {
+      return {
+        lines: [line(`accent → ${arg} (${THEME_BY_NAME[arg].slice(1)})`, 'accent')],
+        setAccent: THEME_BY_NAME[arg],
+      }
+    }
+
+    // bare `theme` cycles to the next accent.
     let current = '#5BC8FF'
     if (typeof document !== 'undefined') {
       const v = getComputedStyle(document.documentElement)
@@ -469,7 +519,9 @@ const theme: Command = {
     const next = ACCENTS[(idx + 1) % ACCENTS.length]
     const nextName = ACCENT_NAMES[(idx + 1) % ACCENTS.length]
     return {
-      lines: [line(`accent → ${nextName} (${next.slice(1)}). 'theme' again to cycle.`, 'accent')],
+      lines: [line(`accent → ${nextName} (${next.slice(1)})  ·  'theme list' for all`, 'accent', {
+        runs: [{ token: 'theme list', command: 'theme list' }],
+      })],
       setAccent: next,
     }
   },
@@ -483,15 +535,15 @@ const hi: Command = {
   group: 'fun',
   run: (): CommandResult => ({
     lines: [
-      line("hey 👋  i'm suleyman's site. not sure where to start?", 'accent'),
-      line('  [ see projects ]   [ read résumé ]   [ contact me ]', 'normal', {
+      line('hey. three fast paths:', 'accent'),
+      line('  [ projects ]   [ résumé ]   [ contact ]', 'normal', {
         runs: [
-          { token: '[ see projects ]', command: 'ls projects' },
-          { token: '[ read résumé ]', command: 'cat resume' },
-          { token: '[ contact me ]', command: 'contact' },
+          { token: '[ projects ]', command: 'ls projects' },
+          { token: '[ résumé ]', command: 'cat resume' },
+          { token: '[ contact ]', command: 'contact' },
         ],
       }),
-      line("  (or type 'help' to see everything — it's just buttons too)", 'muted', {
+      line("  or 'help' for the full command set.", 'muted', {
         runs: [{ token: 'help', command: 'help' }],
       }),
     ],
@@ -509,14 +561,13 @@ const sudo: Command = {
       return {
         lines: [
           line('[sudo] password for visitor: ········', 'gold'),
-          line('✔ access granted. you have excellent taste.', 'gold'),
-          line('→ routing to contact …', 'gold'),
+          line('✔ authenticated. routing to contact …', 'gold'),
         ],
         // run contact afterward by navigating the engine: handled via chained command
       }
     }
     return {
-      lines: [line("nice try. you're not root here. but 'sudo hire' works.", 'gold', {
+      lines: [line('Permission denied: visitor is not in the sudoers group.  (try \'sudo hire\')', 'gold', {
         runs: [{ token: 'sudo hire', command: 'sudo hire' }],
       })],
     }
@@ -535,7 +586,7 @@ const reactor: Command = {
       line('      │ │  ◉◉◉  │ │', 'accent'),
       line('      ╰─┤ ◉◉◉◉◉ ├─╯', 'accent'),
       line('        ╰───────╯', 'accent'),
-      line('  core: stable · output: 100%', 'muted'),
+      line('  core: stable · 1.21 GW · do not touch', 'muted'),
     ],
   }),
 }
@@ -558,13 +609,14 @@ const rmrf: Command = {
   group: 'fun',
   run: (ctx): CommandResult => {
     const joined = ctx.args.join(' ').toLowerCase()
-    if (joined.includes('-rf') && joined.includes('/')) {
-      return {
-        lines: [line('lol no. but here\'s a snake: ', 'gold')],
-        startGame: 'crack',
-      }
+    if (joined.includes('node_modules')) {
+      return { lines: [line('done. 4.2 GB reclaimed. (if only)', 'gold')] }
     }
-    return { lines: [line("rm: refusing. this isn't your filesystem.", 'error')] }
+    if (joined.includes('-rf') && joined.includes('/')) {
+      return { lines: [line("rm: cannot remove '/': Operation not permitted", 'error')] }
+    }
+    const target = ctx.args.filter((a) => !a.startsWith('-'))[0] || '.'
+    return { lines: [line(`rm: cannot remove '${target}': Read-only file system`, 'error')] }
   },
 }
 
@@ -582,11 +634,112 @@ const play: Command = {
   desc: 'play a game',
   hidden: true,
   group: 'fun',
+  usage: 'play [bigo]',
+  examples: ['play', 'play bigo'],
   run: (ctx): CommandResult => {
     // `snake` alias historically → crack game; `play` → boot sequence.
+    const sub = (ctx.args[0] || '').toLowerCase()
+    if (sub === 'bigo') return { lines: [], startGame: 'bigo' }
     const isSnake = ctx.raw.trim().toLowerCase().startsWith('snake')
     return { lines: [], startGame: isSnake ? 'crack' : 'play' }
   },
+}
+
+const bigo: Command = {
+  name: 'bigo',
+  desc: 'guess the time complexity',
+  hidden: true,
+  group: 'fun',
+  run: (): CommandResult => ({ lines: [], startGame: 'bigo' }),
+}
+
+const man: Command = {
+  name: 'man',
+  aliases: ['help?', '?'],
+  desc: 'manual for a command',
+  group: 'core',
+  usage: 'man <command>',
+  examples: ['man ls', 'man open', 'man theme'],
+  run: (ctx): CommandResult => {
+    const name = (ctx.args[0] || '').toLowerCase().replace(/^--/, '')
+    if (!name) {
+      const names = COMMANDS.filter((c) => !c.hidden).map((c) => c.name)
+      return {
+        lines: [
+          line('man <command> — show usage for any command.', 'accent'),
+          line(`  documented: ${names.join('  ')}`, 'muted'),
+        ],
+      }
+    }
+    const cmd = COMMAND_MAP[name]
+    if (!cmd) {
+      return { lines: [line(`man: no entry for ${name}`, 'error')] }
+    }
+    const lines: OutputLine[] = [
+      line(`${cmd.name} — ${cmd.desc}`, 'accent'),
+      line(`  usage   ${cmd.usage ?? cmd.name}`),
+    ]
+    if (cmd.aliases?.length) {
+      lines.push(line(`  alias   ${cmd.aliases.join('  ')}`, 'muted'))
+    }
+    if (cmd.examples?.length) {
+      lines.push(
+        line(`  e.g.    ${cmd.examples.join('   ')}`, 'muted', {
+          runs: cmd.examples.map((ex) => ({ token: ex, command: ex })),
+        })
+      )
+    }
+    return { lines }
+  },
+}
+
+const copyCmd: Command = {
+  name: 'copy',
+  desc: 'copy a value to the clipboard',
+  group: 'core',
+  usage: 'copy <email | github | linkedin>',
+  examples: ['copy email', 'copy github'],
+  run: (ctx): CommandResult => {
+    const what = (ctx.args[0] || '').toLowerCase()
+    const table: Record<string, string> = {
+      email: EMAIL,
+      github: GITHUB,
+      linkedin: LINKEDIN,
+    }
+    const value = table[what]
+    if (!value) {
+      return {
+        lines: [line("copy: what? try 'copy email', 'copy github', 'copy linkedin'.", 'muted', {
+          runs: [{ token: 'copy email', command: 'copy email' }],
+        })],
+      }
+    }
+    return { lines: [line(`copied ✓  ${value}`, 'accent')], copy: value }
+  },
+}
+
+const echoCmd: Command = {
+  name: 'echo',
+  desc: 'print text',
+  hidden: true,
+  group: 'fun',
+  run: (ctx): CommandResult => ({ lines: [line(ctx.args.join(' ') || ' ')] }),
+}
+
+const pwd: Command = {
+  name: 'pwd',
+  desc: 'working directory',
+  hidden: true,
+  group: 'fun',
+  run: (): CommandResult => ({ lines: [line('/home/visitor')] }),
+}
+
+const dateCmd: Command = {
+  name: 'date',
+  desc: 'current time',
+  hidden: true,
+  group: 'fun',
+  run: (): CommandResult => ({ lines: [line(new Date().toString())] }),
 }
 
 export const COMMANDS: Command[] = [
@@ -603,6 +756,11 @@ export const COMMANDS: Command[] = [
   contact,
   clear,
   theme,
+  man,
+  copyCmd,
+  echoCmd,
+  pwd,
+  dateCmd,
   hi,
   sudo,
   reactor,
@@ -610,6 +768,7 @@ export const COMMANDS: Command[] = [
   rmrf,
   crack,
   play,
+  bigo,
 ]
 
 // name → command (incl. aliases) lookup.

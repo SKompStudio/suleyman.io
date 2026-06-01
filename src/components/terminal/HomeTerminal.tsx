@@ -5,7 +5,7 @@ import type { OutputLine } from './types'
 
 const GREETING: OutputLine[] = [
   {
-    text: "suleyman.io ▸ hi — i'm an interactive console. type 'help' or just say hi.",
+    text: "suleyman.io ▸ operator console. type 'help', or start typing.",
     tone: 'accent',
   },
 ]
