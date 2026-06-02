@@ -27,7 +27,7 @@ const DIAGRAMS: Diagram[] = [
     blurb:
       'Every domain as a column, every shared platform drawn once as a capability band. Scan down a column to see what a project depends on; scan across a band to see who shares a platform. This is how five very different systems compose into one engine.',
     tech: [
-      'Claude Code', 'OpenAI GPT-4.1 / 4o', 'Ollama / Whisper', 'Neon', 'RabbitMQ',
+      'Claude Code', 'OpenAI gpt-4.1 / 4o / 5.1', 'Ollama / Whisper', 'Neon', 'RabbitMQ',
       'Inngest', 'AWS', 'Vercel', 'Tailscale', 'Sentry',
     ],
   },
@@ -94,7 +94,7 @@ const DIAGRAMS: Diagram[] = [
     blurb:
       'A resume-tailoring ML product with paying users. A JWT-gated request enqueues a durable, step-checkpointed Inngest pipeline that drives the OpenAI Responses API with Zod-validated structured outputs. Shown sparse on purpose: only the publicly self-reported stack, nothing inferred.',
     tech: [
-      'Next.js 15', 'Inngest', 'OpenAI GPT-4.1 / 4o + Zod', 'Prisma 7',
+      'Next.js 15', 'Inngest', 'OpenAI gpt-4.1 / 4o / 5.1 + Zod', 'Prisma 7',
       'Stripe', 'Sentry',
     ],
   },
