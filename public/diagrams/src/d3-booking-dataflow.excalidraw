@@ -667,9 +667,9 @@
     {
       "type": "text",
       "id": "y_cron_t",
-      "x": 1412, "y": 720, "width": 396, "height": 84,
-      "text": "6 Vercel Cron\nwaitlist-expiry · no-show · expire-points\nexpire-memberships · generate-schedule\nreminders",
-      "originalText": "6 Vercel Cron\nwaitlist-expiry · no-show · expire-points\nexpire-memberships · generate-schedule\nreminders",
+      "x": 1412, "y": 732, "width": 396, "height": 60,
+      "text": "3 Vercel Cron\nexpire-memberships · expire-points\ngenerate-schedule",
+      "originalText": "3 Vercel Cron\nexpire-memberships · expire-points\ngenerate-schedule",
       "fontSize": 13, "fontFamily": 3,
       "textAlign": "center", "verticalAlign": "middle",
       "strokeColor": "#E8EDF2", "backgroundColor": "transparent",
