@@ -135,7 +135,7 @@ export default function Home() {
                   <div className="overflow-x-auto">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                      src="/diagrams/d7-grand-unified.svg"
+                      src="/diagrams/d7-grand-unified.png"
                       alt="Grand unified system architecture map"
                       loading="lazy"
                       className="w-full min-w-[720px] sm:min-w-0"
