@@ -136,14 +136,14 @@
       \resumeProjectHeading
           {\href{https://mike-ross.ca/}{\underline{\textbf{Mike Ross AI}}} $\cdot$ legal RAG assistant (Delta Hacks 12) $|$ \emph{LangGraph, Gemini 2.0, MongoDB Atlas, FastAPI}}{2026}
           \resumeItemListStart
-            \resumeItem{Built a legal assistant that answers Canadian-law questions with section-level citations: a LangGraph state machine routes intent, runs hybrid keyword + vector retrieval over \textbf{16,000+ legal documents} (MongoDB Atlas, HNSW indexing), and returns schema-validated output to block hallucination.}
-            \resumeItem{Wired Gemini 2.0 Flash to a FastAPI backend streaming over SSE into a Next.js 16 frontend; live at mike-ross.ca.}
+            \resumeItem{Built a legal assistant that answers Canadian-law questions with schema-enforced, quote-grounded citations: a LangGraph state machine routes intent and runs jurisdiction-aware vector retrieval (provincial queries auto-merge federal law) over a \textbf{16,000-chunk} corpus of seven Canadian statutes on MongoDB Atlas.}
+            \resumeItem{Wired Gemini 2.0 Flash structured outputs to a FastAPI backend with multi-turn thread memory and a draft-to-PDF pipeline for legal notices; live at mike-ross.ca.}
           \resumeItemListEnd
 
       \resumeProjectHeading
           {\href{https://applify-ai.com/}{\underline{\textbf{Applify AI}}} $\cdot$ resume-tailoring SaaS $|$ \emph{Next.js, Inngest, OpenAI}}{2025 -- Present}
           \resumeItemListStart
-            \resumeItem{Production SaaS that tailors a resume to a job posting: event-driven background jobs (Inngest) run the analysis pipeline against the OpenAI Responses API; cut inference cost about \textbf{90\%} with prompt caching.}
+            \resumeItem{Production SaaS that tailors a resume to a job posting: seven durable Inngest job types drive the OpenAI Responses API with schema-validated outputs, including a \textbf{self-correcting page-fit loop} (up to 20 checkpointed iterations of bullet reduction, LaTeX recompile, page-count check); Stripe billing with idempotent webhooks; 98-test CI suite.}
           \resumeItemListEnd
 
       \resumeProjectHeading
@@ -155,7 +155,7 @@
       \resumeProjectHeading
           {\href{https://overload-pro.com/}{\underline{\textbf{OverloadPT}}} $\cdot$ iOS strength-training app $|$ \emph{Swift, SwiftUI, SwiftData, Combine}}{2025}
           \resumeItemListStart
-            \resumeItem{Shipped an iOS app in Swift / SwiftUI (MVVM + Coordinator) with a progressive-overload engine that recommends weight increases and flags plateaus from a lifter's training history.}
+            \resumeItem{Built an iOS strength app in SwiftUI + SwiftData: a \textbf{progression engine} pre-fills next-session weights once target sets are hit, with a 102-exercise catalog across 9 muscle groups and Swift Charts trend analytics.}
           \resumeItemListEnd
 
     \resumeSubHeadingListEnd
@@ -182,7 +182,7 @@
       \resumeItemListStart
         \resumeItem{Year 1 complete: \textbf{A+} in Simple Type Theory and Microservices-Oriented Architectures.}
         \resumeItem{Research with Dr. Farmer and Dr. Paige: TLA+ and SMT2 specifications for an LLM citation-faithfulness gating layer, verifying that a study companion's generated notes stay attributable to their sources.}
-        \resumeItem{Built \href{https://www.suleyman.io/architecture}{\underline{\textbf{PodcastHub}}} for the distributed-systems course: six event-driven microservices (Node/Express, Python/FastAPI) choreographed over a RabbitMQ topic exchange with MinIO and FFmpeg.}
+        \resumeItem{Built \href{https://www.suleyman.io/architecture}{\underline{\textbf{PodcastHub}}} for the distributed-systems course: five event-driven microservices (Node/Express, Python/FastAPI) in six containers with a dedicated FFmpeg worker, choreographed over a RabbitMQ topic exchange with MinIO.}
       \resumeItemListEnd
     \resumeSubheading
       {McMaster University}{Hamilton, ON}
