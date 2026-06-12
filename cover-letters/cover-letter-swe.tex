@@ -1,0 +1,54 @@
+%-------------------------
+% Cover letter — software engineering variant
+% Tailor per application by editing the THREE commands below, nothing else.
+% Build: pdflatex cover-letter-swe.tex
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{babel}
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\addtolength{\oddsidemargin}{-0.3in}
+\addtolength{\evensidemargin}{-0.3in}
+\addtolength{\textwidth}{0.6in}
+\addtolength{\topmargin}{-.4in}
+\addtolength{\textheight}{0.8in}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+
+% ===== TAILOR THESE THREE LINES PER APPLICATION =====
+\newcommand{\company}{[COMPANY]}
+\newcommand{\role}{[ROLE TITLE]}
+\newcommand{\hook}{[ONE SENTENCE: the specific product, system, or problem at \company{} you want to work on, and why your background fits it. Delete this bracket text.]}
+% =====================================================
+
+\begin{document}
+
+\begin{center}
+    {\Huge \scshape Suleyman Kiani} \\ \vspace{3pt}
+    \small Burlington, ON $\cdot$ +1 (289) 788-8260 $\cdot$ \href{mailto:suley.kiani@outlook.com}{\underline{suley.kiani@outlook.com}} $\cdot$ \href{https://suleyman.io}{\underline{suleyman.io}} $\cdot$ \href{https://github.com/kianis4}{\underline{github.com/kianis4}}
+\end{center}
+
+\vspace{8pt}
+\today
+
+Dear \company{} Hiring Team,
+
+I am applying for the \role{} position. \hook{}
+
+I build production systems end to end and run them afterward. Through my studio, SKomp Studio, I designed, shipped, and now operate a multi-tenant booking-and-payments platform for a paying client: \$40K+ CAD processed, 500+ registered users, and a codebase held to 1,600+ automated tests with idempotent payment processing and webhook signature verification, because money-handling code has to be boring and correct. Separately, I built and operate a self-hosted multi-agent platform that runs 30+ scheduled automations: email-triggered workers that turn real document packages into ready-to-file output in minutes, each one sandboxed in a kernel-namespace jail behind fail-closed gates, with an autonomous overnight pipeline that builds and tests projects behind a 12-check publish gate. It is the most honest education available in what agentic systems actually require: permission boundaries, cost ceilings, and verification loops, not demos.
+
+My day job sharpens the same instincts from the business side. As an Associate Account Manager at Mitsubishi HC Capital Canada, I carry an equipment-finance sales book, and I have shipped internal software the desk uses daily: a quoting engine that replaced 13 abandoned Excel calculators and matches TValue, the industry lease-math standard, to the penny under 72 automated tests, and an AI document-validation service that went through the company's first internal innovation review and now audits deal packages unattended. I am finishing an MEng in Computing \& Software at McMaster, where my research applies formal methods to LLM citation faithfulness.
+
+Everything above is inspectable: the platform is live, the site at suleyman.io documents the architecture, and I am happy to walk through any of it in depth. I would welcome the chance to bring this mix of shipped systems and production judgment to \company{}.
+
+Sincerely,
+
+Suleyman Kiani
+
+\end{document}

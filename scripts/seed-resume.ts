@@ -4,8 +4,8 @@ import { prisma } from '../src/lib/prisma'
 const summary =
   'Software engineer who builds the tooling a finance desk actually runs on: a production quoting ' +
   'engine matching TValue, the industry lease-math standard, to the penny; a multi-tenant ' +
-  'booking-and-payments platform processing real revenue; a self-hosted multi-agent system ' +
-  'automating funding-deal document work. Equipment-finance experience at Mitsubishi HC Capital ' +
+  'booking-and-payments platform processing real revenue; a self-hosted agentic platform ' +
+  'with sandboxed workers and fail-closed gates. Equipment-finance experience at Mitsubishi HC Capital ' +
   'gives me domain fluency most engineers don’t have. Finishing an MEng in Computing & Software ' +
   'at McMaster.'
 
@@ -19,10 +19,10 @@ const experiences = [
     endDate: null,
     current: true,
     bullets: [
-      'Rebuilt 13 abandoned Excel calculators (30–45 sheets each) as one Next.js / React web app covering all 11 product lines; reverse-engineered each manufacturer’s lease and subsidy math and pinned penny-parity with TValue under 72 automated tests.',
+      'Rebuilt 13 abandoned Excel calculators (30–45 sheets each) as one Next.js / React app covering all 11 product lines; reverse-engineered the manufacturers’ lease and subsidy math and pinned penny-parity with TValue with 72 automated tests; the desk’s one trusted pricing tool.',
       'Untangled three structurally different subsidy formulas, proved three regional dealer workbooks were re-skins of one template, and collapsed them into shared calculation engines; authored the architecture and handoff documentation that lets the company’s IT org own and extend the tool.',
-      'Built an AI document-validation prototype (OCR + ML + rules) for deal-funding review and took it through the company’s first internal innovation review; it now runs as a live email service that audits real deal packages unattended.',
-      'Designed a predictive collections scorecard with the credit and portfolio teams: a dual-track model that auto-triages low-risk accounts and scores the rest by recovery priority across about $17–18M of assets in recovery. Each one-point lift in the portfolio recovery rate is worth about $1M; owned the business case, won approval, and now drive the phased rollout.',
+      'Built an AI document-validation prototype (OCR + ML + rules) for deal-funding review and took it through the company’s first internal innovation review; it now runs as a live email service auditing real deal packages unattended, each verdict logged to a per-deal audit trail.',
+      'Designed a predictive collections scorecard with the credit and portfolio teams: a dual-track model that auto-triages low-risk accounts and scores the rest by recovery priority across about $17–18M of assets in recovery. Each one-point lift in the portfolio recovery rate is worth about $1M; owned the business case, won approval, and now drive the phased rollout with the desk’s Power BI portfolio and variance reporting behind it.',
       'Turned the desk’s most repetitive document work (power-of-attorney, asset-registration, and pre-funding packages) into email-triggered services that reply within minutes with ready-to-file documents.',
       'Carry an equipment-finance sales book alongside the engineering work: funded $4M against a $2M monthly target (200% of quota) in each of April and May 2026 and have exceeded funding quota every month since my second month in the role.',
     ],
@@ -38,11 +38,11 @@ const experiences = [
     endDate: null,
     current: true,
     bullets: [
-      'Founded a software studio and designed, shipped, and now operate its flagship client platform, Solstice Pilates, solo: a multi-tenant booking-and-payments system (37-model Prisma schema, 106 API routes) with scheduling, FIFO waitlists and capacity gating, Square payments and recurring memberships with tax handling, digital waivers, and a 23-page admin portal.',
+      'Founded a software studio and designed, shipped, and now operate its flagship client platform, Solstice Pilates (solsticepilates.ca), solo: a multi-tenant booking-and-payments system (37-model Prisma schema, 106 API routes) with scheduling, FIFO waitlists and capacity gating, Square payments and recurring memberships with tax handling, digital waivers, and a 23-page admin portal.',
       'Runs live operations (500+ registered users, $40K+ CAD processed since launch) and ships a client-driven roadmap on 1,600+ automated tests, including 70 Playwright e2e specs against every Vercel preview, shadow-DB checks across all 49 versioned migrations, and Gitleaks secret scanning in CI.',
       'Engineered for money-handling correctness: idempotent Square payment processing, webhook signature verification, and row-level tenant isolation via a scoped Prisma client.',
       'Landed five production fixes in parallel in one agent-orchestrated session, each in its own git worktree with its own test-and-verify loop, merged through branch-protected PRs.',
-      'Coached 100+ learners through algorithms, systems design, and technical-interview prep in the studio’s mentorship arm, alongside the client work.',
+      'Coached 100+ learners through algorithms, systems design, and technical-interview prep in the studio’s mentorship arm, taking each engagement from acquisition through delivery.',
     ],
     tech: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL (Neon)', 'Square', 'AWS SES/SNS'],
     order: 1,
@@ -70,7 +70,7 @@ const educations = [
     school: 'McMaster University',
     location: 'Hamilton, ON',
     startDate: 'Sept 2025',
-    endDate: 'Dec 2026 (expected)',
+    endDate: '2026',
     details:
       'Year 1 complete with A+ in Simple Type Theory and Microservices-Oriented Architectures. Research with Dr. Farmer and Dr. Paige on an LLM-based study companion that combines retrieval over course material with locally served models. Built PodcastHub for the distributed-systems course: six event-driven microservices across Node/Express and Python/FastAPI, each a hexagonal bounded context, choreographed over a RabbitMQ topic exchange with MinIO object storage and FFmpeg media processing.',
     order: 0,
