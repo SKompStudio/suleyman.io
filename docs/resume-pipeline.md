@@ -116,3 +116,13 @@ submission, vendor relationship, full deal cycle, FMV/capital), "(200% attainmen
 quota form, Propel (public product name) in Tools, CFLA Fundamentals as the fast
 credential. Full digests in the session of 2026-06-12; key items folded into the
 variants and the vault page.
+
+## LaTeX end-of-line glitch (permanent fix, 2026-06-12)
+
+The sb2nov \resumeItem macro carried a SPACE before \vspace{-2pt}. That space is
+breakable glue: when a bullet's last line ends exactly flush, TeX wraps the
+\vspace onto a phantom line that renders as an extra blank line under the bullet
+(one character more, or a wrapped word, and it never triggers). Fixed by removing
+the space ({#1\vspace{-2pt}}) in all variants — TeX cannot break without glue, so
+the glitch is structurally impossible now. NEVER reintroduce that space. A
+phantom-gap detector (pdftotext -bbox line-pitch scan) runs with the overflow test.
