@@ -87,6 +87,22 @@
 \small{Software engineer who builds the tooling a finance desk actually runs on: a production quoting engine matching TValue, the industry lease-math standard, to the penny; a multi-tenant booking-and-payments platform processing real client revenue; a self-hosted agentic platform with sandboxed workers and fail-closed gates. Equipment-finance experience at Mitsubishi HC Capital gives me domain fluency most engineers don't have. Finishing an MEng in Computing \& Software at McMaster.}
 \vspace{-4pt}
 
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {McMaster University}{Hamilton, ON}
+      {MEng, Computing \& Software (Distributed Systems, Microservices \& Applied ML)}{Sept. 2025 -- 2026}
+      \resumeItemListStart
+        \resumeItem{Research with Dr. Farmer and Dr. Paige: TLA+ and SMT2 specifications for an LLM citation-faithfulness gating layer, verifying that a study companion's generated notes stay attributable to their sources.}
+        \resumeItem{\textbf{A+} in Simple Type Theory and Microservices-Oriented Architectures.}
+        \resumeItem{Built \href{https://www.suleyman.io/architecture}{\underline{\textbf{PodcastHub}}} for the distributed-systems course: five event-driven microservices (Node/Express, Python/FastAPI) in six containers with a dedicated FFmpeg worker, choreographed over a RabbitMQ topic exchange with MinIO presigned-URL storage and a RabbitMQ-to-WebSocket notification bridge.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {McMaster University}{Hamilton, ON}
+      {BASc (Honours), Computer Science}{Sept. 2018 -- Nov. 2024}
+  \resumeSubHeadingListEnd
+
 %-----------EXPERIENCE-----------
 \section{Experience}
   \resumeSubHeadingListStart
@@ -140,6 +156,12 @@
           \resumeItemListEnd
 
       \resumeProjectHeading
+          {\textbf{LLM Study Companion} $\cdot$ MEng research system $|$ \emph{FastAPI, Next.js, pgvector}}{2026}
+          \resumeItemListStart
+            \resumeItem{Building the system around the research: event-driven hexagonal services (FastAPI, Next.js, Postgres + pgvector), AssemblyAI lecture transcription, and Cohere reranking, with the TLA+/SMT2-specified citation gate as the publish oracle for generated study notes.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
           {\href{https://applify-ai.com/}{\underline{\textbf{Applify AI}}} $\cdot$ resume-tailoring SaaS $|$ \emph{Next.js, Inngest, OpenAI}}{2025 -- Present}
           \resumeItemListStart
             \resumeItem{Production SaaS that tailors a resume to a job posting: seven durable Inngest job types drive the OpenAI Responses API with schema-validated outputs, including a \textbf{self-correcting page-fit loop} (up to 20 checkpointed iterations of bullet reduction, LaTeX recompile, page-count check, about 65 durable steps per document); Stripe billing with idempotent webhooks; 98-test CI suite.}
@@ -172,21 +194,5 @@
      \textbf{Practices}{: TDD (Vitest, Playwright), CI/CD, branch-protected PRs, systemd automation, multi-tenant SaaS}
     }}
 \end{itemize}
-
-%-----------EDUCATION-----------
-\section{Education}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {McMaster University}{Hamilton, ON}
-      {MEng, Computing \& Software (Distributed Systems, Microservices \& Applied ML)}{Sept. 2025 -- 2026}
-      \resumeItemListStart
-        \resumeItem{\textbf{A+} in Simple Type Theory and Microservices-Oriented Architectures.}
-        \resumeItem{Research with Dr. Farmer and Dr. Paige: TLA+ and SMT2 specifications for an LLM citation-faithfulness gating layer, verifying that a study companion's generated notes stay attributable to their sources.}
-        \resumeItem{Built \href{https://www.suleyman.io/architecture}{\underline{\textbf{PodcastHub}}} for the distributed-systems course: five event-driven microservices (Node/Express, Python/FastAPI) in six containers with a dedicated FFmpeg worker, choreographed over a RabbitMQ topic exchange with MinIO presigned-URL storage and a RabbitMQ-to-WebSocket notification bridge.}
-      \resumeItemListEnd
-    \resumeSubheading
-      {McMaster University}{Hamilton, ON}
-      {BASc (Honours), Computer Science}{Sept. 2018 -- Nov. 2024}
-  \resumeSubHeadingListEnd
 
 \end{document}
