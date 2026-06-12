@@ -25,7 +25,7 @@ const DIAGRAMS: Diagram[] = [
     tag: 'system landscape',
     title: 'Grand Unified Architecture',
     blurb:
-      'Every domain as a column, every shared platform drawn once as a capability band. Scan down a column to see what a project depends on; scan across a band to see who shares a platform. This is how five very different systems compose into one engine.',
+      'Every domain as a column, every shared platform drawn once as a capability band. Scan down a column to see what a project depends on; scan across a band to see who shares a platform. This is how five very different systems compose into one engine, now coordinated through a shared orchestration layer of specialist agents, saved workflows, and policy-as-code.',
     tech: [
       'Claude Code', 'OpenAI gpt-4.1 / 4o / 5.1', 'Ollama / Whisper', 'Neon', 'RabbitMQ',
       'Inngest', 'AWS', 'Vercel', 'Tailscale', 'Sentry',
@@ -36,9 +36,10 @@ const DIAGRAMS: Diagram[] = [
     tag: 'built on Claude Code',
     title: 'Personal Agentic OS: the brain',
     blurb:
-      'An always-on multi-agent operating system run by Claude Code. The orchestrator fans work out to custom Skills via the Agent tool; systemd-timed watchers spawn headless claude -p workers; a layered memory (session → project → vault) compounds research and ops. Local models on an RTX 3080 handle the free tier; the iOS bridge runs the Claude Agent SDK.',
+      'An always-on multi-agent operating system run by Claude Code. The orchestrator dispatches through a versioned orchestration layer (seven specialist subagents, a saved multi-agent workflow library, policy-as-code hooks) out to custom Skills via the Agent tool; systemd-timed watchers spawn headless claude -p workers; a layered memory (session → project → vault) compounds research and ops, and a weekly self-verification loop audits the docs against the live system. Local models on an RTX 3080 handle the free tier; the iOS bridge runs the Claude Agent SDK.',
     tech: [
-      'Claude Code', 'Claude Agent SDK', 'Skills', 'headless claude -p',
+      'Claude Code', 'Claude Agent SDK', 'Skills', 'specialist subagents',
+      'workflow library', 'policy-as-code hooks', 'headless claude -p',
       'MCP servers', 'systemd', 'Ollama (qwen2.5 / bge)', 'faster-whisper',
       'LanceDB', 'FastAPI', 'arq + Redis', 'Tailscale',
     ],
