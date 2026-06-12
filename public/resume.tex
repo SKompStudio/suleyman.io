@@ -57,6 +57,13 @@
     \end{tabular*}\vspace{-7pt}
 }
 
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
 \newcommand{\resumeProjectHeading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
@@ -77,42 +84,41 @@
 %-----------HEADER-----------
 \begin{center}
     \textbf{\Huge \scshape Suleyman Kiani} \\ \vspace{3pt}
-    \small Software Engineer $\cdot$ Fintech \& Finance Platforms \\ \vspace{3pt}
-    \small Burlington, ON $|$ +1 (289) 788-8260 $|$ \href{mailto:suley.kiani@outlook.com}{\underline{suley.kiani@outlook.com}} $|$ \href{https://www.linkedin.com/in/suleyman-kiani}{\underline{LinkedIn}} $|$ \href{https://github.com/kianis4}{\underline{github.com/kianis4}} $|$ \href{https://suleyman.io}{\underline{suleyman.io}}
+    \small Software Engineer $\cdot$ Fintech \& Agentic Systems \\ \vspace{3pt}
+    \footnotesize Burlington, ON $|$ +1 (289) 788-8260 $|$ \href{mailto:suley.kiani@outlook.com}{\underline{suley.kiani@outlook.com}} $|$ \href{https://www.linkedin.com/in/suleyman-kiani}{\underline{linkedin.com/in/suleyman-kiani}} $|$ \href{https://github.com/kianis4}{\underline{github.com/kianis4}} $|$ \href{https://suleyman.io}{\underline{suleyman.io}}
 \end{center}
 
 %-----------SUMMARY-----------
 \section{Summary}
 \vspace{2pt}
-\small{Software engineer who builds the tooling a finance desk actually runs on: a quoting engine matching TValue to the penny, a booking-and-payments platform processing real client revenue, and a multi-agent system automating funding-deal documents. Equipment-finance domain fluency from Mitsubishi HC Capital that most engineers don't have.}
+\small{Software engineer who builds the tooling a finance desk actually runs on: a quoting engine matching TValue to the penny, a booking-and-payments platform processing real client revenue, and a self-hosted agentic platform with sandboxed workers and fail-closed gates. Equipment-finance domain fluency from Mitsubishi HC Capital that most engineers don't have.}
 \vspace{-4pt}
 
 %-----------EXPERIENCE-----------
 \section{Experience}
   \resumeSubHeadingListStart
     \resumeSubheading
-      {Associate Account Manager, Equipment Finance}{Sept. 2025 -- Present}
+      {Associate Account Manager (Internal Software Engineering)}{Sept. 2025 -- Present}
       {Mitsubishi HC Capital Canada}{Burlington, ON}
       \resumeItemListStart
-        \resumeItem{\emph{Hybrid role: a sales book plus the desk's internal software (quoting, document automation, collections analytics).}}
-        \resumeItem{Rebuilt \textbf{13 abandoned Excel calculators} as one Next.js / React web app covering all 11 product lines; reverse-engineered each manufacturer's lease and subsidy math and pinned \textbf{penny-parity with TValue} under 72 automated tests.}
-        \resumeItem{Built an AI document-validation prototype (OCR + ML + rules) for deal-funding review and took it through the company's first internal innovation review; it now runs live, auditing deal packages unattended.}
-        \resumeItem{Designed a predictive collections scorecard with the credit and portfolio teams that ranks recovery work across roughly \textbf{\$17--18M} of assets; each one-point lift in the portfolio recovery rate is worth about \textbf{\$1M}. Owned the business case and won approval.}
-        \resumeItem{Also carry the desk's sales book: funded \textbf{\$4M against a \$2M monthly target}, beating quota every month since month two.}
+        \resumeItem{Rebuilt \textbf{13 abandoned Excel calculators} as one Next.js / React app covering all 11 product lines; reverse-engineered the manufacturers' lease and subsidy math and pinned \textbf{penny-parity with TValue} with 72 automated tests; now the desk's one trusted pricing tool.}
+        \resumeItem{Built an AI document-validation service (OCR + ML + rules) for deal-funding review, took it through the company's first internal innovation review, and run it live auditing deal packages unattended.}
+        \resumeItem{Designed a predictive collections scorecard ranking recovery work across \textbf{\$17--18M} of assets; each one-point lift in the portfolio recovery rate is worth about \textbf{\$1M}; owned the business case and won approval.}
+        \resumeItem{Carry the desk's sales book: \textbf{\$4M funded against a \$2M monthly target}, over quota since month two.}
       \resumeItemListEnd
     \resumeSubheading
       {Founder \& Software Engineer}{Jan. 2024 -- Present}
       {SKomp Studio}{Remote}
       \resumeItemListStart
-        \resumeItem{Founded a software studio and designed, shipped, and now operate its client platform, \href{https://www.solsticepilates.ca/}{\textbf{Solstice Pilates}}, solo: multi-tenant booking and payments with scheduling, waitlists, Square recurring memberships, and a 23-page admin portal.}
-        \resumeItem{In production since launch with \textbf{500+ registered users} and \textbf{\$40K+ CAD processed}. Underneath, \textbf{1,600+ automated tests}, idempotent payments, webhook signature verification, and row-level tenant isolation.}
+        \resumeItem{Designed, shipped, and now run the studio's client platform, \href{https://www.solsticepilates.ca/}{\underline{\textbf{Solstice Pilates}}}, solo: multi-tenant booking and payments (scheduling, waitlists, Square memberships) processing \textbf{\$40K+ CAD} for \textbf{500+ registered users}.}
+        \resumeItem{Every change gates through \textbf{1,600+ automated tests}, idempotent payment writes, webhook signature verification, and row-level tenant isolation.}
       \resumeItemListEnd
     \resumeSubheading
       {Junior Web Developer}{May 2021 -- Jun. 2022}
       {Giftcash Inc.}{Remote}
       \resumeItemListStart
-        \resumeItem{Migrated a legacy Python / Django monolith to Node.js on AWS Lambda and tuned PostgreSQL with indexes, caching, and query rewrites that killed the sequential scans on the gift-card lookup.}
-        \resumeItem{Automated gift-card balance verification with a Puppeteer + Axios pipeline and stood up Jenkins / GitHub Actions CI/CD; no more manual checks or releases.}
+        \resumeItem{Migrated a legacy Python / Django monolith to Node.js on AWS Lambda and tuned PostgreSQL with indexes, caching, and query rewrites that killed the sequential scans behind the gift-card lookup flow.}
+        \resumeItem{Automated balance verification with a Puppeteer + Axios pipeline; stood up Jenkins / GitHub Actions CI/CD.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
@@ -120,14 +126,14 @@
 \section{Projects}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\textbf{Personal Agentic OS} $\cdot$ multi-agent automation platform $|$ \emph{Python, TypeScript, Claude, systemd, Tailscale}}{2026}
+          {\href{https://www.suleyman.io/architecture}{\underline{\textbf{Personal Agentic OS}}} $\cdot$ self-hosted agent platform $|$ \emph{Python, TypeScript, Claude, systemd, Tailscale}}{2026}
           \resumeItemListStart
-            \resumeItem{Built and operate the self-hosted multi-agent platform behind the deal-document services above: \textbf{30+ scheduled automations} and email-triggered workers replying in minutes, each sandboxed in a kernel-namespace jail.}
+            \resumeItem{Built and operate the agentic platform behind the deal-document services above: \textbf{30+ scheduled automations} and email-triggered workers replying in minutes, each sandboxed in a \textbf{kernel-namespace jail} with fail-closed gates and cost circuit-breakers, containing prompt-injection risk from untrusted documents.}
           \resumeItemListEnd
       \resumeProjectHeading
-          {\href{https://mike-ross.ca/}{\textbf{Mike Ross AI}} $\cdot$ legal RAG assistant (Delta Hacks 12) $|$ \emph{LangGraph, MongoDB Atlas, FastAPI}}{2026}
+          {\href{https://mike-ross.ca/}{\underline{\textbf{Mike Ross AI}}} $\cdot$ legal RAG assistant (Delta Hacks 12) $|$ \emph{LangGraph, MongoDB Atlas, FastAPI}}{2026}
           \resumeItemListStart
-            \resumeItem{Built a legal assistant that answers Canadian-law questions with section-level citations via a LangGraph state machine and hybrid keyword + vector retrieval over \textbf{16,000+ documents}; live at mike-ross.ca.}
+            \resumeItem{Built a legal assistant answering Canadian-law questions with section-level citations via a LangGraph state machine and hybrid keyword + vector retrieval over \textbf{16,000+ documents}; live at mike-ross.ca.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
@@ -138,7 +144,7 @@
      \textbf{Languages}{: TypeScript, Python, SQL, Java, C, Swift} \\
      \textbf{Financial \& Domain}{: Equipment \& lease finance, amortization \& subsidy math (TValue-validated), credit scorecards} \\
      \textbf{Backend \& Web}{: Next.js, React, Node.js, Prisma, Tailwind, PostgreSQL (Neon), Redis, Vercel, TDD, CI/CD} \\
-     \textbf{AI / Agentic}{: Multi-agent orchestration, RAG + local LLM serving (Ollama), Whisper}
+     \textbf{AI / Agentic}{: Agent orchestration, LLM eval pipelines, RAG + local inference (Ollama), Whisper, prompt-injection mitigation}
     }}
 \end{itemize}
 
@@ -147,9 +153,8 @@
   \resumeSubHeadingListStart
     \resumeSubheading
       {McMaster University}{Hamilton, ON}
-      {MEng, Computing \& Software (Year 1 complete)}{Sept. 2025 -- Dec. 2026}
-    \resumeSubheading
-      {McMaster University}{Hamilton, ON}
+      {MEng, Computing \& Software (Year 1 complete)}{Sept. 2025 -- 2026}
+    \resumeSubSubheading
       {BASc (Honours), Computer Science}{Sept. 2018 -- Nov. 2024}
   \resumeSubHeadingListEnd
 

@@ -86,3 +86,33 @@ right variant, tailors bullets within the sourced-facts inventory above, builds 
 and tracks the application. The fact inventory + this pipeline are the foundation;
 tailoring must never invent facts. Tracked in the vault:
 `wiki/projects/2026-06-12-resume-pipeline.md`.
+
+## Cover letters (added 2026-06-12)
+
+`cover-letters/cover-letter-swe.tex` and `cover-letter-finance.tex` — same visual
+identity as the resumes. Tailoring a letter to a posting = editing the THREE
+`\newcommand` slots at the top (`\company`, `\role`, `\hook`); nothing else
+changes. The finance letter's comment block carries the internal-MHCCNA promotion-case
+guidance. Build: `pdflatex` in that dir.
+
+## Visual verification loop (mandatory after every edit)
+
+Compile (x2) -> `pdfinfo` page counts (1/2/1) -> orphan audit (the pdftotext -layout
+script in the vault page; bullet last lines under ~40% of column width waste a line;
+note pdftotext inserts blank lines between wrapped lines — skip them when grouping)
+-> `pdftoppm -png` every page and LOOK at it. The sb2nov phantom-blank-line artifact
+and orphaned headings only show visually.
+
+## Research round (2026-06-12, three cited digests)
+
+AI-labs digest: the platform's real vocabulary (bubblewrap jails, fail-closed gates,
+cost circuit-breakers, 12-check gate-as-eval-pipeline) matches Anthropic's own
+engineering posts — surface those nouns; reframe MEng research as LLM
+citation-faithfulness verification (TLA+/SMT2); public artifact + referral are the
+conversion multipliers. FAANG digest: XYZ formula, title parenthetical "(Internal
+Software Engineering)", visible URL text for ATS, tests bound to what they gate.
+Finance digest: MHCCNA's own AAM posting language, Tier-1 keyword map (credit
+submission, vendor relationship, full deal cycle, FMV/capital), "(200% attainment)"
+quota form, Propel (public product name) in Tools, CFLA Fundamentals as the fast
+credential. Full digests in the session of 2026-06-12; key items folded into the
+variants and the vault page.
