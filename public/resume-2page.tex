@@ -84,7 +84,7 @@
 %-----------SUMMARY-----------
 \section{Summary}
 \vspace{2pt}
-\small{Software engineer who builds the tooling a finance desk actually runs on: a production quoting engine matching TValue, the industry lease-math standard, to the penny; a multi-tenant booking-and-payments platform processing real revenue; a self-hosted multi-agent system automating funding-deal document work. Equipment-finance experience at Mitsubishi HC Capital gives me domain fluency most engineers don't have. Finishing an MEng in Computing \& Software at McMaster.}
+\small{Software engineer who builds the tooling a finance desk actually runs on: a production quoting engine matching TValue, the industry lease-math standard, to the penny; a multi-tenant booking-and-payments platform processing real client revenue; a self-hosted multi-agent system automating funding-deal document work. Equipment-finance experience at Mitsubishi HC Capital gives me domain fluency most engineers don't have. Finishing an MEng in Computing \& Software at McMaster.}
 \vspace{-4pt}
 
 %-----------EXPERIENCE-----------
@@ -97,23 +97,27 @@
         \resumeItem{\emph{Hybrid role: a sales book plus the desk's internal software (quoting, document automation, collections analytics).}}
         \resumeItem{Rebuilt \textbf{13 abandoned Excel calculators} (30--45 sheets each) as one Next.js / React web app covering all 11 product lines; reverse-engineered each manufacturer's lease and subsidy math and pinned \textbf{penny-parity with TValue} under 72 automated tests.}
         \resumeItem{Untangled three structurally different subsidy formulas, proved three regional dealer workbooks were re-skins of one template, and collapsed them into shared calculation engines; authored the architecture and handoff documentation that lets the company's IT org own and extend the tool.}
-        \resumeItem{Built an AI document-validation prototype (OCR + ML + rules) for deal-funding review and took it through the company's first internal innovation review; it now runs as a \textbf{live email service} that audits real deal packages unattended.}
+        \resumeItem{Built an AI document-validation prototype (OCR + ML + rules) for deal-funding review and took it through the company's first internal innovation review; it now runs as a live email service that audits real deal packages unattended.}
         \resumeItem{Designed a predictive collections scorecard with the credit and portfolio teams: a dual-track model that auto-triages low-risk accounts and scores the rest by recovery priority across about \textbf{\$17--18M} of assets in recovery; each one-point lift in the portfolio recovery rate is worth about \textbf{\$1M}. Owned the business case, won approval, now drive the phased rollout.}
         \resumeItem{Turned the desk's most repetitive document work (power-of-attorney, asset-registration, and pre-funding packages) into email-triggered services that reply \textbf{within minutes} with ready-to-file documents.}
-        \resumeItem{Carry the desk's sales book: funded \textbf{\$4M against a \$2M monthly target} in April and May 2026 and have exceeded quota every month since my second month.}
+        \resumeItem{Carry the desk's sales book: funded \textbf{\$4M against a \$2M monthly target} in each of April and May 2026; exceeded quota every month since my second month.}
       \resumeItemListEnd
     \resumeSubheading
-      {Founder}{Jan. 2024 -- Present}
-      {SKompXcel Academic Solutions}{Remote}
+      {Founder \& Software Engineer}{Jan. 2024 -- Present}
+      {SKomp Studio}{Remote}
       \resumeItemListStart
-        \resumeItem{Founded a mentorship practice: coached \textbf{100+ learners} through algorithms, systems design, and technical-interview prep, and built its platform (Next.js, TypeScript, Google Cloud).}
+        \resumeItem{Founded a software studio and designed, shipped, and now operate its flagship client platform, \href{https://www.solsticepilates.ca/}{\textbf{Solstice Pilates}}, solo: a multi-tenant booking-and-payments system (\textbf{37-model Prisma schema}, \textbf{106 API routes}) with scheduling, FIFO waitlists and capacity gating, Square payments and recurring memberships with tax handling, digital waivers, and a 23-page admin portal.}
+        \resumeItem{Runs live operations (\textbf{500+ registered users}, \textbf{\$40K+ CAD processed} since launch) and ships a client-driven roadmap on \textbf{1,600+ automated tests}, including 70 Playwright e2e specs against every Vercel preview, shadow-DB checks across all 49 versioned migrations, and Gitleaks secret scanning in CI.}
+        \resumeItem{Engineered for money-handling correctness: idempotent Square payment processing, webhook signature verification, and row-level tenant isolation via a scoped Prisma client.}
+        \resumeItem{Landed five production fixes in parallel in one agent-orchestrated session, each in its own git worktree with its own test-and-verify loop, merged through branch-protected PRs.}
+        \resumeItem{Coached \textbf{100+ learners} through algorithms, systems design, and technical-interview prep in the studio's mentorship arm, alongside the client work.}
       \resumeItemListEnd
     \resumeSubheading
       {Junior Web Developer}{May 2021 -- Jun. 2022}
       {Giftcash Inc.}{Remote}
       \resumeItemListStart
-        \resumeItem{Migrated a legacy \textbf{Python / Django monolith to Node.js on AWS Lambda}, trading always-on server overhead for per-request billing, and tuned PostgreSQL with indexing, caching, and query rewrites that killed the sequential scans on the gift-card lookup.}
-        \resumeItem{Automated gift-card balance verification with a \textbf{Puppeteer + Axios} pipeline and stood up Jenkins and GitHub Actions CI/CD so merges deployed without manual release steps.}
+        \resumeItem{Migrated a legacy Python / Django monolith to Node.js on AWS Lambda, trading always-on server overhead for per-request billing, and tuned PostgreSQL with indexing, caching, and query rewrites that killed the sequential scans on the gift-card lookup.}
+        \resumeItem{Automated gift-card balance verification with a Puppeteer + Axios pipeline and stood up Jenkins and GitHub Actions CI/CD so merges deployed without manual release steps.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
@@ -122,20 +126,10 @@
     \resumeSubHeadingListStart
 
       \resumeProjectHeading
-          {\href{https://www.solsticepilates.ca/}{\textbf{Solstice Pilates}} $\cdot$ multi-tenant booking \& payments SaaS $|$ \emph{Next.js, Prisma, Neon, Square}}{2025 -- Present}
-          \resumeItemListStart
-            \resumeItem{Sole engineer on a live multi-tenant booking-and-payments platform: \textbf{37-model Prisma schema}, \textbf{106 API routes}, scheduling with FIFO waitlists and capacity gating, Square payments and recurring memberships with tax handling, digital waivers, a 23-page admin portal.}
-            \resumeItem{Runs real studio operations: \textbf{500+ registered users}, \textbf{\$20K+ CAD processed}, 1,600+ automated tests, 49 versioned migrations. Underneath: row-level tenant isolation, idempotent payment processing, webhook signature verification.}
-            \resumeItem{Found and fixed money-losing production payment bugs: a double cents conversion saving a \$50 discount as \textbf{\$5,000}, a 4x undercount in ad-conversion reporting, and tax under-reported on subscription renewals.}
-            \resumeItem{Ran a parallel agent-orchestrated release: five production fixes in one session across isolated git worktrees, each with its own test-and-verify loop, merged through branch-protected PRs.}
-          \resumeItemListEnd
-
-      \newpage
-      \resumeProjectHeading
           {\textbf{Personal Agentic OS} $\cdot$ multi-agent automation platform $|$ \emph{Python, TypeScript, Claude, systemd, Tailscale}}{2026}
           \resumeItemListStart
-            \resumeItem{Built and operate the self-hosted multi-agent platform behind the document services above: \textbf{30+ scheduled automations} and email-triggered workers that validate funding-deal packages and generate ready-to-file documents in minutes.}
-            \resumeItem{Every untrusted worker runs in a \textbf{kernel-namespace sandbox} behind fail-closed gates; secrets resolve from a 1Password service account; encrypted off-site backups run nightly; a health watchdog emails on problem-state transitions.}
+            \resumeItem{Operate the self-hosted multi-agent platform behind the document services above: \textbf{30+ scheduled automations} and email-triggered workers that validate funding-deal packages and draft the finished documents in minutes.}
+            \resumeItem{Every untrusted worker runs in a kernel-namespace sandbox behind fail-closed gates; secrets live in a 1Password service-account vault; encrypted off-site backups run nightly; a health watchdog emails on problem-state transitions.}
             \resumeItem{Runs an autonomous overnight pipeline that picks a candidate idea, builds and tests it in an isolated git worktree, and publishes behind a \textbf{12-check security gate}; monitored from a custom SwiftUI iOS app and web dashboards over a private Tailscale mesh.}
             \resumeItem{Includes a fully local RAG stack (qwen2.5 on an RTX 3080) returning cited answers in \textbf{about 4s} at zero API cost, and a Whisper voice-note router that files each note to the right project, tuned by an eval harness against Recall@10.}
           \resumeItemListEnd
@@ -154,9 +148,15 @@
           \resumeItemListEnd
 
       \resumeProjectHeading
+          {\href{https://suleyman.io/}{\textbf{suleyman.io}} $\cdot$ personal site built as a product $|$ \emph{Next.js 16, Prisma, Neon, Vercel}}{2026}
+          \resumeItemListStart
+            \resumeItem{The site is a command-center HUD with a working in-browser terminal (custom REPL, commands and games), live Spotify visualizations, a GitHub-language constellation fed by the GitHub API, and a database-backed resume pipeline serving versioned resume variants from Postgres.}
+          \resumeItemListEnd
+
+      \resumeProjectHeading
           {\href{https://overload-pro.com/}{\textbf{OverloadPT}} $\cdot$ iOS strength-training app $|$ \emph{Swift, SwiftUI, SwiftData, Combine}}{2025}
           \resumeItemListStart
-            \resumeItem{Shipped an iOS app in Swift / SwiftUI (MVVM + Coordinator) with a \textbf{progressive-overload engine} that recommends weight increases and flags plateaus from a lifter's training history.}
+            \resumeItem{Shipped an iOS app in Swift / SwiftUI (MVVM + Coordinator) with a progressive-overload engine that recommends weight increases and flags plateaus from a lifter's training history; workout data modeled with SwiftData and Combine.}
           \resumeItemListEnd
 
     \resumeSubHeadingListEnd
@@ -181,9 +181,9 @@
       {McMaster University}{Hamilton, ON}
       {MEng, Computing \& Software}{Sept. 2025 -- Expected Dec. 2026}
       \resumeItemListStart
-        \resumeItem{Year 1 complete: \textbf{A+ in Simple Type Theory and Microservices-Oriented Architectures}.}
+        \resumeItem{Year 1 complete: \textbf{A+} in Simple Type Theory and Microservices-Oriented Architectures.}
         \resumeItem{Research with Dr. Farmer and Dr. Paige: an LLM-based study companion pairing retrieval over course material with locally served models.}
-        \resumeItem{Built \textbf{PodcastHub} for the distributed-systems course: six event-driven microservices (Node/Express, Python/FastAPI) choreographed over a RabbitMQ topic exchange with MinIO and FFmpeg.}
+        \resumeItem{Built \textbf{PodcastHub} for the distributed-systems course: six event-driven microservices (Node/Express, Python/FastAPI) choreographed over a RabbitMQ topic exchange with MinIO object storage and FFmpeg media processing.}
       \resumeItemListEnd
     \resumeSubheading
       {McMaster University}{Hamilton, ON}

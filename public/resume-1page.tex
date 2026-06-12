@@ -84,7 +84,7 @@
 %-----------SUMMARY-----------
 \section{Summary}
 \vspace{2pt}
-\small{Software engineer who builds the tooling a finance desk actually runs on: a quoting engine matching TValue to the penny, a booking-and-payments platform processing real revenue, and a multi-agent system automating funding-deal documents. Equipment-finance domain fluency from Mitsubishi HC Capital that most engineers don't have.}
+\small{Software engineer who builds the tooling a finance desk actually runs on: a quoting engine matching TValue to the penny, a booking-and-payments platform processing real client revenue, and a multi-agent system automating funding-deal documents. Equipment-finance domain fluency from Mitsubishi HC Capital that most engineers don't have.}
 \vspace{-4pt}
 
 %-----------EXPERIENCE-----------
@@ -101,11 +101,18 @@
         \resumeItem{Also carry the desk's sales book: funded \textbf{\$4M against a \$2M monthly target}, beating quota every month since month two.}
       \resumeItemListEnd
     \resumeSubheading
+      {Founder \& Software Engineer}{Jan. 2024 -- Present}
+      {SKomp Studio}{Remote}
+      \resumeItemListStart
+        \resumeItem{Founded a software studio and designed, shipped, and now operate its client platform, \href{https://www.solsticepilates.ca/}{\textbf{Solstice Pilates}}, solo: multi-tenant booking and payments with scheduling, waitlists, Square recurring memberships, and a 23-page admin portal.}
+        \resumeItem{In production since launch with \textbf{500+ registered users} and \textbf{\$40K+ CAD processed}. Underneath, \textbf{1,600+ automated tests}, idempotent payments, webhook signature verification, and row-level tenant isolation.}
+      \resumeItemListEnd
+    \resumeSubheading
       {Junior Web Developer}{May 2021 -- Jun. 2022}
       {Giftcash Inc.}{Remote}
       \resumeItemListStart
-        \resumeItem{Migrated a legacy \textbf{Python / Django monolith to Node.js on AWS Lambda} and tuned PostgreSQL with indexes, caching, and query rewrites that killed the sequential scans on the gift-card lookup.}
-        \resumeItem{Automated gift-card balance verification with a \textbf{Puppeteer + Axios} pipeline and stood up Jenkins / GitHub Actions CI/CD; no more manual checks or releases.}
+        \resumeItem{Migrated a legacy Python / Django monolith to Node.js on AWS Lambda and tuned PostgreSQL with indexes, caching, and query rewrites that killed the sequential scans on the gift-card lookup.}
+        \resumeItem{Automated gift-card balance verification with a Puppeteer + Axios pipeline and stood up Jenkins / GitHub Actions CI/CD; no more manual checks or releases.}
       \resumeItemListEnd
   \resumeSubHeadingListEnd
 
@@ -113,15 +120,14 @@
 \section{Projects}
     \resumeSubHeadingListStart
       \resumeProjectHeading
-          {\href{https://www.solsticepilates.ca/}{\textbf{Solstice Pilates}} $\cdot$ multi-tenant booking \& payments SaaS $|$ \emph{Next.js, Prisma, Neon, Square}}{2025 -- Present}
-          \resumeItemListStart
-            \resumeItem{Designed and shipped the entire platform \textbf{solo}: scheduling with waitlists, Square payments and recurring memberships, a 23-page admin portal. It runs live operations: \textbf{500+ registered users}, \textbf{\$20K+ CAD processed}, 1,600+ automated tests.}
-            \resumeItem{Found and fixed money-losing production payment bugs: a double cents conversion saving a \$50 discount as \textbf{\$5,000}, a 4x undercount in ad-conversion reporting, and tax under-reported on subscription renewals.}
-          \resumeItemListEnd
-      \resumeProjectHeading
           {\textbf{Personal Agentic OS} $\cdot$ multi-agent automation platform $|$ \emph{Python, TypeScript, Claude, systemd, Tailscale}}{2026}
           \resumeItemListStart
-            \resumeItem{Built and operate a self-hosted multi-agent platform: \textbf{30+ scheduled automations} and email-triggered workers that turn funding-deal packages into ready-to-file documents in minutes, every worker sandboxed in a kernel-namespace jail.}
+            \resumeItem{Built and operate the self-hosted multi-agent platform behind the deal-document services above: \textbf{30+ scheduled automations} and email-triggered workers replying in minutes, each sandboxed in a kernel-namespace jail.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\href{https://mike-ross.ca/}{\textbf{Mike Ross AI}} $\cdot$ legal RAG assistant (Delta Hacks 12) $|$ \emph{LangGraph, MongoDB Atlas, FastAPI}}{2026}
+          \resumeItemListStart
+            \resumeItem{Built a legal assistant that answers Canadian-law questions with section-level citations via a LangGraph state machine and hybrid keyword + vector retrieval over \textbf{16,000+ documents}; live at mike-ross.ca.}
           \resumeItemListEnd
     \resumeSubHeadingListEnd
 
