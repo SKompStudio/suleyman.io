@@ -128,7 +128,7 @@
           \resumeItemListStart
             \resumeItem{Operate the self-hosted multi-agent platform behind the document-validation service above: \textbf{30+ scheduled automations} and email-triggered workers that validate funding-deal packages in minutes, containing prompt-injection risk from untrusted attachments.}
             \resumeItem{Every untrusted worker runs in a kernel-namespace sandbox (bubblewrap) behind fail-closed gates; secrets live in a 1Password vault, backups run nightly off-site, and a health watchdog emails on problem-state transitions.}
-            \resumeItem{Runs an autonomous overnight pipeline that picks a candidate idea, builds and tests it in an isolated git worktree, and publishes behind a \textbf{12-check eval gate} (dependency vulnerabilities, secret hygiene, origin integrity, a model-based validator), refusal reasons persisted to an audit log; monitored from an iOS app over Tailscale.}
+            \resumeItem{Runs an autonomous overnight pipeline that picks a candidate idea, builds and tests it in an isolated git worktree, and publishes behind a \textbf{12-check eval gate} (dependency vulnerabilities, secret hygiene, origin integrity, a model-based validator), refusal reasons persisted to an audit log; monitored from an iOS app over Tailscale; heavy jobs dispatch to a second compute node through a FastAPI work queue with artifact upload.}
             \resumeItem{Includes a fully local RAG stack (qwen2.5 on an RTX 3080) returning cited answers in \textbf{about 4s} at zero API cost, plus a Whisper voice-note router that files each note to the right project, tuned against Recall@10.}
           \resumeItemListEnd
 
@@ -142,19 +142,20 @@
       \resumeProjectHeading
           {\href{https://applify-ai.com/}{\underline{\textbf{Applify AI}}} $\cdot$ resume-tailoring SaaS $|$ \emph{Next.js, Inngest, OpenAI}}{2025 -- Present}
           \resumeItemListStart
-            \resumeItem{Production SaaS that tailors a resume to a job posting: seven durable Inngest job types drive the OpenAI Responses API with schema-validated outputs, including a \textbf{self-correcting page-fit loop} (up to 20 checkpointed iterations of bullet reduction, LaTeX recompile, page-count check); Stripe billing with idempotent webhooks; 98-test CI suite.}
+            \resumeItem{Production SaaS that tailors a resume to a job posting: seven durable Inngest job types drive the OpenAI Responses API with schema-validated outputs, including a \textbf{self-correcting page-fit loop} (up to 20 checkpointed iterations of bullet reduction, LaTeX recompile, page-count check, about 65 durable steps per document); Stripe billing with idempotent webhooks; 98-test CI suite.}
           \resumeItemListEnd
 
       \resumeProjectHeading
           {\href{https://suleyman.io/}{\underline{\textbf{suleyman.io}}} $\cdot$ personal site built as a product $|$ \emph{Next.js 16, Prisma, Neon, Vercel}}{2026}
           \resumeItemListStart
             \resumeItem{The site is a command-center HUD with a working in-browser terminal (custom REPL, commands and games), live Spotify visualizations, a GitHub-language constellation fed by the GitHub API, and a database-backed resume pipeline serving versioned resume variants from Postgres.}
+            \resumeItem{The resume pipeline behind this document runs on it: server-seeded Prisma rows, versioned LaTeX variants, and ATS-audited PDF builds.}
           \resumeItemListEnd
 
       \resumeProjectHeading
           {\href{https://overload-pro.com/}{\underline{\textbf{OverloadPT}}} $\cdot$ iOS strength-training app $|$ \emph{Swift, SwiftUI, SwiftData, Combine}}{2025}
           \resumeItemListStart
-            \resumeItem{Built an iOS strength app in SwiftUI + SwiftData: a \textbf{progression engine} pre-fills next-session weights once target sets are hit, with a 102-exercise catalog across 9 muscle groups and Swift Charts trend analytics.}
+            \resumeItem{Built an iOS strength app in SwiftUI + SwiftData: a \textbf{progression engine} pre-fills next-session weights once target sets are hit, with a 102-exercise catalog across 9 muscle groups, Swift Charts trend analytics, and SwiftData persistence.}
           \resumeItemListEnd
 
     \resumeSubHeadingListEnd
@@ -181,7 +182,7 @@
       \resumeItemListStart
         \resumeItem{\textbf{A+} in Simple Type Theory and Microservices-Oriented Architectures.}
         \resumeItem{Research with Dr. Farmer and Dr. Paige: TLA+ and SMT2 specifications for an LLM citation-faithfulness gating layer, verifying that a study companion's generated notes stay attributable to their sources.}
-        \resumeItem{Built \href{https://www.suleyman.io/architecture}{\underline{\textbf{PodcastHub}}} for the distributed-systems course: five event-driven microservices (Node/Express, Python/FastAPI) in six containers with a dedicated FFmpeg worker, choreographed over a RabbitMQ topic exchange with MinIO.}
+        \resumeItem{Built \href{https://www.suleyman.io/architecture}{\underline{\textbf{PodcastHub}}} for the distributed-systems course: five event-driven microservices (Node/Express, Python/FastAPI) in six containers with a dedicated FFmpeg worker, choreographed over a RabbitMQ topic exchange with MinIO presigned-URL storage and a RabbitMQ-to-WebSocket notification bridge.}
       \resumeItemListEnd
     \resumeSubheading
       {McMaster University}{Hamilton, ON}

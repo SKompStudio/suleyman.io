@@ -1,0 +1,54 @@
+%-------------------------
+% Cover letter — AI labs / agentic-systems variant (Anthropic, OpenAI, frontier labs)
+% Tailor per application by editing the THREE commands below, nothing else.
+% Build: pdflatex cover-letter-ai-labs.tex
+%-------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage[hidelinks]{hyperref}
+\usepackage[english]{babel}
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\addtolength{\oddsidemargin}{-0.3in}
+\addtolength{\evensidemargin}{-0.3in}
+\addtolength{\textwidth}{0.6in}
+\addtolength{\topmargin}{-.4in}
+\addtolength{\textheight}{0.8in}
+\raggedbottom
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{10pt}
+
+% ===== TAILOR THESE THREE LINES PER APPLICATION =====
+\newcommand{\company}{[COMPANY]}
+\newcommand{\role}{[ROLE TITLE]}
+\newcommand{\hook}{[ONE SENTENCE: name the team, system, or engineering post at \company{} your work maps to, and why. Delete this bracket text.]}
+% =====================================================
+
+\begin{document}
+
+\begin{center}
+    {\Huge \scshape Suleyman Kiani} \\ \vspace{3pt}
+    \small Burlington, ON $\cdot$ +1 (289) 788-8260 $\cdot$ \href{mailto:suley.kiani@outlook.com}{\underline{suley.kiani@outlook.com}} $\cdot$ \href{https://suleyman.io}{\underline{suleyman.io}} $\cdot$ \href{https://github.com/kianis4}{\underline{github.com/kianis4}}
+\end{center}
+
+\vspace{8pt}
+\today
+
+Dear \company{} Hiring Team,
+
+I am applying for the \role{} position. \hook{}
+
+For the past year I have run a self-hosted agentic platform as production infrastructure, and it has taught me where these systems actually break. Thirty-plus scheduled automations and email-triggered workers process real documents daily; every untrusted worker runs in a kernel-namespace jail (bubblewrap) behind fail-closed permission gates, because the workers ingest third-party attachments while holding credentials, and prompt injection against that surface is a live threat, not a thought experiment. Cost circuit-breakers and typed error classification keep overnight runs from becoming billing storms. An autonomous pipeline builds and tests projects unattended and publishes only through a 12-check eval gate, with every refusal reason persisted to an audit log. None of this was assembled from a framework tutorial; each guardrail exists because the unguarded version failed in a specific way first.
+
+The rest of my work points the same direction. At Mitsubishi HC Capital I shipped an AI document-validation service through the company's first internal innovation review; it now audits live deal packages in a regulated environment, cutting review from one to two hours to about five minutes. My MEng research applies formal methods to LLM reliability: TLA+ and SMT2 specifications for a citation-faithfulness gating layer that checks whether generated study notes remain attributable to their sources. And through my studio I operate a payments platform solo, where money-handling code answers to 1,600+ automated tests.
+
+Everything above is inspectable, and the architecture is documented publicly at suleyman.io/architecture. I would welcome the chance to bring this operating experience, and the scar tissue behind it, to \company{}.
+
+Sincerely,
+
+Suleyman Kiani
+
+\end{document}

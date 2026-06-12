@@ -23,6 +23,7 @@ const experiences = [
       'Untangled three structurally different subsidy formulas, proved three regional dealer workbooks were re-skins of one template, and collapsed them into shared calculation engines; authored the architecture and handoff documentation that lets the company’s IT org own and extend the tool.',
       'Built an AI document-validation prototype (OCR + ML + rules) for deal-funding review and took it through the company’s first internal innovation review; in pilot on 50+ live deal packages, it cuts review from 1–2 hours to about 5 minutes, each verdict logged to a per-deal audit trail.',
       'Designed a predictive collections scorecard with the credit and portfolio teams: a dual-track model that auto-triages low-risk accounts and scores the rest by recovery priority across about $17–18M of assets in recovery. Each one-point lift in the portfolio recovery rate is worth about $1M; owned the business case, won approval, and now lead the Phase 1 rollout with the desk’s Power BI portfolio and variance reporting behind it.',
+      'Run the desk’s pipeline in Salesforce and build its Power BI portfolio and variance reporting.',
       'Carry an equipment-finance sales book alongside the engineering work: funded $4M against a $2M monthly target (200% of quota) in each of April and May 2026 and have exceeded funding quota every month since my second month in the role.',
     ],
     tech: ['Next.js', 'React', 'TypeScript', 'Python', 'OCR + ML', 'Credit & recovery modeling', 'TValue', 'Power BI'],
