@@ -2,13 +2,12 @@ import 'dotenv/config'
 import { prisma } from '../src/lib/prisma'
 
 const summary =
-  'Software engineer who builds the financial tooling a finance desk actually runs on. Shipped a ' +
-  'production quoting engine that replaces 13 manufacturer Excel calculators and matches the ' +
-  'industry-standard lease-math engine (TValue) to the penny; built and operate a multi-tenant ' +
-  'booking-and-payments platform processing real revenue on Square; run a self-hosted multi-agent ' +
-  'system that automates funding-deal document work end to end. An equipment-finance background at ' +
-  'Mitsubishi HC Capital gives me domain fluency most engineers don’t have. Finishing an MEng in ' +
-  'Computing & Software at McMaster.'
+  'Software engineer who builds the tooling a finance desk actually runs on: a production quoting ' +
+  'engine matching TValue, the industry lease-math standard, to the penny; a multi-tenant ' +
+  'booking-and-payments platform processing real revenue; a self-hosted multi-agent system ' +
+  'automating funding-deal document work. Equipment-finance experience at Mitsubishi HC Capital ' +
+  'gives me domain fluency most engineers don’t have. Finishing an MEng in Computing & Software ' +
+  'at McMaster.'
 
 const experiences = [
   {
@@ -20,11 +19,11 @@ const experiences = [
     endDate: null,
     current: true,
     bullets: [
-      'Replaced 13 abandoned Excel calculators (30–45 sheets each) with one Next.js / React web app spanning all 11 product lines, reverse-engineering each manufacturer’s lease and subsidy math to hit exact penny-parity with TValue on every test deal; backed by 72 automated tests.',
-      'Reverse-engineered three structurally different subsidy formulas and proved three regional dealer workbooks were re-skins of one template, collapsing them into shared calculation engines; wrote a platform-independent architecture and handoff doc so IT can rebuild the tool on any stack.',
-      'Built a working AI document-validation prototype (OCR + ML + rules) for deal-funding review and carried it through the company’s first internal innovation review; it now runs as a live email service that audits real deal packages unattended.',
-      'Designed and am implementing a predictive collections scorecard with the credit and portfolio teams: a dual-track model that auto-triages low-risk accounts and scores the rest by recovery priority across about $17–18M of assets in recovery, where each 1% of recovery improvement is worth about $1M; owned the business case, won approval to proceed, and am driving the phased rollout.',
-      'Automated the desk’s most repetitive document work (power-of-attorney, asset-registration, and pre-funding packages) into email-triggered services that reply within minutes with complete, ready-to-file documents.',
+      'Rebuilt 13 abandoned Excel calculators (30–45 sheets each) as one Next.js / React web app covering all 11 product lines; reverse-engineered each manufacturer’s lease and subsidy math and pinned penny-parity with TValue under 72 automated tests.',
+      'Untangled three structurally different subsidy formulas, proved three regional dealer workbooks were re-skins of one template, and collapsed them into shared calculation engines; authored the architecture and handoff documentation that lets the company’s IT org own and extend the tool.',
+      'Built an AI document-validation prototype (OCR + ML + rules) for deal-funding review and took it through the company’s first internal innovation review; it now runs as a live email service that audits real deal packages unattended.',
+      'Designed a predictive collections scorecard with the credit and portfolio teams: a dual-track model that auto-triages low-risk accounts and scores the rest by recovery priority across about $17–18M of assets in recovery. Each one-point lift in the portfolio recovery rate is worth about $1M; owned the business case, won approval, and now drive the phased rollout.',
+      'Turned the desk’s most repetitive document work (power-of-attorney, asset-registration, and pre-funding packages) into email-triggered services that reply within minutes with ready-to-file documents.',
       'Carry an equipment-finance sales book alongside the engineering work: funded $4M against a $2M monthly target (200% of quota) in April and May 2026 and have exceeded funding quota every month since my second month in the role.',
     ],
     tech: ['Next.js', 'React', 'TypeScript', 'Python', 'OCR + ML', 'Credit & recovery modeling', 'TValue', 'Power BI'],
@@ -39,8 +38,7 @@ const experiences = [
     endDate: null,
     current: true,
     bullets: [
-      'Founded a mentorship practice and have coached 100+ learners through algorithms, systems design, and technical-interview preparation, owning client acquisition, scheduling, curriculum, and delivery end to end.',
-      'Built the practice’s web platform myself (Next.js, TypeScript, Google Cloud).',
+      'Founded a mentorship practice: coached 100+ learners through algorithms, systems design, and technical-interview prep, and built its platform (Next.js, TypeScript, Google Cloud).',
     ],
     tech: ['Next.js', 'TypeScript', 'Google Cloud'],
     order: 1,
@@ -54,10 +52,8 @@ const experiences = [
     endDate: 'Jun 2022',
     current: false,
     bullets: [
-      'Migrated a legacy Python/Django monolith to a Node.js AWS Lambda serverless architecture, trading always-on server overhead for per-request billing.',
-      'Tuned PostgreSQL performance with targeted indexing, caching, and query rewrites on the hottest read paths, eliminating the sequential scans behind the gift-card lookup flow.',
-      'Automated gift-card balance verification across providers with a Puppeteer + Axios pipeline, replacing manual per-card checks.',
-      'Stood up Jenkins and GitHub Actions CI/CD so merges deployed without manual release steps.',
+      'Migrated a legacy Python/Django monolith to Node.js on AWS Lambda, trading always-on server overhead for per-request billing, and tuned PostgreSQL with indexing, caching, and query rewrites; that killed the sequential scans behind the gift-card lookup flow.',
+      'Automated gift-card balance verification with a Puppeteer + Axios pipeline and stood up Jenkins and GitHub Actions CI/CD so merges deployed without manual release steps.',
     ],
     tech: ['Python', 'Node.js', 'AWS Lambda', 'PostgreSQL', 'Puppeteer', 'CI/CD'],
     order: 2,
