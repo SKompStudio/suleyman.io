@@ -48,14 +48,32 @@ missing (fresh host), pull it from the Vercel project env: token `op-agentic rea
 `team_KJRDpSaK2GB0l5dqyjjUAXgq`, key `DATABASE_URL` (use `DATABASE_URL_UNPOOLED` if
 Prisma complains about pgbouncer).
 
+## Review team (standing)
+
+Three custom agents in `~/Code/suley-agentic-os/agents/` (deployed via the
+`~/.claude/agents` symlink; registry loads at session start):
+`resume-reviewer-finance` (AAM/credit hiring screen), `resume-reviewer-swe`
+(SWE hiring manager + 6-second scan + credibility audit), `resume-prose-editor`
+(AI-tell hunter). Run all three in parallel after any content change, synthesize,
+apply, then an independent `verifier` pass (page fits, claim grounding, name
+fences, math coherence) before shipping. Proven pattern: 2026-06-12, two rounds.
+
 ## Content rules (learned the hard way)
 
 - **Every claim must be sourced and defensible.** No round percentages without a basis
   (the old Giftcash 20/25/30% were flagged as reading fabricated by a 6-recruiter
   panel — `docs/recruiter-review.md`). Current vetted numbers: 200% of quota ($4M vs
-  $2M), $17–18M recovery book, 850+ Solstice tests, 500+ users, $20K+ CAD, 100+ learners.
-- **Solstice leads with "built the entire platform solo"**, with the payment-bug fixes
-  as the production-ownership proof, never as the headline.
+  $2M, April + May 2026, every month since month two), $17–18M in-recovery stock with
+  ~$1M per point of PORTFOLIO recovery rate (separate bases — never couple them),
+  1,600+ Solstice tests (vitest list 2026-06-12: 1,648), 500+ users, **$40K+ CAD
+  processed since launch** (owner-confirmed 2026-06-12), 100+ learners, 70 Playwright
+  e2e specs per preview, shadow-DB migration checks, Gitleaks CI.
+- **SKomp Studio is the founder ENTITY** (experience entry on every variant); Solstice
+  Pilates is its flagship client platform, built and operated solo.
+- **No payment-bug confession bullets** (owner decision 2026-06-12: bugs in
+  self-authored software read unprofessional). Production rigor is shown through
+  mechanisms: idempotent payments, webhook signature verification, row-level tenant
+  isolation, test/CI counts.
 - **MHC internals stay generic** on anything public: employer name is fine, internal
   tool/stakeholder names are not.
 - **No em-dashes in resume prose.** No spacing tricks to fill pages — add or cut content.
