@@ -2,12 +2,13 @@ import 'dotenv/config'
 import { prisma } from '../src/lib/prisma'
 
 const summary =
-  'Software engineer who builds the financial tooling a finance desk actually runs on: a ' +
-  'production quoting engine that matches the industry-standard lease-math engine (TValue) to the ' +
-  'penny, a multi-tenant booking-and-payments SaaS on Square serving live studio operators, and a ' +
-  'self-hosted multi-agent system that automates real funding-deal document workflows. An ' +
-  'equipment-finance background at Mitsubishi HC Capital gives me domain fluency most engineers ' +
-  'don’t have. Finishing an MEng in Computing & Software at McMaster.'
+  'Software engineer who builds the financial tooling a finance desk actually runs on. Shipped a ' +
+  'production quoting engine that replaces 13 manufacturer Excel calculators and matches the ' +
+  'industry-standard lease-math engine (TValue) to the penny; built and operate a multi-tenant ' +
+  'booking-and-payments platform processing real revenue on Square; run a self-hosted multi-agent ' +
+  'system that automates funding-deal document work end to end. An equipment-finance background at ' +
+  'Mitsubishi HC Capital gives me domain fluency most engineers don’t have. Finishing an MEng in ' +
+  'Computing & Software at McMaster.'
 
 const experiences = [
   {
@@ -22,12 +23,27 @@ const experiences = [
       'Replaced 13 abandoned Excel calculators (30–45 sheets each) with one Next.js / React web app spanning all 11 product lines, reverse-engineering each manufacturer’s lease and subsidy math to hit exact penny-parity with TValue on every test deal; backed by 72 automated tests.',
       'Reverse-engineered three structurally different subsidy formulas and proved three regional dealer workbooks were re-skins of one template, collapsing them into shared calculation engines; wrote a platform-independent architecture and handoff doc so IT can rebuild the tool on any stack.',
       'Built a working AI document-validation prototype (OCR + ML + rules) for deal-funding review and carried it through the company’s first internal innovation review; it now runs as a live email service that audits real deal packages unattended.',
-      'Designed and am implementing a predictive collections scorecard with the credit and portfolio teams that prioritizes about $17–18M of assets in recovery, where each 1% of recovery improvement is worth about $1M; owned the business case, won approval to proceed, and am driving the rollout.',
+      'Designed and am implementing a predictive collections scorecard with the credit and portfolio teams: a dual-track model that auto-triages low-risk accounts and scores the rest by recovery priority across about $17–18M of assets in recovery, where each 1% of recovery improvement is worth about $1M; owned the business case, won approval to proceed, and am driving the phased rollout.',
       'Automated the desk’s most repetitive document work (power-of-attorney, asset-registration, and pre-funding packages) into email-triggered services that reply within minutes with complete, ready-to-file documents.',
-      'Carry an equipment-finance sales book, funding 200% of new-business target ($4M against $2M).',
+      'Carry an equipment-finance sales book alongside the engineering work: funded $4M against a $2M monthly target (200% of quota) in April and May 2026 and have exceeded funding quota every month since my second month in the role.',
     ],
-    tech: ['Next.js', 'React', 'TypeScript', 'Python', 'OCR + ML', 'Credit & recovery modeling', 'TValue'],
+    tech: ['Next.js', 'React', 'TypeScript', 'Python', 'OCR + ML', 'Credit & recovery modeling', 'TValue', 'Power BI'],
     order: 0,
+  },
+  {
+    role: 'Founder',
+    company: 'SKompXcel Academic Solutions',
+    companyUrl: null,
+    location: 'Remote',
+    startDate: 'Jan 2024',
+    endDate: null,
+    current: true,
+    bullets: [
+      'Founded a mentorship practice and have coached 100+ learners through algorithms, systems design, and technical-interview preparation, owning client acquisition, scheduling, curriculum, and delivery end to end.',
+      'Built the practice’s web platform myself (Next.js, TypeScript, Google Cloud).',
+    ],
+    tech: ['Next.js', 'TypeScript', 'Google Cloud'],
+    order: 1,
   },
   {
     role: 'Junior Web Developer',
@@ -38,11 +54,13 @@ const experiences = [
     endDate: 'Jun 2022',
     current: false,
     bullets: [
-      'Migrated a legacy Python/Django monolith to a Node.js AWS Lambda serverless architecture (per-request billing, no always-on servers) and tuned PostgreSQL with targeted indexing and caching on the hottest read paths.',
-      'Automated gift-card balance verification across providers with a Puppeteer + Axios pipeline and stood up Jenkins / GitHub Actions CI/CD, replacing manual checks and manual releases.',
+      'Migrated a legacy Python/Django monolith to a Node.js AWS Lambda serverless architecture, trading always-on server overhead for per-request billing.',
+      'Tuned PostgreSQL performance with targeted indexing, caching, and query rewrites on the hottest read paths, eliminating the sequential scans behind the gift-card lookup flow.',
+      'Automated gift-card balance verification across providers with a Puppeteer + Axios pipeline, replacing manual per-card checks.',
+      'Stood up Jenkins and GitHub Actions CI/CD so merges deployed without manual release steps.',
     ],
     tech: ['Python', 'Node.js', 'AWS Lambda', 'PostgreSQL', 'Puppeteer', 'CI/CD'],
-    order: 1,
+    order: 2,
   },
 ]
 
@@ -54,7 +72,7 @@ const educations = [
     startDate: 'Sept 2025',
     endDate: 'Dec 2026 (expected)',
     details:
-      'Research with Dr. Farmer and Dr. Paige on an LLM-based study companion that combines retrieval with local model serving. A+ in Simple Type Theory and Microservices-Oriented Architectures. Built PodcastHub for the distributed-systems course: six event-driven microservices across Node/Express and Python/FastAPI, each a hexagonal bounded context, choreographed over a RabbitMQ topic exchange with MinIO object storage and FFmpeg media processing.',
+      'Year 1 complete with A+ in Simple Type Theory and Microservices-Oriented Architectures. Research with Dr. Farmer and Dr. Paige on an LLM-based study companion that combines retrieval over course material with locally served models. Built PodcastHub for the distributed-systems course: six event-driven microservices across Node/Express and Python/FastAPI, each a hexagonal bounded context, choreographed over a RabbitMQ topic exchange with MinIO object storage and FFmpeg media processing.',
     order: 0,
   },
   {
@@ -86,6 +104,7 @@ const skillsByCategory: Record<string, string[]> = {
     'Subsidy & blended-rate modeling',
     'Credit-scorecard & recovery modeling',
     'Deal-funding workflows',
+    'Power BI',
   ],
   Practices: ['TDD (Vitest, Playwright)', 'CI/CD', 'GitHub Actions', 'systemd automation'],
 }
