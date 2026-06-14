@@ -47,3 +47,6 @@ public/*.out
 public/*.fls
 public/*.fdb_latexmk
 public/*.synctex.gz
+
+# never track editor/backup copies
+*.bak
