@@ -32,7 +32,7 @@ export function LensToggle({ className }: { className?: string }) {
             className={clsx(
               'flex min-h-[44px] min-w-[64px] items-center justify-center rounded px-3 transition-colors',
               active
-                ? 'bg-signal/15 text-signal'
+                ? 'bg-accent/15 text-accent'
                 : 'text-zinc-500 hover:text-zinc-800 dark:text-ink-muted dark:hover:text-ink-text'
             )}
           >

@@ -19,7 +19,7 @@ export function ResumeSectionCard({
         <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">
           {title} <span className="ml-1 text-sm text-zinc-400">· {items.length}</span>
         </h2>
-        <Link href={newHref} className="text-sm font-medium text-teal-600 hover:underline dark:text-teal-400">
+        <Link href={newHref} className="text-sm font-medium text-accent hover:underline dark:text-accent">
           + New
         </Link>
       </div>

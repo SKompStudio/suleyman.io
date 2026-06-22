@@ -19,7 +19,7 @@ type Post = {
 const STATUS_STYLES: Record<Post['status'], string> = {
   DRAFT: 'bg-zinc-100 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300',
   SCHEDULED: 'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300',
-  PUBLISHED: 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-300',
+  PUBLISHED: 'bg-accent text-accent dark:bg-accent/30 dark:text-accent',
   ARCHIVED: 'bg-zinc-100 text-zinc-500 dark:bg-zinc-900 dark:text-zinc-500',
 }
 
@@ -40,7 +40,7 @@ export function PostsTable({ posts }: { posts: Post[] }) {
   return (
     <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
       {flash && (
-        <div className="border-b border-zinc-200 bg-teal-50 px-4 py-2 text-sm text-teal-800 dark:border-zinc-800 dark:bg-teal-900/20 dark:text-teal-300">
+        <div className="border-b border-zinc-200 bg-accent px-4 py-2 text-sm text-accent dark:border-zinc-800 dark:bg-accent/20 dark:text-accent">
           {flash}
         </div>
       )}
@@ -73,14 +73,14 @@ export function PostsTable({ posts }: { posts: Post[] }) {
                 {new Date(p.updatedAt).toLocaleDateString()}
               </td>
               <td className="px-3 py-2 text-right space-x-2">
-                <Link href={`/admin/posts/${p.id}`} className="text-xs font-medium text-teal-600 hover:underline dark:text-teal-400">
+                <Link href={`/admin/posts/${p.id}`} className="text-xs font-medium text-accent hover:underline dark:text-accent">
                   Edit
                 </Link>
                 {p.status !== 'PUBLISHED' && (
                   <button
                     disabled={pending}
                     onClick={() => run(setPostStatus({ slug: p.slug, status: 'PUBLISHED' }), `${p.slug} published`)}
-                    className="text-xs font-medium text-teal-600 hover:underline dark:text-teal-400 disabled:opacity-50"
+                    className="text-xs font-medium text-accent hover:underline dark:text-accent disabled:opacity-50"
                   >
                     Publish
                   </button>

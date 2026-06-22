@@ -79,7 +79,7 @@ export function ArticleTimeline({ points }: { points: Point[] }) {
             return (
               <g key={`${p.t}-${i}`}>
                 <line x1={x} y1={axisY} x2={x} y2={y} stroke="#5BC8FF" strokeOpacity={0.2} strokeWidth={1} />
-                <circle cx={x} cy={y} r={3.5} fill="#0A0E14" stroke="#5BC8FF" strokeWidth={1.4} style={{ filter: 'drop-shadow(0 0 3px #5BC8FF)' }}>
+                <circle cx={x} cy={y} r={3.5} fill="#06080B" stroke="#5BC8FF" strokeWidth={1.4} style={{ filter: 'drop-shadow(0 0 3px #5BC8FF)' }}>
                   <title>{p.title}</title>
                 </circle>
               </g>

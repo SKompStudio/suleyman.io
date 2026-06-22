@@ -43,47 +43,47 @@ export default async function AdminDashboard() {
         <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           <Link
             href="/admin/posts"
-            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-teal-400 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-teal-600"
+            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-accent hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-accent"
           >
             <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Posts</h2>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{postCount} total</p>
-            <p className="mt-3 text-sm text-teal-600 dark:text-teal-400">Manage blog →</p>
+            <p className="mt-3 text-sm text-accent dark:text-accent">Manage blog →</p>
           </Link>
 
           <Link
             href="/admin/projects"
-            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-teal-400 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-teal-600"
+            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-accent hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-accent"
           >
             <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Projects</h2>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{projectCount} in DB</p>
-            <p className="mt-3 text-sm text-teal-600 dark:text-teal-400">Manage portfolio →</p>
+            <p className="mt-3 text-sm text-accent dark:text-accent">Manage portfolio →</p>
           </Link>
 
           <Link
             href="/admin/media"
-            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-teal-400 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-teal-600"
+            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-accent hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-accent"
           >
             <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Media</h2>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{mediaCount} files</p>
-            <p className="mt-3 text-sm text-teal-600 dark:text-teal-400">Browse uploads →</p>
+            <p className="mt-3 text-sm text-accent dark:text-accent">Browse uploads →</p>
           </Link>
 
           <Link
             href="/admin/resume"
-            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-teal-400 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-teal-600"
+            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-accent hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-accent"
           >
             <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Resume</h2>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{resumeItemCount} items across sections</p>
-            <p className="mt-3 text-sm text-teal-600 dark:text-teal-400">Edit resume →</p>
+            <p className="mt-3 text-sm text-accent dark:text-accent">Edit resume →</p>
           </Link>
 
           <Link
             href="/admin/settings"
-            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-teal-400 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-teal-600"
+            className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm transition hover:border-accent hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-accent"
           >
             <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Settings</h2>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">Hero + social links</p>
-            <p className="mt-3 text-sm text-teal-600 dark:text-teal-400">Configure site →</p>
+            <p className="mt-3 text-sm text-accent dark:text-accent">Configure site →</p>
           </Link>
         </section>
       </div>

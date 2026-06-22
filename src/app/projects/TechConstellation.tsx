@@ -205,7 +205,7 @@ export function TechConstellation({
               cx={s.x}
               cy={s.y}
               r={r}
-              fill="#0A0E14"
+              fill="#06080B"
               stroke="#5BC8FF"
               strokeWidth={1.8}
               style={{ filter: 'drop-shadow(0 0 4px #5BC8FF)' }}

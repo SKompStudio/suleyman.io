@@ -74,7 +74,7 @@ export function CertificationForm({ initial }: { initial?: ResumeCertification }
         {initial ? <button type="button" onClick={handleDelete} disabled={pending} className="text-sm text-red-600 hover:underline dark:text-red-400 disabled:opacity-50">Delete</button> : <span />}
         <div className="flex gap-3">
           <button type="button" onClick={() => router.back()} className="text-sm text-zinc-600 dark:text-zinc-400 hover:underline">Cancel</button>
-          <button type="submit" disabled={pending} className="rounded-md bg-teal-600 px-4 py-2 text-sm font-medium text-white hover:bg-teal-700 disabled:opacity-50">
+          <button type="submit" disabled={pending} className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent disabled:opacity-50">
             {pending ? 'Saving…' : initial ? 'Save' : 'Create'}
           </button>
         </div>
@@ -83,7 +83,7 @@ export function CertificationForm({ initial }: { initial?: ResumeCertification }
       <style jsx>{`
         .input { width: 100%; border-radius: 0.375rem; border: 1px solid rgb(212 212 216); background: white; padding: 0.5rem 0.75rem; font-size: 0.875rem; }
         :global(.dark) .input { border-color: rgb(63 63 70); background: rgb(39 39 42); color: rgb(244 244 245); }
-        .input:focus { outline: none; border-color: rgb(20 184 166); box-shadow: 0 0 0 1px rgb(20 184 166); }
+        .input:focus { outline: none; border-color: rgb(91 200 255); box-shadow: 0 0 0 1px rgb(91 200 255); }
       `}</style>
     </form>
   )

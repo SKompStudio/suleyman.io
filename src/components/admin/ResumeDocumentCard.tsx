@@ -38,7 +38,7 @@ export function ResumeDocumentCard({ doc }: { doc: ResumeDocument }) {
     <form onSubmit={handleSubmit} className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
       <div className="mb-4 flex items-center justify-between">
         <h2 className="text-lg font-medium text-zinc-900 dark:text-zinc-100">Document</h2>
-        {flash && <span className="text-xs text-teal-600 dark:text-teal-400">{flash}</span>}
+        {flash && <span className="text-xs text-accent dark:text-accent">{flash}</span>}
       </div>
 
       {error && <p className="mb-3 rounded-md bg-red-50 px-3 py-2 text-sm text-red-700 dark:bg-red-900/20 dark:text-red-400">{error}</p>}
@@ -64,7 +64,7 @@ export function ResumeDocumentCard({ doc }: { doc: ResumeDocument }) {
         <button
           type="submit"
           disabled={saving}
-          className="rounded-md bg-teal-600 px-4 py-2 text-sm font-medium text-white hover:bg-teal-700 disabled:opacity-50"
+          className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white hover:bg-accent disabled:opacity-50"
         >
           {saving ? 'Saving…' : 'Save document'}
         </button>
