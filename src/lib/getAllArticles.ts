@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma'
+import { isSuppressedSlug } from '@/lib/suppressedPosts'
 
 export interface ArticleMeta {
   title: string
@@ -24,19 +25,22 @@ export async function getAllArticles(): Promise<ArticleMeta[]> {
     orderBy: [{ publishedAt: 'desc' }, { updatedAt: 'desc' }],
   })
 
-  return posts.map((p) => ({
-    slug: p.slug,
-    title: p.title,
-    description: p.description,
-    date: toIsoDate(p.publishedAt),
-    author: p.author,
-    coverImage: p.coverImage,
-    tags: p.tags,
-    body: p.body,
-  }))
+  return posts
+    .filter((p) => !isSuppressedSlug(p.slug))
+    .map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      description: p.description,
+      date: toIsoDate(p.publishedAt),
+      author: p.author,
+      coverImage: p.coverImage,
+      tags: p.tags,
+      body: p.body,
+    }))
 }
 
 export async function getArticle(slug: string): Promise<ArticleMeta | null> {
+  if (isSuppressedSlug(slug)) return null
   const p = await prisma.post.findFirst({
     where: { slug, status: 'PUBLISHED' },
   })

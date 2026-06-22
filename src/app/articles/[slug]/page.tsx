@@ -6,12 +6,14 @@ import { getArticle } from '@/lib/getAllArticles'
 import { MarkdownArticle } from '@/components/MarkdownArticle'
 import { articleStats } from '../readingTime'
 import { buildMeta } from '@/lib/buildMeta'
+import { isSuppressedSlug } from '@/lib/suppressedPosts'
 import '../article.css'
 
 export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+  if (isSuppressedSlug(slug)) return {}
   const article = await getArticle(slug)
   if (!article) return {}
   return buildMeta({
@@ -23,6 +25,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+
+  if (isSuppressedSlug(slug)) {
+    notFound()
+  }
+
   const article = await getArticle(slug)
 
   if (!article || !article.body) {
