@@ -132,7 +132,7 @@ function SystemMap({ warm }: { warm: boolean }) {
               cx={n.x}
               cy={n.y}
               r={r}
-              fill={isHub ? c : '#0A0E14'}
+              fill={isHub ? c : '#06080B'}
               stroke={c}
               strokeWidth={2}
               style={{ filter: `drop-shadow(0 0 ${isHub ? 10 : 4}px ${c})` }}

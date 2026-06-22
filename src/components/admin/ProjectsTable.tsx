@@ -32,7 +32,7 @@ export function ProjectsTable({ rows }: { rows: Row[] }) {
   return (
     <div className="overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
       {flash && (
-        <div className="border-b border-zinc-200 bg-teal-50 px-4 py-2 text-sm text-teal-800 dark:border-zinc-800 dark:bg-teal-900/20 dark:text-teal-300">
+        <div className="border-b border-zinc-200 bg-accent px-4 py-2 text-sm text-accent dark:border-zinc-800 dark:bg-accent/20 dark:text-accent">
           {flash}
         </div>
       )}
@@ -66,7 +66,7 @@ export function ProjectsTable({ rows }: { rows: Row[] }) {
                       onClick={() =>
                         handle(upsertGithubOverride(row.github.githubSlug), `Override created for ${row.github.githubSlug}`)
                       }
-                      className="text-xs font-medium text-teal-600 hover:underline dark:text-teal-400 disabled:opacity-50"
+                      className="text-xs font-medium text-accent hover:underline dark:text-accent disabled:opacity-50"
                     >
                       + Create override
                     </button>
@@ -130,7 +130,7 @@ export function ProjectsTable({ rows }: { rows: Row[] }) {
                 <td className="px-3 py-2 text-right space-x-3">
                   <Link
                     href={`/admin/projects/${e.slug}`}
-                    className="text-xs font-medium text-teal-600 hover:underline dark:text-teal-400"
+                    className="text-xs font-medium text-accent hover:underline dark:text-accent"
                   >
                     Edit
                   </Link>

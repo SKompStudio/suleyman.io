@@ -159,7 +159,7 @@ export function PostEditor({ initial, mode }: Props) {
           <button
             type="button"
             onClick={() => setPreview(!preview)}
-            className="text-xs font-medium text-teal-600 hover:underline dark:text-teal-400"
+            className="text-xs font-medium text-accent hover:underline dark:text-accent"
           >
             {preview ? 'Edit' : 'Preview'}
           </button>
@@ -186,7 +186,7 @@ export function PostEditor({ initial, mode }: Props) {
         <button
           type="submit"
           disabled={saving}
-          className="rounded-md bg-teal-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teal-700 disabled:opacity-50"
+          className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent disabled:opacity-50"
         >
           {saving ? 'Saving…' : mode === 'create' ? 'Create draft' : 'Save draft'}
         </button>
@@ -208,8 +208,8 @@ export function PostEditor({ initial, mode }: Props) {
         }
         .input:focus {
           outline: none;
-          border-color: rgb(20 184 166);
-          box-shadow: 0 0 0 1px rgb(20 184 166);
+          border-color: rgb(91 200 255);
+          box-shadow: 0 0 0 1px rgb(91 200 255);
         }
       `}</style>
     </form>

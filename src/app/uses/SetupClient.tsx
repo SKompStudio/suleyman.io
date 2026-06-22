@@ -96,7 +96,7 @@ function MeshNode({ n }: { n: Node }) {
         cx={n.x}
         cy={n.y}
         r={r}
-        fill={isHub ? CYAN : '#0A0E14'}
+        fill={isHub ? CYAN : '#06080B'}
         stroke={c}
         strokeWidth={2}
         style={{ filter: `drop-shadow(0 0 ${isHub ? 10 : 4}px ${c})` }}

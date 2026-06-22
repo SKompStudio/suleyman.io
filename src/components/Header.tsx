@@ -239,8 +239,8 @@ function ModeToggle() {
       className="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
       onClick={toggleMode}
     >
-      <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600" />
-      <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500" />
+      <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-accent [@media(prefers-color-scheme:dark)]:stroke-accent [@media(prefers-color-scheme:dark)]:group-hover:fill-accent [@media(prefers-color-scheme:dark)]:group-hover:stroke-accent" />
+      <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-accent/10 [@media_not_(prefers-color-scheme:dark)]:stroke-accent" />
     </button>
   )
 }
@@ -279,6 +279,25 @@ function Avatar({ large = false, className, ...props }: any) {
           'rounded-full bg-zinc-100 object-cover dark:bg-zinc-800',
           large ? 'h-16 w-16' : 'h-9 w-9'
         )}
+        priority
+      />
+    </Link>
+  )
+}
+
+function BrandLogo({ className }: { className?: string }) {
+  return (
+    <Link
+      href="/"
+      aria-label="suleyman.io home"
+      className={clsx(className, 'pointer-events-auto inline-flex items-center')}
+    >
+      <Image
+        src="/logo.svg"
+        alt="suleyman.io monogram"
+        width={36}
+        height={36}
+        className="h-9 w-9"
         priority
       />
     </Link>
@@ -456,12 +475,17 @@ export function Header({ isOverlay = false }: HeaderProps) {
             style={{ position: "var(--header-inner-position)" as any }}
           >
             <div className="relative flex gap-4">
-              <div className="flex flex-1">
+              <div className="flex flex-1 items-center gap-3">
                 {!isHomePage && (
                   <AvatarContainer>
                     <Avatar />
                   </AvatarContainer>
                 )}
+                {/* Brand monogram (the Skomp HUD personal mark). Source SVG is
+                    public/logo.svg. TODO: regenerate favicon.ico,
+                    apple-touch-icon.png, and og-image.png from this mark — that
+                    needs a rasterizer pass and is left out of this token sweep. */}
+                <BrandLogo />
               </div>
               <div className="flex flex-1 justify-end md:justify-center">
                 <MobileNavigation className="pointer-events-auto md:hidden" />

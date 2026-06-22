@@ -118,7 +118,7 @@ export const projectOverrides: Record<string, ProjectOverride> = {
     description:
       'Knowledge-based chatbot using backward chaining and structured inference for course Q&A.',
     link: { href: 'https://github.com/kianis4/AI-31-Chatbot', label: 'GitHub' },
-    logo: { type: 'icon', name: 'ai', className: 'text-teal-600' },
+    logo: { type: 'icon', name: 'ai', className: 'text-accent' },
     timeframe: 'Mar 2025',
     tech: ['Python', 'Rule-Based Inference', 'CLI'],
   },

@@ -29,7 +29,7 @@ export default async function AdminPostsPage() {
       <div className="mx-auto max-w-6xl space-y-6">
         <header className="flex items-center justify-between">
           <div>
-            <Link href="/admin" className="text-sm text-teal-600 dark:text-teal-400 hover:underline">
+            <Link href="/admin" className="text-sm text-accent dark:text-accent hover:underline">
               ← Back to dashboard
             </Link>
             <h1 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -41,7 +41,7 @@ export default async function AdminPostsPage() {
           </div>
           <Link
             href="/admin/posts/new"
-            className="rounded-md bg-teal-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-teal-700"
+            className="rounded-md bg-accent px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-accent"
           >
             + New post
           </Link>

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="suleyman.io monogram">
+  <title>suleyman.io monogram — HUD S/K mark</title>
+  <!--
+    Skomp HUD personal mark for suleyman.io.
+    Geometry: a chamfered, stencil-cut "S" in arc-reactor cyan (#5BC8FF) on
+    ink (#06080B), framed by thin HUD corner brackets. A 45-degree chamfer is
+    cut into the S mid-bar so the negative space reads as a "K" leg — the mark
+    is S+K. A single gold (#E8B84B) node is the arc-reactor whisper.
+    JetBrains-Mono geometry: uniform stroke rhythm, square terminals, 45-degree
+    cuts only. Designed on a 64-unit grid; favicon-crisp down to 16px.
+  -->
+  <defs>
+    <linearGradient id="sk-cyan" x1="0" y1="0" x2="0" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7AD4FF"/>
+      <stop offset="1" stop-color="#5BC8FF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ink field -->
+  <rect x="0" y="0" width="64" height="64" rx="12" fill="#06080B"/>
+
+  <!-- hairline frame: derived cyan at 12% -->
+  <rect x="3.5" y="3.5" width="57" height="57" rx="9.5" fill="none"
+        stroke="#5BC8FF" stroke-opacity="0.12" stroke-width="1"/>
+
+  <!-- HUD corner brackets (cyan whisper) -->
+  <g fill="none" stroke="#5BC8FF" stroke-opacity="0.55" stroke-width="1.6" stroke-linecap="square">
+    <path d="M9 14 V9 H14"/>
+    <path d="M50 9 H55 V14"/>
+    <path d="M55 50 V55 H50"/>
+    <path d="M14 55 H9 V50"/>
+  </g>
+
+  <!--
+    Stencil "S" spine. Uniform ~6.8-unit stroke weight rendered as a filled
+    outline. Top bar, right drop to mid, mid bar, left drop to bottom, bottom
+    bar. Square terminals throughout (monospace feel).
+  -->
+  <path fill="url(#sk-cyan)" d="
+    M44 18
+    L44 24.8
+    L27.5 24.8
+    L27.5 28.6
+    L46 28.6
+    L46 46
+    L20 46
+    L20 39.2
+    L39.2 39.2
+    L39.2 35.4
+    L20 35.4
+    L20 18
+    Z
+  "/>
+
+  <!--
+    K-notch: a clean 45-degree chamfer cut from the S mid-bar (ink-colored),
+    so the cyan that remains around it reads as the diagonal leg of a K meeting
+    the vertical spine. Cut is grid-aligned to the stroke rhythm.
+  -->
+  <path fill="#06080B" d="
+    M31.4 28.6
+    L46 28.6
+    L46 35.4
+    L38.2 35.4
+    Z
+  "/>
+
+  <!-- arc-reactor gold node — the single warm whisper -->
+  <circle cx="46" cy="21.4" r="2.1" fill="#E8B84B"/>
+  <circle cx="46" cy="21.4" r="4.4" fill="none" stroke="#E8B84B" stroke-opacity="0.35" stroke-width="1"/>
+</svg>
