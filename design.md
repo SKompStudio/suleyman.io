@@ -86,7 +86,7 @@ Section order:
 4. **Education** — MEng ledger, A+ grades, aligned mono (§5).
 5. **Contact** — stoic. `Get in touch.`, real links, resume.pdf. Footer.
 
-On desktop, an optional persistent status line (the operator-terminal top status bar: `SYS OPERATIONAL · UPTIME · NODE skomp-server · UTC clock`) may run as a thin bar; it must carry only real or honestly-static values.
+On desktop, an optional persistent status line (the operator-terminal top status bar: `SYS OPERATIONAL · UPTIME · NODE conductor · UTC clock`) may run as a thin bar; it must carry only real or honestly-static values.
 
 Supporting pages (`/about`, `/projects`, `/resume`, `/articles`, admin CMS) are kept and restyled to match. The full work index lives at `/projects`; the homepage shows a curated service-dashboard subset with a `view all →` affordance.
 

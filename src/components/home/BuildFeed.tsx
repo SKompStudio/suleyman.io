@@ -13,7 +13,7 @@ type Line = {
 }
 
 const LINES: Line[] = [
-  { mark: 'note', rest: 'conductor@skomp-server ~ heartbeat' },
+  { mark: 'note', rest: 'conductor ~ heartbeat' },
   { mark: 'ok', agent: 'career-tailor', rest: 'drained jobs → approval queue' },
   { mark: 'ok', agent: 'doc-watcher', rest: 'audit READY · ~4m reply' },
   { mark: 'building', agent: 'autobuilder', rest: 'building slug in isolated worktree' },
