@@ -4,9 +4,9 @@ import { ReactNode, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react'
 
 const variantStyles = {
   primary:
-    'bg-accent font-semibold text-ink-bg hover:bg-accent/90 active:bg-accent active:text-ink-bg/70',
+    'bg-accent font-semibold text-ink-bg hover:brightness-110 active:brightness-95 active:text-ink-bg/70',
   secondary:
-    'border border-accent/40 bg-accent/10 font-medium text-accent hover:bg-accent/20 hover:border-accent/60 active:bg-accent/10 active:text-accent/70',
+    'border border-accent/40 bg-accent/10 font-medium text-accent hover:bg-accent/20 hover:border-accent/60 hover:brightness-110 active:brightness-95 active:text-accent/70',
 }
 
 type ButtonProps = {
