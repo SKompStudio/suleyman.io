@@ -50,3 +50,5 @@ public/*.synctex.gz
 
 # never track editor/backup copies
 *.bak
+
+.podcasthub-verify.png
