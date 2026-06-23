@@ -2,6 +2,10 @@ import { NextResponse, type NextRequest } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { postInputSchema, setStatusSchema } from '@/lib/postSchemas'
 
+// prisma initializes eagerly (throws on a missing DATABASE_URL), so this route
+// must not be collected at build time. Mirrors the other DB-backed API routes.
+export const dynamic = 'force-dynamic'
+
 // Bearer-token ingest used by the career-engine blog lane (server -> site over
 // HTTP, so the engine never holds the Neon DSN). The token is shared via the
 // BLOG_INGEST_TOKEN env on both sides. This is a SEPARATE auth surface from the
