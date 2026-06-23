@@ -82,9 +82,17 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({ ok: true, posts })
 }
 
-// PATCH: set a post's status. Validated by the existing setStatusSchema. This is
-// the human-gated publish path's write surface (the engine only reaches it via
-// publish_on_approval after a recorded approval); POST can never publish.
+// Statuses this token-gated route is ever allowed to write. PUBLISHED (and
+// SCHEDULED, a deferred publish) are FORBIDDEN here: anything holding the ingest
+// token must never be able to publish — that path is human-gated through the
+// session-cookie admin (requireAdmin). Defense-in-depth at the HTTP layer so the
+// G2 guarantee holds even if a caller crafts a PATCH with status PUBLISHED.
+const TOKEN_WRITABLE_STATUSES = new Set(['DRAFT', 'ARCHIVED'])
+
+// PATCH: set a post's status, restricted to DRAFT/ARCHIVED. This is NOT a publish
+// surface — it can only keep a post a DRAFT or archive it; the engine reaches it
+// via publish_on_approval only after a recorded approval, and even then publishing
+// itself runs through the human-gated admin UI, never this token.
 export async function PATCH(request: NextRequest) {
   if (!authorize(request)) {
     return NextResponse.json({ ok: false, error: 'Unauthorized' }, { status: 401 })
@@ -103,16 +111,16 @@ export async function PATCH(request: NextRequest) {
     return NextResponse.json({ ok: false, error }, { status: 400 })
   }
 
-  const { slug, status, scheduledAt } = parsed.data
-  const data: { status: typeof status; publishedAt?: Date; scheduledAt?: Date | null } = { status }
-  if (status === 'PUBLISHED') {
-    data.publishedAt = new Date()
-    data.scheduledAt = null
-  } else if (status === 'SCHEDULED') {
-    data.scheduledAt = scheduledAt ? new Date(scheduledAt) : null
-  } else {
-    data.scheduledAt = null
+  const { slug, status } = parsed.data
+  if (!TOKEN_WRITABLE_STATUSES.has(status)) {
+    return NextResponse.json(
+      { ok: false, error: 'this endpoint cannot publish; publishing requires admin auth' },
+      { status: 403 }
+    )
   }
+
+  const data: { status: typeof status; publishedAt?: Date; scheduledAt?: Date | null } = { status }
+  data.scheduledAt = null
 
   try {
     await prisma.post.update({ where: { slug }, data })
