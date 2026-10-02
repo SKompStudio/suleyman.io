@@ -13,12 +13,21 @@ type Role = {
 
 const ROLES: Role[] = [
   {
-    key: 'mhc',
-    timeline: '2025–present',
-    company: 'Mitsubishi HC Capital',
-    title: 'Equipment Finance',
+    key: 'launchgood',
+    timeline: 'Oct 2026–',
+    company: 'LaunchGood',
+    title: 'Applied AI Engineer',
     outcome:
-      'Structure and fund equipment-finance deals at 200% of monthly funding quota, and shipped multiple internal automation and AI tools in production.',
+      'Senior (P3) hire into the pod that owns AI initiatives: production agents across operations, trust and safety, support and finance, each gated by evaluation suites in CI.',
+    stack: ['agents', 'evals', 'python'],
+  },
+  {
+    key: 'mhc',
+    timeline: '2025–2026',
+    company: 'Mitsubishi HC Capital',
+    title: 'Associate Account Manager (Software Engineering scope)',
+    outcome:
+      'Funded equipment-finance deals over quota every month from month two, and built a quoting tool now owned by corporate IT, a collections risk scorecard the SVP announced org-wide, and an AI document-validation service.',
     stack: ['credit', 'structuring', 'automation'],
   },
   {
@@ -44,9 +53,9 @@ const ROLES: Role[] = [
 const KEYS = ROLES.map((r) => r.key)
 
 const RANKS: Record<Lens, readonly string[]> = {
-  both: ['mhc', 'skompxcel', 'giftcash'],
-  fin: ['mhc', 'skompxcel', 'giftcash'],
-  eng: ['skompxcel', 'giftcash', 'mhc'],
+  both: ['launchgood', 'mhc', 'skompxcel', 'giftcash'],
+  fin: ['launchgood', 'mhc', 'skompxcel', 'giftcash'],
+  eng: ['launchgood', 'skompxcel', 'giftcash', 'mhc'],
 }
 
 export function ExperienceList() {

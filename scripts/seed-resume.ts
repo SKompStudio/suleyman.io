@@ -2,32 +2,46 @@ import 'dotenv/config'
 import { prisma } from '../src/lib/prisma'
 
 const summary =
-  'Software engineer who builds the tooling a finance desk actually runs on: a production quoting ' +
-  'engine matching TValue, the industry lease-math standard, to the penny; a multi-tenant ' +
-  'booking-and-payments platform processing real revenue; a self-hosted agentic platform ' +
-  'with sandboxed workers and fail-closed gates. Equipment-finance experience at Mitsubishi HC Capital ' +
-  'gives me domain fluency most engineers don’t have. MEng in Computing & Software ' +
-  'at McMaster.'
+  'Applied AI engineer who ships agents with their evals attached. A year inside a regulated commercial ' +
+  'lender taking systems from business discovery through IT intake and security review to corporate ' +
+  'handoff, alongside a founder’s multi-tenant payments platform that a real business runs on. MEng in ' +
+  'Computing & Software at McMaster, where my project formally verifies that an LLM pipeline cannot ' +
+  'release an uncited claim or leak a confidential one.'
 
 const experiences = [
   {
-    role: 'Associate Account Manager, Equipment Finance',
+    role: 'Applied AI Engineer',
+    company: 'LaunchGood',
+    companyUrl: 'https://www.launchgood.com/',
+    location: 'Remote',
+    startDate: 'Oct 2026',
+    endDate: null,
+    current: true,
+    bullets: [
+      'Senior (P3) hire into the pod that owns AI initiatives at a global crowdfunding platform: production agents and automations across operations, trust and safety, support and finance, each gated by evaluation suites in CI (deterministic checks, LLM-as-judge, human review). The hiring bar was a deployed, evaluated prototype: Zakat-Eligibility Triage.',
+    ],
+    tech: ['Python', 'LLM agents', 'Evaluation suites', 'LLM-as-judge'],
+    order: 0,
+  },
+  {
+    role: 'Associate Account Manager (Software Engineering scope)',
     company: 'Mitsubishi HC Capital Canada',
     companyUrl: 'https://www.mhccna.com/',
     location: 'Burlington, ON',
     startDate: 'Sept 2025',
-    endDate: null,
-    current: true,
+    endDate: 'Oct 2026',
+    current: false,
     bullets: [
-      'Replaced 13 abandoned Excel pricing calculators with one bilingual Next.js and TypeScript application spanning 14 dealer programs and 9 pricing engines; rate configurations are versioned Postgres rows, so repricing is a data change and never a deploy. Built solo alongside a full-time credit-operations role and on nobody\u2019s roadmap: in production since May 2026, cleared formal IT intake and a security review panel, and owned and run by corporate IT today.',
-      'Certified it against the booking system of record by reconciling 40+ funded deals to the cent, reproducing every booked cash-flow vector and proving the NPV and IRR identities on the actual flows, not its own output. Gated every change behind a 1,396-test suite with mutation-tested assertions, 42 deal fixtures kept server-only, and expected-fail tests holding known gaps open; it caught 7 of 9 engines silently quoting wrong terms.',
-      'Embedded with the national programs owner and turned tribal pricing knowledge into 16 written rulings that now supersede every spreadsheet, spanning capital and FMV leases, loans, residuals, and credit-tier cost-of-funds ladders.',
-      'Designed the collections risk scorecard now in rollout to 25+ collectors, derived on six years of delinquency history: five bands separate default probability from 0.647 to 0.017, a 38x spread with no rank reversals. Re-scored a fresh 1,748-contract book into 1,023 ranked for action and 725 routed out across $66.4M of net investment, returning the band analysis and escalation shortlist the same evening it was asked for. Approved to launch in August 2026 with zero scoring parameters challenged.',
-      'Built the AI document-validation service and the evaluation harness that measures it, cutting a 1 to 2 hour manual first pass to about a minute, advisory only and at zero incremental spend on data the company already held.',
-      'Funded $50M in new business over the past year on the vendor-finance book I co-cover, clearing a $2M monthly quota every month since my second, on tickets from $100K to $1.5M. Structure and author the credit underwriting submissions that credit adjudicates: spread and analyze borrower financial statements for liquidity, leverage, fixed-charge coverage, working capital, and tangible net worth.',
+      'Built one bilingual TypeScript application to replace 13 Excel pricing calculators across 14 manufacturers and 9 pricing engines; rate configs are versioned Postgres rows with an audit log, so repricing never needs a code deploy.',
+      'Carried it through enterprise SDLC: formal IT intake (a nine-document security-scoped submission), a leadership review, an IT pre-review, then a handoff of source, calculation spec and 16 written rulings (capital and FMV leases, loans, residuals, cost-of-funds ladders) to corporate IT, which now owns it and is deploying it from that documentation.',
+      'Validated its finance core (payment, rate and IRR functions) against the booking system of record: 45 funded deals reproduced to within half a cent given each deal’s booked rate and structure, so the arithmetic is proven on real flows, not its own output.',
+      'Gated it behind a 1,370-test suite with mutation-tested assertions, funded-deal fixtures kept server-only and expected-fail tests holding known gaps open; it caught 7 of 9 engines silently quoting wrong terms.',
+      'Co-designed, with two colleagues, a collections risk scorecard from six years of delinquency history: five bands separate average default probability 0.647 to 0.017 on the scored live book, a 38x spread with no reversals; model selection used customer-grouped cross-validation.',
+      'Approved for launch and announced org-wide by the SVP in Sept. 2026 as a risk-based prioritization tool after it re-scored a 1,748-contract book, ranking 1,023 contracts carrying $66.4M of net investment; collections managers now work from its daily list.',
+      'Built the AI document-validation service: LLM extraction checked against a documented rules checklist, behind a deterministic intake-and-retry state machine, returning a READY / NOT READY verdict on a deal package at a median of 4.9 minutes over 56 runs; advisory only, zero incremental spend on data already held.',
     ],
-    tech: ['Next.js', 'React', 'TypeScript', 'Python', 'LLM extraction', 'Credit underwriting', 'TValue', 'Power BI'],
-    order: 0,
+    tech: ['TypeScript', 'Next.js', 'PostgreSQL', 'Python', 'LLM extraction', 'Mutation testing'],
+    order: 1,
   },
   {
     role: 'Software Engineer & Founder',
@@ -38,15 +52,15 @@ const experiences = [
     endDate: null,
     current: true,
     bullets: [
-      'Built Incite, a white-label multi-tenant booking-and-payments platform on a 59-model Prisma schema and 172 API routes: scheduling, FIFO waitlists and capacity gating, Square payments, recurring memberships with tax handling, digital waivers, ticketing, and per-tenant theming.',
-      'Its flagship tenant, Solstice Pilates, runs its entire operation on it with no parallel manual system: $45K+ CAD processed since launch across 640 registered users, 1,380 confirmed bookings, and 105 active memberships.',
-      'Treated money as the part that cannot be wrong: idempotent Square payment processing, webhook signature verification, and row-level tenant isolation through a scoped Prisma client enforced on every query path.',
-      'Run it like a team would: 5,000+ automated tests gating every merge, Playwright suites as required status checks, Gitleaks secret scanning in CI, and branch-protected PRs with a Vercel preview deploy per change.',
-      'Building SKomp Forge, an agentic iOS training coach, across 11 Swift 6 modules with 52 architecture decision records carrying the tradeoffs. Its agent exposes 18 tool schemas pinned in both Swift and Python and diff-tested so the two can never silently drift, and every write is a typed proposal the lifter confirms by tap. Full-duplex voice on gpt-realtime holds P90 313ms to first audio against a 1,500ms gate, with the phone never holding an API key.',
-      'Coached 100+ learners through algorithms, systems design, and technical-interview prep, running every engagement end to end since 2024: acquisition, pricing, curriculum design, live sessions, and follow-up review.',
+      'Built Incite, a white-label multi-tenant booking-and-payments platform on a 74-model Prisma schema and 196 REST API routes: scheduling, waitlists, Square payments, memberships, ticketing and per-tenant theming.',
+      'Its flagship tenant runs its entire operation on it: $45K+ CAD processed since launch across 640 registered users, 1,380 confirmed bookings and 105 active memberships, all self-serve with no parallel manual system.',
+      'Money is the part that cannot be wrong: idempotent payments, webhook signature verification and tenant isolation enforced in a tenant-scoped data-access layer, guarded by a build-failing test for unscoped models.',
+      'Run it to enterprise standards: 6,000+ automated tests gating every merge, Playwright suites as required status checks, Gitleaks secret scanning in CI, and branch-protected pull requests with a preview deploy per change.',
+      'Rebuilt my training app, SKomp Forge, into an agentic coach across 11 Swift 6 modules, shipping to TestFlight: 36 tool schemas pinned in both Swift and Python and diff-tested for drift, every write a typed proposal the lifter confirms by tap, and full-duplex voice holding P90 313ms text-to-first-audio under a 1,500ms budget.',
+      'Mentored 100+ learners through algorithms, systems design and interview preparation, running every engagement end to end since 2024: acquisition, pricing, curriculum design, live sessions and follow-up review.',
     ],
     tech: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL (Neon)', 'Square', 'Swift 6', 'SwiftUI', 'OpenAI Realtime'],
-    order: 1,
+    order: 2,
   },
   {
     role: 'Junior Web Developer',
@@ -57,11 +71,10 @@ const experiences = [
     endDate: 'Jun 2022',
     current: false,
     bullets: [
-      'Migrated a legacy Python/Django monolith to Node.js on AWS Lambda, trading always-on server overhead for per-request billing, and tuned PostgreSQL with indexing, caching, and query rewrites; that killed the sequential scans behind the gift-card lookup flow.',
-      'Automated gift-card balance verification with a Puppeteer + Axios pipeline and stood up Jenkins and GitHub Actions CI/CD so merges deployed without manual release steps.',
+      'As one of three engineers in a 30 to 40 person development organization, migrated a legacy Django monolith to Node.js on AWS Lambda for per-request billing, tuned PostgreSQL indexes to kill the sequential scans behind balance lookup and stood up Jenkins and GitHub Actions CI/CD.',
     ],
-    tech: ['Python', 'Node.js', 'AWS Lambda', 'PostgreSQL', 'Puppeteer', 'CI/CD'],
-    order: 2,
+    tech: ['Python', 'Node.js', 'AWS Lambda', 'PostgreSQL', 'CI/CD'],
+    order: 3,
   },
 ]
 
@@ -71,9 +84,14 @@ const educations = [
     school: 'McMaster University',
     location: 'Hamilton, ON',
     startDate: 'Sept 2025',
-    endDate: '2026',
-    details:
-      'Specialization across distributed systems, microservices, and applied ML/retrieval; A+ in Simple Type Theory and Microservices-Oriented Architectures. Research with Dr. Farmer and Dr. Paige on an LLM-based study companion that combines retrieval over course material with locally served models. Built PodcastHub for the distributed-systems course: five event-driven microservices across Node/Express and Python/FastAPI (six containers, with a dedicated FFmpeg worker), each a hexagonal bounded context, choreographed over a RabbitMQ topic exchange with MinIO object storage.',
+    endDate: '2027 (expected)',
+    details: [
+      'Mac Study Companion, co-supervised by Dr. Richard Paige and Dr. William Farmer and judged complete by both in Sept. 2026: a lecture-to-study-notes pipeline in which no claim reaches a student until it cites its exact source. A Z3/SMT encoder emits a four-conjunct verification condition (completeness, support gating, non-interference over a confidentiality lattice, recall floor); the gate refuses if any conjunct fails.',
+      'Model-checked the pipeline in TLA+ (4 properties over 2,647 states at the shipped configuration), with a deliberately broken mutant spec that must fail in CI so a green check is never vacuous. On a 10-lecture corpus the gate took citation precision from 0.604 to 0.960; recall 1.000 and leak rate 0.000 hold by construction, since the gate’s conjuncts are the predicates being measured.',
+      'Delivered as 9 hexagonal microservices over Redis Streams behind 2,489 backend tests, with a 32-page project report. Earlier built PodcastHub, six event-driven services over a RabbitMQ topic exchange.',
+      'A+ - Simple Type Theory',
+      'A - Microservice Architectures',
+    ].join('\n'),
     order: 0,
   },
   {
@@ -88,26 +106,52 @@ const educations = [
 ]
 
 const skillsByCategory: Record<string, string[]> = {
-  Languages: ['TypeScript', 'Python', 'SQL', 'Java', 'C', 'Swift', 'JavaScript', 'Bash'],
-  'Frameworks & Runtimes': ['Next.js', 'React', 'Node.js', 'FastAPI', 'Prisma', 'React Native', 'PyTorch'],
-  'Data & Infrastructure': ['PostgreSQL (Neon)', 'MongoDB', 'AWS', 'GCP', 'Vercel', 'Docker', 'Redis'],
-  'AI & Agentic': [
-    'Claude API',
-    'Multi-agent orchestration',
-    'RAG & vector search',
-    'Local LLMs (Ollama, qwen2.5)',
-    'Whisper',
-    'MCP',
+  Languages: ['Python', 'TypeScript', 'JavaScript', 'Java', 'SQL', 'Swift', 'C'],
+  'AI & Agents': [
+    'LLM APIs (Anthropic, OpenAI)',
+    'Agent orchestration',
+    'LangGraph',
+    'Structured outputs',
+    'RAG',
+    'Vector search (LanceDB, MongoDB Atlas)',
+    'BGE-M3 embeddings',
+    'Ollama',
+    'Evaluation harnesses',
+    'LLM-as-judge',
   ],
-  'Finance & Domain': [
-    'Equipment & lease finance',
-    'Amortization (PMT/PV/FV/RATE/IRR, TValue-validated)',
-    'Subsidy & blended-rate modeling',
-    'Credit-scorecard & recovery modeling',
-    'Deal-funding workflows',
-    'Power BI',
+  'Backend & Data': [
+    'REST/JSON APIs',
+    'Microservices',
+    'Event-driven architecture',
+    'RabbitMQ',
+    'Redis Streams',
+    'WebSockets',
+    'Node.js',
+    'FastAPI',
+    'Prisma',
+    'PostgreSQL',
+    'Google Workspace APIs',
   ],
-  Practices: ['TDD (Vitest, Playwright)', 'CI/CD', 'GitHub Actions', 'systemd automation'],
+  'Cloud & DevOps': [
+    'AWS Lambda',
+    'Vercel',
+    'Docker',
+    'Linux',
+    'systemd',
+    'Kernel-namespace sandboxing',
+    'Jenkins',
+    'GitHub Actions',
+    'Gitleaks',
+  ],
+  'Testing & Formal Methods': ['TDD', 'pytest', 'Vitest', 'Playwright', 'JUnit', 'Mutation testing', 'TLA+', 'Z3/SMT2'],
+  Domain: [
+    'Regulated financial services',
+    'Equipment and lease finance',
+    'Credit underwriting submissions',
+    'Financial statement analysis',
+    'NPV and IRR math',
+    'Collections risk scoring',
+  ],
 }
 
 async function main() {
@@ -115,7 +159,7 @@ async function main() {
     where: { id: 'default' },
     update: {
       title: 'Resume',
-      subtitle: 'Software Engineer · Fintech & Finance Platforms',
+      subtitle: 'Applied AI Engineer · Agentic Systems, Backend & Formal Verification',
       summary,
       location: 'Burlington, ON',
       email: 'suley.kiani@outlook.com',
@@ -126,7 +170,7 @@ async function main() {
     create: {
       id: 'default',
       title: 'Resume',
-      subtitle: 'Software Engineer · Fintech & Finance Platforms',
+      subtitle: 'Applied AI Engineer · Agentic Systems, Backend & Formal Verification',
       summary,
       location: 'Burlington, ON',
       email: 'suley.kiani@outlook.com',
