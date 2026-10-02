@@ -60,6 +60,15 @@ fences, math coherence) before shipping. Proven pattern: 2026-06-12, two rounds.
 
 ## Content rules (learned the hard way)
 
+- **SUPERSEDED BASE (2026-10-02).** The canonical resume is now the Current-2026-10-AppliedAI build
+  (`shared/2026-07 Resumes/Current-2026-10-AppliedAI/_sources/resume.tex`, notes in `RESUME-NOTES.txt` beside it).
+  Where the numbers below disagree with it, the canonical wins. Retracted on 2026-10-02: the validator's
+  "1-2 hour to about a minute" (now: median 4.9 minutes over 56 runs), the 1,396/1,440 test counts (now 1,370),
+  "TValue to the penny" certification (now: 45 funded deals within half a cent), sole-designer scorecard
+  (now: co-designed with two colleagues; bands are on the scored live book; $66.4M belongs to the 1,023 ranked
+  contracts), "row-level" tenant isolation (say tenant-scoped data-access layer), qwen2.5 (now gemma3n),
+  59/172 Incite counts (now 74 models / 196 routes, 6,000+ tests), A+ in Microservices (it is an A).
+
 - **Every claim must be sourced and defensible.** No round percentages without a basis
   (the old Giftcash 20/25/30% were flagged as reading fabricated by a 6-recruiter
   panel — `docs/recruiter-review.md`). Current vetted numbers: 200% of quota ($4M vs
@@ -98,8 +107,8 @@ fences, math coherence) before shipping. Proven pattern: 2026-06-12, two rounds.
   Pilates is its flagship client platform, built and operated solo.
 - **No payment-bug confession bullets** (owner decision 2026-06-12: bugs in
   self-authored software read unprofessional). Production rigor is shown through
-  mechanisms: idempotent payments, webhook signature verification, row-level tenant
-  isolation, test/CI counts.
+  mechanisms: idempotent payments, webhook signature verification, tenant isolation in a
+  tenant-scoped data-access layer, test/CI counts.
 - **MHC internals stay generic** on anything public: employer name is fine, internal
   tool/stakeholder names are not.
 - **No em-dashes in resume prose.** No spacing tricks to fill pages — add or cut content.

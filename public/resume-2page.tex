@@ -77,123 +77,111 @@
 %-----------HEADER-----------
 \begin{center}
     \textbf{\Huge \scshape Suleyman Kiani} \\ \vspace{3pt}
-    \small Software Engineer $\cdot$ Fintech \& Agentic Systems \\ \vspace{3pt}
+    \small Applied AI Engineer $\cdot$ Agentic Systems, Backend \& Formal Verification \\ \vspace{3pt}
     \footnotesize Burlington, ON $|$ +1 (289) 788-8260 $|$ \href{mailto:suley.kiani@outlook.com}{\underline{suley.kiani@outlook.com}} $|$ \href{https://www.linkedin.com/in/suleyman-kiani}{\underline{linkedin.com/in/suleyman-kiani}} $|$ \href{https://github.com/kianis4}{\underline{github.com/kianis4}} $|$ \href{https://suleyman.io}{\underline{suleyman.io}}
 \end{center}
 
 %-----------SUMMARY-----------
 \section{Summary}
 \vspace{2pt}
-\small{Software engineer who builds the tooling a finance desk actually runs on: a production quoting engine matching TValue, the industry lease-math standard, to the penny; a multi-tenant booking-and-payments platform processing real client revenue; a self-hosted agentic platform with sandboxed workers and fail-closed gates. Equipment-finance experience at Mitsubishi HC Capital gives me domain fluency most engineers don't have. MEng in Computing \& Software at McMaster, in distributed systems, microservices, and formal verification.}
+\small{Applied AI engineer who ships agents with their evals attached. A year inside a regulated commercial lender taking systems from business discovery through IT intake and security review to corporate handoff, alongside a founder's multi-tenant payments platform that a real business runs on. MEng in Computing \& Software at McMaster, where my project formally verifies that an LLM pipeline cannot release an uncited claim or leak a confidential one.}
 \vspace{-4pt}
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, TypeScript, JavaScript, Java, SQL, Swift, C} \\
+     \textbf{AI \& Agents}{: LLM APIs (Anthropic, OpenAI), agent orchestration, LangGraph, structured outputs, RAG, vector search (LanceDB, MongoDB Atlas), BGE-M3 embeddings, Ollama, evaluation harnesses, LLM-as-judge} \\
+     \textbf{Backend \& Data}{: REST/JSON APIs, microservices, event-driven architecture, RabbitMQ, Redis Streams, WebSockets, Node.js, FastAPI, Prisma, PostgreSQL, query tuning and indexing, schema migrations, Google Workspace APIs} \\
+     \textbf{Cloud \& DevOps}{: AWS Lambda, Vercel, Docker, Linux, systemd, kernel-namespace sandboxing, Jenkins, GitHub Actions, CI/CD, Gitleaks secret scanning} \\
+     \textbf{Testing \& Formal Methods}{: TDD, pytest, Vitest, Playwright, JUnit, mutation testing, TLA+ model checking, Z3/SMT2} \\
+     \textbf{Domain}{: Regulated financial services, equipment and lease finance, credit underwriting submissions, financial statement analysis, NPV and IRR math, collections risk scoring}
+    }}
+\end{itemize}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Applied AI Engineer}{Starting Oct. 2026}
+      {LaunchGood}{Remote}
+      \resumeItemListStart
+        \resumeItem{Senior (P3) hire into the pod that owns AI initiatives at a global crowdfunding platform: production agents and automations across operations, trust and safety, support and finance, each gated by \textbf{evaluation suites in CI} (deterministic checks, LLM-as-judge, human review). The hiring bar was a deployed, evaluated prototype: Zakat-Eligibility Triage, below.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Associate Account Manager (Software Engineering scope)}{Sept. 2025 -- Oct. 2026}
+      {Mitsubishi HC Capital Canada}{Burlington, ON}
+      \resumeItemListStart
+        \resumeItem{Built one bilingual \textbf{TypeScript} application to replace \textbf{13 Excel pricing calculators} across 14 manufacturers and 9 pricing engines; rate configs are versioned \textbf{Postgres} rows with an audit log, so repricing never needs a code deploy.}
+        \resumeItem{Carried it through \textbf{enterprise SDLC}: formal IT intake (a nine-document security-scoped submission), a leadership review, an IT pre-review, then a handoff of source, calculation spec and \textbf{16 written rulings} (capital and FMV leases, loans, residuals, cost-of-funds ladders) to corporate IT, which now owns it and is deploying it from that documentation.}
+        \resumeItem{Validated its finance core (payment, rate and IRR functions) against the booking system of record: \textbf{45 funded deals} reproduced to within half a cent given each deal's booked rate and structure, so the arithmetic is proven on real flows, not its own output.}
+        \resumeItem{Gated it behind a \textbf{1,370-test} suite with mutation-tested assertions, funded-deal fixtures kept server-only and expected-fail tests holding known gaps open; it caught \textbf{7 of 9 engines} silently quoting wrong terms.}
+        \resumeItem{Co-designed, with two colleagues, a collections risk scorecard from six years of delinquency history: five bands separate average default probability \textbf{0.647 to 0.017} on the scored live book, a 38x spread with no reversals; model selection used customer-grouped cross-validation.}
+        \resumeItem{Approved for launch and announced org-wide by the SVP in Sept. 2026 as a risk-based prioritization tool after it re-scored a 1,748-contract book, ranking 1,023 contracts carrying \textbf{\$66.4M} of net investment; collections managers now work from its \textbf{daily list}.}
+        \resumeItem{Built the \textbf{AI document-validation service}: LLM extraction checked against a documented rules checklist, behind a deterministic intake-and-retry state machine, returning a READY / NOT READY verdict on a deal package at a \textbf{median of 4.9 minutes} over 56 runs; advisory only, zero incremental spend on data already held.}
+      \resumeItemListEnd
+    \newpage
+    \resumeSubheading
+      {Software Engineer \& Founder}{Jan. 2024 -- Present}
+      {SKomp Studio}{Remote}
+      \resumeItemListStart
+        \resumeItem{Built \textbf{Incite}, a white-label multi-tenant booking-and-payments platform on a \textbf{74-model Prisma schema} and \textbf{196 REST API routes}: scheduling, waitlists, Square payments, memberships, ticketing and per-tenant theming.}
+        \resumeItem{Its flagship tenant runs its entire operation on it: \textbf{\$45K+ CAD} processed since launch across \textbf{640 registered users}, 1,380 confirmed bookings and 105 active memberships, all self-serve with no parallel manual system.}
+        \resumeItem{Money is the part that cannot be wrong: \textbf{idempotent payments}, webhook signature verification and \textbf{tenant isolation} enforced in a tenant-scoped data-access layer, guarded by a build-failing test for unscoped models.}
+        \resumeItem{Run it to enterprise standards: \textbf{6,000+ automated tests} gating every merge, Playwright suites as required status checks, \textbf{Gitleaks} secret scanning in CI, and branch-protected pull requests with a preview deploy per change.}
+        \resumeItem{Mentored \textbf{100+ learners} through algorithms, systems design and interview preparation, running every engagement end to end since 2024: acquisition, pricing, curriculum design, live sessions and follow-up review.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {Junior Web Developer}{May 2021 -- Jun. 2022}
+      {Giftcash Inc.}{Remote}
+      \resumeItemListStart
+        \resumeItem{As one of three engineers in a 30 to 40 person development organization, migrated a legacy Django monolith to Node.js on \textbf{AWS Lambda} for per-request billing, tuned PostgreSQL indexes to kill the sequential scans behind balance lookup and stood up Jenkins and GitHub Actions CI/CD.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
 
 %-----------EDUCATION-----------
 \section{Education}
   \resumeSubHeadingListStart
     \resumeSubheading
       {McMaster University}{Hamilton, ON}
-      {MEng, Computing \& Software (Distributed Systems, Microservices \& Applied ML)}{Sept. 2025 -- 2026}
+      {MEng, Computing \& Software (Distributed Systems, Formal Methods \& Applied ML)}{Sept. 2025 -- 2027 (expected)}
       \resumeItemListStart
-        \resumeItem{Research with Dr. Farmer and Dr. Paige: TLA+ and SMT2 specifications for an LLM citation-faithfulness gating layer, verifying that a study companion's generated notes stay attributable to their sources.}
-        \resumeItem{\textbf{A+} in Simple Type Theory and Microservices-Oriented Architectures.}
-        \resumeItem{Built \href{https://www.suleyman.io/architecture}{\underline{\textbf{PodcastHub}}} for the distributed-systems course: five event-driven microservices (Node/Express, Python/FastAPI) in six containers with a dedicated FFmpeg worker, choreographed over a RabbitMQ topic exchange with MinIO presigned-URL storage and a RabbitMQ-to-WebSocket notification bridge.}
+        \resumeItem{\textbf{Mac Study Companion}, co-supervised by Dr. Richard Paige and Dr. William Farmer and judged complete by both in Sept. 2026: a lecture-to-study-notes pipeline in which no claim reaches a student until it cites its exact source. A Z3/SMT encoder emits a four-conjunct verification condition (completeness, support gating, non-interference over a confidentiality lattice, recall floor); the gate refuses if any conjunct fails.}
+        \resumeItem{Model-checked the pipeline in TLA+ (4 properties over 2,647 states at the shipped configuration), with a deliberately broken mutant spec that must fail in CI so a green check is never vacuous. On a 10-lecture corpus the gate took citation precision from 0.604 to \textbf{0.960}; recall 1.000 and leak rate \textbf{0.000} hold by construction, since the gate's conjuncts are the predicates being measured.}
+        \resumeItem{Delivered as \textbf{9 hexagonal microservices} over Redis Streams behind 2,489 backend tests, with a 32-page project report. Earlier built \href{https://www.suleyman.io/architecture}{\underline{\textbf{PodcastHub}}}, six event-driven services over a RabbitMQ topic exchange. \textbf{A+} in Simple Type Theory, A in Microservice Architectures.}
       \resumeItemListEnd
     \resumeSubheading
       {McMaster University}{Hamilton, ON}
       {BASc (Honours), Computer Science}{Sept. 2018 -- Nov. 2024}
   \resumeSubHeadingListEnd
 
-%-----------EXPERIENCE-----------
-\section{Experience}
-  \resumeSubHeadingListStart
-    \resumeSubheading
-      {Associate Account Manager (Internal Software Engineering)}{Sept. 2025 -- Present}
-      {Mitsubishi HC Capital Canada}{Burlington, ON}
-      \resumeItemListStart
-        \resumeItem{Rebuilt \textbf{13 abandoned Excel calculators} (30--45 sheets each) as one bilingual Next.js / React app covering \textbf{14 manufacturers}; reverse-engineered their lease and subsidy math, matched to the TValue schedules to the penny behind a \textbf{1,396-test} suite.}
-        \resumeItem{Untangled three structurally different subsidy formulas, proved three regional dealer workbooks were re-skins of one template, and collapsed them into shared calculation engines; authored the architecture and handoff documentation that lets the company's IT org own and extend the tool.}
-        \resumeItem{Built an AI document-validation service (LLM extraction + deterministic rules) for deal-funding review and carried it through the company's internal innovation program; on a \textbf{50-package evaluation suite} it cuts the \textbf{1--2 hour} first pass to about \textbf{a minute}, advisory only, on a replayable per-deal audit trail.}
-        \resumeItem{Designed the collections risk scorecard the business approved in Aug 2026, now \textbf{in pilot}: it scores and ranks all \textbf{2,079 live delinquent contracts}, reordering \textbf{73\%} of the top 100 against a plain balance sort. Derived the NSF, term, and industry multipliers from a \textbf{six-year} delinquency history, validated on a customer-grouped holdout with five-fold cross-validation, and built the scorer that reproduces every ranked score in plain Excel (\textbf{1,023/1,023} rows).}
-        \resumeItem{Carry the desk's sales book: funded \textbf{\$4M against a \$2M monthly target} (200\%) in each of April and May 2026; over quota every month since month two.}
-      \resumeItemListEnd
-    \resumeSubheading
-      {Founder \& Software Engineer}{Jan. 2024 -- Present}
-      {SKomp Studio}{Remote}
-      \resumeItemListStart
-        \resumeItem{Founded a software studio and designed, shipped, and now operate its flagship client platform, \href{https://www.solsticepilates.ca/}{\underline{\textbf{Solstice Pilates}}} (solsticepilates.ca), solo: a multi-tenant booking-and-payments system (\textbf{59-model Prisma schema}, \textbf{172 API routes}) with scheduling, FIFO waitlists and capacity gating, Square payments and recurring memberships with tax handling, digital waivers, and a 23-page admin portal.}
-        \resumeItem{Runs live operations (\textbf{\$45K+ CAD processed} across \textbf{1,380 confirmed bookings}, 640 registered users) and ships a client-driven roadmap on \textbf{5,000+ automated tests}, with Playwright browser suites gating merges as required status checks, shadow-DB checks across every versioned migration, and Gitleaks secret scanning in CI.}
-        \resumeItem{Engineered for money-handling correctness: idempotent Square payment processing, webhook signature verification, and row-level tenant isolation via a scoped Prisma client.}
-        \resumeItem{Landed five production fixes in parallel in one agent-orchestrated session, each in its own git worktree with its own test-and-verify loop, merged through branch-protected PRs.}
-        \resumeItem{Coached \textbf{100+ learners} through algorithms, systems design, and technical-interview prep in the studio's mentorship arm, taking each engagement from acquisition through delivery.}
-      \resumeItemListEnd
-    \resumeSubheading
-      {Junior Web Developer}{May 2021 -- Jun. 2022}
-      {Giftcash Inc.}{Remote}
-      \resumeItemListStart
-        \resumeItem{Migrated a legacy Python / Django monolith to Node.js on AWS Lambda, trading always-on server overhead for per-request billing, and tuned PostgreSQL with indexing, caching, and query rewrites that killed the sequential scans behind the gift-card lookup flow.}
-        \resumeItem{Automated gift-card balance verification with a Puppeteer + Axios pipeline and stood up Jenkins and GitHub Actions CI/CD so merges deployed without manual release steps.}
-      \resumeItemListEnd
-  \resumeSubHeadingListEnd
-
 %-----------PROJECTS-----------
 \section{Projects}
     \resumeSubHeadingListStart
-
       \resumeProjectHeading
-          {\href{https://www.suleyman.io/architecture}{\underline{\textbf{Personal Agentic OS}}} $\cdot$ multi-agent automation platform $|$ \emph{Python, TypeScript, Claude, systemd, Tailscale}}{2026}
+          {\textbf{Zakat-Eligibility Triage} $\cdot$ evaluated LLM triage prototype $|$ \emph{Python, structured outputs, LLM-as-judge}}{2026}
           \resumeItemListStart
-            \resumeItem{Operate the self-hosted multi-agent platform behind the document-validation service above: \textbf{30+ scheduled automations} and email-triggered workers that validate funding-deal packages in minutes, containing prompt-injection risk from untrusted attachments.}
-            \resumeItem{Every untrusted worker runs in a kernel-namespace sandbox (bubblewrap) behind fail-closed gates; secrets live in a 1Password vault, backups run nightly off-site, and a health watchdog emails on problem-state transitions.}
-            \resumeItem{Runs an autonomous overnight pipeline that picks a candidate idea, builds and tests it in an isolated git worktree, and publishes behind a \textbf{12-check eval gate} (dependency vulnerabilities, secret hygiene, origin integrity, a model-based validator), refusal reasons persisted to an audit log; monitored from an iOS app over Tailscale; heavy jobs dispatch to a second compute node through a FastAPI work queue with artifact upload.}
-            \resumeItem{Includes a fully local RAG stack (qwen2.5 on an RTX 3080) returning cited answers in \textbf{about 4s} at zero API cost, plus a Whisper voice-note router that files each note to the right project, tuned against Recall@10.}
+            \resumeItem{An eligibility-triage agent for crowdfunding campaigns, scored by its own harness: 18 hand-labelled campaigns, an LLM judge blind to the labels and a human call recorded on every case, so no verdict ships unreviewed; \textbf{10 decision records} carry the tradeoffs.}
+            \resumeItem{Scored \textbf{97.2\%} category agreement (140 of 144) and \textbf{83.3\%} escalation agreement (15 of 18), clearing gates of 80\% and 75\%, behind 442 unit tests; five of the 18 cases are labelled ambiguous on purpose, so a perfect score would be the red flag.}
           \resumeItemListEnd
-
       \resumeProjectHeading
-          {\href{https://mike-ross.ca/}{\underline{\textbf{Mike Ross AI}}} $\cdot$ legal RAG assistant (Delta Hacks 12) $|$ \emph{LangGraph, Gemini 2.0, MongoDB Atlas, FastAPI}}{2026}
+          {\href{https://www.suleyman.io/architecture}{\underline{\textbf{Personal Agentic OS}}} $\cdot$ distributed automation platform $|$ \emph{Python, TypeScript, Docker, Linux, systemd}}{2026}
           \resumeItemListStart
-            \resumeItem{Built a legal assistant that answers Canadian-law questions with schema-enforced, quote-grounded citations: a LangGraph state machine routes intent and runs jurisdiction-aware vector retrieval (provincial queries auto-merge federal law) over a \textbf{16,000-chunk} corpus of seven Canadian statutes on MongoDB Atlas.}
-            \resumeItem{Wired Gemini 2.0 Flash structured outputs to a FastAPI backend with multi-turn thread memory and a draft-to-PDF pipeline for legal notices; live at mike-ross.ca.}
+            \resumeItem{Built and run a self-hosted automation platform: \textbf{60+ scheduled services} and event-triggered workers on Linux; the workers that take untrusted input run in kernel-namespace sandboxes behind a fail-closed egress allowlist.}
+            \resumeItem{Work that dies mid-flight is recovered rather than lost: a \textbf{dead-man switch} watches the health monitor itself, and a sweeper re-drives stranded jobs up to three times before parking them for review instead of retrying forever.}
+            \resumeItem{A local retrieval stack (BGE-M3 embeddings, gemma3n on an RTX 3080, LanceDB) returns cited answers tuned on a hand-built \textbf{40-question Recall@10} gold set; no document, query or answer leaves the machine.}
           \resumeItemListEnd
-
       \resumeProjectHeading
-          {\textbf{LLM Study Companion} $\cdot$ MEng research system $|$ \emph{FastAPI, Next.js, pgvector}}{2026}
+          {\href{https://mike-ross.ca/}{\underline{\textbf{Mike Ross AI}}} $\cdot$ legal retrieval assistant (Delta Hacks 12) $|$ \emph{Python, FastAPI, MongoDB Atlas, LangGraph}}{2026}
           \resumeItemListStart
-            \resumeItem{Building the system around the research: event-driven hexagonal services (FastAPI, Next.js, Postgres + pgvector), AssemblyAI lecture transcription, and Cohere reranking, with the TLA+/SMT2-specified citation gate as the publish oracle for generated study notes.}
+            \resumeItem{Answers Canadian-law questions with quote-grounded citations: a LangGraph state machine runs jurisdiction-aware retrieval over a \textbf{16,000-chunk} corpus spanning seven statutes, keeps multi-turn memory and drafts send-ready notices to PDF; built in a 24-hour hackathon.}
           \resumeItemListEnd
-
       \resumeProjectHeading
-          {\href{https://applify-ai.com/}{\underline{\textbf{Applify AI}}} $\cdot$ resume-tailoring SaaS $|$ \emph{Next.js, Inngest, OpenAI}}{2025 -- Present}
+          {\textbf{SKomp Forge} $\cdot$ agentic iOS training coach $|$ \emph{Swift 6, SwiftUI, SwiftData, HealthKit}}{2025 -- Present}
           \resumeItemListStart
-            \resumeItem{Production SaaS that tailors a resume to a job posting: seven durable Inngest job types drive the OpenAI Responses API with schema-validated outputs, including a \textbf{self-correcting page-fit loop} (up to 20 checkpointed iterations of bullet reduction, LaTeX recompile, page-count check, about 65 durable steps per document); Stripe billing with idempotent webhooks; 98-test CI suite.}
+            \resumeItem{Rebuilt my training app into an \textbf{agentic coach} across 11 Swift 6 modules, shipping to TestFlight: 36 tool schemas pinned in both Swift and Python and diff-tested for drift, every write a typed proposal the lifter confirms by tap, and full-duplex voice holding \textbf{P90 313ms} text-to-first-audio under a 1,500ms budget.}
           \resumeItemListEnd
-
-      \resumeProjectHeading
-          {\href{https://suleyman.io/}{\underline{\textbf{suleyman.io}}} $\cdot$ personal site built as a product $|$ \emph{Next.js 16, Prisma, Neon, Vercel}}{2026}
-          \resumeItemListStart
-            \resumeItem{The site is a command-center HUD with a working in-browser terminal (custom REPL, commands and games), live Spotify visualizations, a GitHub-language constellation fed by the GitHub API, and a database-backed resume pipeline serving versioned resume variants from Postgres.}
-            \resumeItem{The resume pipeline behind this document runs on it: server-seeded Prisma rows, versioned LaTeX variants, and ATS-audited PDF builds.}
-          \resumeItemListEnd
-
-      \resumeProjectHeading
-          {\textbf{SKomp Forge} $\cdot$ agentic iOS training coach $|$ \emph{Swift 6, SwiftUI, SwiftData, OpenAI Realtime, HealthKit}}{2025 -- Present}
-          \resumeItemListStart
-            \resumeItem{Agentic training coach across 11 Swift 6 modules with \textbf{52 decision records} carrying the tradeoffs; its agent exposes \textbf{18 tool schemas} pinned in Swift and Python and diff-tested so the two can never drift.}
-            \resumeItem{Full-duplex voice on \textbf{gpt-realtime} with server-side VAD and barge-in, holding \textbf{P90 313ms} to first audio against a 1,500ms gate; the phone never holds an API key, only a 60-second ephemeral token.}
-          \resumeItemListEnd
-
     \resumeSubHeadingListEnd
-
-%-----------SKILLS-----------
-\section{Technical Skills}
-\begin{itemize}[leftmargin=0.15in, label={}]
-    \small{\item{
-     \textbf{Languages}{: TypeScript, Python, SQL, Java, C, Swift} \\
-     \textbf{Financial \& Domain}{: Equipment \& lease finance, amortization math (PMT/PV/FV/RATE/IRR, TValue-validated), manufacturer subsidy \& blended-rate modeling, credit-scorecard \& recovery modeling, deal-funding workflows} \\
-     \textbf{Backend \& Web}{: Next.js (App Router, Server Actions), React, Node.js, FastAPI, Prisma, Tailwind, PostgreSQL (Neon), Redis, Vercel, REST APIs} \\
-     \textbf{AI / Agentic}{: Agent orchestration, LLM eval pipelines, RAG + reranking, local inference (Ollama, qwen2.5), Whisper, prompt-injection mitigation} \\
-     \textbf{Payments \& Integrations}{: Square (orders, payments, webhooks), Meta CAPI, Google Ads server-side conversions, Gmail / Workspace API} \\
-     \textbf{Practices}{: TDD (Vitest, Playwright), CI/CD, branch-protected PRs, systemd automation, multi-tenant SaaS}
-    }}
-\end{itemize}
 
 \end{document}

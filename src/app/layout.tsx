@@ -24,15 +24,15 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata = {
   title: {
     template: '%s - Suleyman Kiani',
-    default: 'Suleyman Kiani - Software Engineer & Equipment Finance',
+    default: 'Suleyman Kiani - Applied AI Engineer',
   },
   description:
-    'Equipment finance professional and software engineer. Production SaaS, ML, and event-driven systems.',
+    'Applied AI engineer. Agents shipped with their evals attached, backend systems, and formal verification.',
   metadataBase: new URL('https://www.suleyman.io'),
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Suleyman Kiani - Software Engineer & Equipment Finance',
-    description: 'Equipment finance professional and software engineer. Production SaaS, ML, and event-driven systems.',
+    title: 'Suleyman Kiani - Applied AI Engineer',
+    description: 'Applied AI engineer. Agents shipped with their evals attached, backend systems, and formal verification.',
     url: 'https://www.suleyman.io',
     siteName: 'Suleyman Kiani',
     images: [
@@ -92,13 +92,13 @@ export default function RootLayout({
               "name": "Suleyman Kiani",
               "url": "https://www.suleyman.io",
               "image": "https://www.suleyman.io/profile-image.jpg",
-              "jobTitle": "Equipment Finance Professional & Software Engineer",
+              "jobTitle": "Applied AI Engineer",
               "sameAs": [
                 "https://linkedin.com/in/suleyman-kiani",
                 "https://github.com/kianis4",
                 "https://twitter.com/svley"
               ],
-              "description": "Equipment finance professional and software engineer. Production SaaS, ML, and event-driven systems."
+              "description": "Applied AI engineer. Agents shipped with their evals attached, backend systems, and formal verification."
             })
           }}
         />

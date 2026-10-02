@@ -61,7 +61,7 @@ const SHIPS: Ship[] = [
     name: 'incite',
     outcome: 'White-label studio platform running a real business.',
     detail:
-      'Booking, waitlists, memberships and Square payments for studios that ran on paper. Tenant isolation enforced in the data layer by a scoped Prisma client, 59 data models across 172 API routes, and a suite of more than 5,000 tests with Playwright end-to-end runs as a required check on every release. Solstice Pilates runs its entire operation on it.',
+      'Booking, waitlists, memberships and Square payments for studios that ran on paper. Tenant isolation enforced in the data layer by a scoped Prisma client, 74 data models across 196 API routes, and a suite of more than 6,000 tests with Playwright end-to-end runs as a required check on every release. Solstice Pilates runs its entire operation on it.',
     href: 'https://skomp.studio/',
     linkLabel: 'skomp.studio',
   },
@@ -193,32 +193,34 @@ export default function About() {
             Suleyman Kiani
           </h1>
           <p className="mt-3 font-mono text-sm text-ink-muted">
-            Software Engineer · Equipment Finance
+            Applied AI Engineer · LaunchGood
           </p>
 
           <p className="mt-8 max-w-2xl text-lg text-zinc-400">
-            I ship production software and I fund equipment-finance deals at
-            Mitsubishi HC Capital. Full-stack and ML engineering on one side,
-            structured finance on the other. A personal multi-agent OS runs the
-            rest.
+            I build AI agents and ship them with their evals attached. From
+            October 2026 I am an Applied AI Engineer at LaunchGood, after a year
+            in equipment finance at Mitsubishi HC Capital. A personal
+            multi-agent OS runs the rest.
           </p>
 
           <div className="mt-14 space-y-14">
             <Reveal as="section">
               <SectionLabel>mission</SectionLabel>
               <p className="max-w-2xl text-base text-zinc-300">
-                I structure and fund equipment-finance deals at Mitsubishi HC
-                Capital, currently at 200% of monthly quota, where I have also
-                shipped multiple internal automation and AI tools in production.
-                Alongside that I run two production products with paying users.
+                I join LaunchGood in October 2026 as a senior (P3) Applied AI
+                Engineer, in the pod that owns AI initiatives. Before that I spent
+                a year funding equipment-finance deals at Mitsubishi HC Capital,
+                over quota every month from my second, and built the desk a quoting tool that
+                corporate IT now owns and is deploying. Alongside that I run two
+                production products with paying users.
               </p>
               <p className="mt-5 max-w-2xl text-base text-zinc-300">
                 My MEng in Computing &amp; Software at McMaster is research
                 complete: Dr. William Farmer and Dr. Richard Paige reviewed the
-                running system in September 2026 and closed the build as
-                sufficient for the degree, leaving the written report as the
-                work that remains. The project is Mac Study Companion, below. A+
-                grades in simple type theory and microservices.
+                running system in September 2026 and judged the project
+                complete, with coursework running through 2027. The project is
+                Mac Study Companion, below. A+ in simple type theory, A in
+                microservice architectures.
               </p>
               <p className="mt-5 max-w-2xl text-base text-zinc-300">
                 Off the clock I built my own JARVIS: a personal multi-agent

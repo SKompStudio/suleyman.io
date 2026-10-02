@@ -1,6 +1,6 @@
 const COURSES: { grade: string; name: string }[] = [
   { grade: 'A+', name: 'Simple Type Theory' },
-  { grade: 'A+', name: 'Microservices-Oriented Architectures' },
+  { grade: 'A', name: 'Microservice Architectures' },
 ]
 
 function Degree({
@@ -42,8 +42,9 @@ export function EducationLedger() {
       <div className="mt-6 space-y-7">
         <Degree
           degree="MEng, Computing & Software"
-          detail="Research complete · accepted by both supervisors, Sept 2026"
-          timeline="2025 - 2026"
+          detail="Project judged complete by both supervisors, Sept 2026"
+          timeline="2025 - 2027 (expected)"
+          current
         >
           <dl className="mt-3 space-y-1.5">
             {COURSES.map((c) => (
